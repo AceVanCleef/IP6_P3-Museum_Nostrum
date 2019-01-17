@@ -2,20 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// [Image]
-/// Is draggable and selectable via tap. How to differentiate between selection and dragging?
-/// OnTap -> Finger didn't move. Technically speaking, the difference of starting point and ending point 
-/// of the touch will be within a smal ldelta value.
-/// OnDrag -> The distance between start and end point of the touch will be larger than a small delta value.
-/// A drag differentiates itself by hitting an interactable object using a raycast.
-/// In case, no object has been hit by raycasting, a swipe will be interpreted.
-/// 
-/// [Door]
-/// Some objects are only interactable by touch. One solution to enforace a distinction between 
-/// objects who can be interacted with either tap or drag, is to define seperate Tags.
-/// </summary>
+
 public sealed class InputManager : AbstractInputManager {
+
+    /// 
+    /// [Image]
+    /// Is draggable and selectable via tap. How to differentiate between selection and dragging?
+    /// OnTap -> Finger didn't move. Technically speaking, the difference of starting point and ending point 
+    /// of the touch will be within a smal ldelta value.
+    /// OnDrag -> The distance between start and end point of the touch will be larger than a small delta value.
+    /// A drag differentiates itself by hitting an interactable object using a raycast.
+    /// In case, no object has been hit by raycasting, a swipe will be interpreted.
+    /// 
+    /// [Door]
+    /// Some objects are only interactable by touch. One solution to enforace a distinction between 
+    /// objects who can be interacted with either tap or drag, is to define seperate Tags.
+    /// 
+
+
+    //Todo - Potential optimizations and refactoring issues:
+    // - replacing List<InputAction> with an array to remove Contains() which might be slow.
+    // - encapsulating code for each gesture in (sub)classes or in another way.
+    // - if managable, replace many if statemnts with state pattern to increase maintainability.
+
+    private PlayerRotator playerRotator;
 
     private static InputManager inputManager;
     public static InputManager Instance
@@ -45,10 +55,11 @@ public sealed class InputManager : AbstractInputManager {
     private Vector3 offset;
     private Vector3 v3;
 
-    void Start () {
+    void Awake () {
 		if (inputManager == null)
         {
             inputManager = this;
+            playerRotator = GetComponent<PlayerRotator>();
         }
 	}
 
@@ -203,29 +214,29 @@ public sealed class InputManager : AbstractInputManager {
 
     private void HandleSwipe(SwipeData data)
     {
-        /*if (!dragManager.IsDragging() && !playerMove.IsMoving())
+        if (!playerRotator.IsMoving())
         {
             if (data.Direction == SwipeDirection.Left)
             {
-                playerMove.MovePlayer(0, 0, 1);
+                playerRotator.Rotate(PlayerRotator.RotationDirection.Right);
                 Debug.Log("Swipe in Direction: " + data.Direction);
                 CameraViewDirection.Instance.GetCurrentState().TransitionRight();
                 CameraViewDirection.Instance.GetCurrentState().PrintState();
-                dataLogger.Log(data);
-                dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
-                if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+                //dataLogger.Log(data);
+                //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
+                //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
             }
             else if (data.Direction == SwipeDirection.Right)
             {
-                playerMove.MovePlayer(0, 0, -1);
+                playerRotator.Rotate(PlayerRotator.RotationDirection.Left);
                 Debug.Log("Swipe in Direction: " + data.Direction);
                 CameraViewDirection.Instance.GetCurrentState().TransitionLeft();
                 CameraViewDirection.Instance.GetCurrentState().PrintState();
-                dataLogger.Log(data);
-                dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
-                if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+                //dataLogger.Log(data);
+                //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
+                //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
             }
-        }*/
+        }
         Debug.Log("handling swipes. Direction: " + data.Direction);
     }
 
@@ -269,8 +280,8 @@ public sealed class InputManager : AbstractInputManager {
 
     private float CalculateDistance(GameObject hitGO)
     {
-        //return CameraViewDirection.Instance.GetCurrentState().HandleDragDistanceCalculation(hit.transform.position, Camera.main.transform.position);
-        return hitGO.transform.position.z - Camera.main.transform.position.z;
+        return CameraViewDirection.Instance.GetCurrentState().HandleDragDistanceCalculation(hitGO.transform.position, Camera.main.transform.position);
+        //return hitGO.transform.position.z - Camera.main.transform.position.z;
     }
 
     #endregion DragGestureAPI
