@@ -16,3 +16,9 @@ Demonstrated at an InputManager
 ## Locking orientations for mobile devies
 Edit -> Project Settings -> Player. Then under "Resolution and Presentation" group you can see the "Orientation" sub group. Here you can toggle off the undesired orientations.
 - [Android: How do I force only portrait orientation?](https://answers.unity.com/questions/615249/android-how-do-i-force-only-portrait-orientation.html)
+
+
+## How to detect Gestures on GUI elements
+- IDragHandler, IEndDragHandler, IDropHandler for drag and drop.  
+- IPointerClickHandler for tapping on GUi element.
+- [How to detect click/touch events on UI and GameObjects](https://stackoverflow.com/questions/41391708/how-to-detect-click-touch-events-on-ui-and-gameobjects)

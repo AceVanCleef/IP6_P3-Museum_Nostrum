@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IUserInputListener {
+public interface IOnTap {
 
-    InputMessage TakeInput(InputMessage im);
+	void OnTap();
 }

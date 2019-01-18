@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorScript : MonoBehaviour {
+public class DoorScript : MonoBehaviour, IOnTap{
 
     [Tooltip("To allocate the camera target position when clickin onto a door, drag the target room's CameraPositionNode into this variable.")]
     public GameObject TargetCameraPositionNode;
@@ -32,5 +32,10 @@ public class DoorScript : MonoBehaviour {
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.TraceLineBetween(previousPos, player.transform.position);
         */
         //WholeScreenFadeInOut.Instance.FadeOut();
+    }
+
+    public void OnTap()
+    {
+        WarpToNextRoom();
     }
 }

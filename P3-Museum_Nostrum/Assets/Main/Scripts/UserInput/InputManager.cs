@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public sealed class InputManager : AbstractInputManager {
+public sealed class InputManager : MonoBehaviour {
 
     /// 
     /// [Image]
@@ -109,13 +109,6 @@ public sealed class InputManager : AbstractInputManager {
             }
         }
 
-        //Todo: check whether this phase is relevant:
-        if (touch.phase == TouchPhase.Stationary)
-        {
-            fingerDownPosition = touch.position;
-
-        }
-
         if (touch.phase == TouchPhase.Ended)
         {
             fingerDownPosition = touch.position;
@@ -125,13 +118,12 @@ public sealed class InputManager : AbstractInputManager {
                 Debug.Log("tapped screen");
                     
                 Debug.Log("Item selected.");
-                DoorScript ds = hitGameObject.GetComponent<DoorScript>();
-                if (ds)
+                //Note: To add other object that can be interacted with by single tap, implement IOnTap int4erface.
+                IOnTap tapHandler = hitGameObject.GetComponent<IOnTap>();
+                if (tapHandler != null)
                 {
-                    ds.WarpToNextRoom();
+                    tapHandler.OnTap();
                 }
-                //Todo: Image selection handling.
-                    
             }
             else if (IsSwipe())
             {
