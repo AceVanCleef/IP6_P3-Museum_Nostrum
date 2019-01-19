@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4619403359968250}
-  - component: {fileID: 114757124072877556}
+  - component: {fileID: 114544209472308810}
   - component: {fileID: 114156249469539256}
   - component: {fileID: 33439263224847970}
   - component: {fileID: 23397196911805302}
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseScale: 0.01
   debugging: 0
---- !u!114 &114757124072877556
+--- !u!114 &114544209472308810
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1716173861047072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26cf004f0429d9f4f91c94fbf619a731, type: 3}
+  m_Script: {fileID: 11500000, guid: 54d31242ffea54d47b1a3d6acd30282a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionTags: 0000000001000000

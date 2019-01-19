@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DoorScript : MonoBehaviour, IOnTap{
+public class DoorScript : AbstractInteractiveGameObject
+{
 
     [Tooltip("To allocate the camera target position when clickin onto a door, drag the target room's CameraPositionNode into this variable.")]
     public GameObject TargetCameraPositionNode;
@@ -15,6 +17,11 @@ public class DoorScript : MonoBehaviour, IOnTap{
         targetPositionInfo = TargetCameraPositionNode.GetComponent<CameraPositionInfo>();
 
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        WarpToNextRoom();
     }
 
     public void WarpToNextRoom()
@@ -34,8 +41,4 @@ public class DoorScript : MonoBehaviour, IOnTap{
         //WholeScreenFadeInOut.Instance.FadeOut();
     }
 
-    public void OnTap()
-    {
-        WarpToNextRoom();
-    }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public sealed class InputManager : MonoBehaviour {
 
@@ -41,7 +41,7 @@ public sealed class InputManager : MonoBehaviour {
         //prevents multiple instances.
     }
 
-    private Vector2 fingerDownPosition;
+    /*private Vector2 fingerDownPosition;
     private Vector2 fingerUpPosition;
 
     private readonly float minDistanceForDrag = 1f;
@@ -53,7 +53,7 @@ public sealed class InputManager : MonoBehaviour {
     //Dragging
     private float dist;
     private Vector3 offset;
-    private Vector3 v3;
+    private Vector3 v3;*/
 
     void Awake () {
 		if (inputManager == null)
@@ -63,7 +63,31 @@ public sealed class InputManager : MonoBehaviour {
         }
 	}
 
+    void Start ()
+    {
+        AddPhysicsRaycaster();
+    }
 
+    void AddPhysicsRaycaster()
+    {
+        PhysicsRaycaster physicsRaycaster = GameObject.FindObjectOfType<PhysicsRaycaster>();
+        if (physicsRaycaster == null)
+        {
+            Camera.main.gameObject.AddComponent<PhysicsRaycaster>();
+        }
+    }
+
+    void Update()
+    {
+        if (Input.touchCount != 1)
+        {
+            return;
+        }
+
+
+    }
+
+    /*
 	// Update is called once per frame
 	void Update () {
 		//Todo: Zwischen Tap, Swipe und Drag unterscheiden.
@@ -277,4 +301,6 @@ public sealed class InputManager : MonoBehaviour {
     }
 
     #endregion DragGestureAPI
+
+    */
 }

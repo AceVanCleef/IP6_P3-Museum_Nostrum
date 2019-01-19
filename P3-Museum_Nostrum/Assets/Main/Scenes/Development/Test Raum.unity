@@ -754,8 +754,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114757124072877556, guid: 143de6553998e4647b9fac2418814296,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: interactionTags.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
@@ -1040,8 +1039,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114757124072877556, guid: 143de6553998e4647b9fac2418814296,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: interactionTags.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
@@ -1571,8 +1569,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 114757124072877556, guid: 143de6553998e4647b9fac2418814296,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: interactionTags.Array.data[0]
       value: 2
       objectReference: {fileID: 0}

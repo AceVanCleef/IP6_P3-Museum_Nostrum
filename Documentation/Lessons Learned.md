@@ -22,3 +22,12 @@ Edit -> Project Settings -> Player. Then under "Resolution and Presentation" gro
 - IDragHandler, IEndDragHandler, IDropHandler for drag and drop.  
 - IPointerClickHandler for tapping on GUi element.
 - [How to detect click/touch events on UI and GameObjects](https://stackoverflow.com/questions/41391708/how-to-detect-click-touch-events-on-ui-and-gameobjects)
+
+## GetComponent<OnInterface>() works
+```
+IOnTap tapHandler = hitGameObject.GetComponent<IOnTap>();
+if (tapHandler != null)
+{
+    tapHandler.OnTap();
+}
+```
