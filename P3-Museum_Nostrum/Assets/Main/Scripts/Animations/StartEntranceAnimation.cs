@@ -1,20 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartEntranceAnimation : MonoBehaviour {
 
-    public Animator anim1;
+    private Animator anim1;
 
     void Start()
     {
         anim1 = gameObject.GetComponent<Animator>();
     }
-    void Update()
+    public void startAnimation()
     {
-        if (Input.GetKeyDown("a"))
-        {
-            anim1.Play("EntranceAnimation");
-        }
-    }
+        anim1.Play("EntranceAnimation");
+           // SceneManager.LoadScene("Assets/Main/Scenes/Animation/EntranceAnimation.unity");
+      }
 }
