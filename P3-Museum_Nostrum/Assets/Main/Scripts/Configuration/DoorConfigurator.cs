@@ -15,8 +15,8 @@ public class DoorConfigurator : MonoBehaviour {
     private float doorHeight = 2.032f;
 
     [SerializeField]
-    [Range(2.217f, 3.0f)]
-    [Tooltip("Define how wide the door is in relation to its height. Most common raio: 2,4878.")]
+    [Range(2.0f, 3.0f)] //previous min: 2.217f
+    [Tooltip("Define how wide the door is in relation to its height. Most common ratio: 2,4878.")]
     private float height2WidthRatio = 2.5f;
 
     [SerializeField]
