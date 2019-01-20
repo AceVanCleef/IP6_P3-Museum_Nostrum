@@ -12,7 +12,7 @@ public class DoorScript : AbstractInteractiveGameObject
 
     private GameObject player;
 
-    void Start()
+    protected override void Start()
     {
         targetPositionInfo = TargetCameraPositionNode.GetComponent<CameraPositionInfo>();
 

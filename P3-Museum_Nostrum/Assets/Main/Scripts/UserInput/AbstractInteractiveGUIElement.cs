@@ -11,6 +11,7 @@ public class AbstractInteractiveGUIElement : MonoBehaviour, IInteractiveGUIEleme
 {
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
+        InputManager.Instance.BlockSwipeAction();
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -19,6 +20,7 @@ public class AbstractInteractiveGUIElement : MonoBehaviour, IInteractiveGUIEleme
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
+        InputManager.Instance.UnlockSwipeAction();
     }
 
     public virtual void OnDrop(PointerEventData eventData)

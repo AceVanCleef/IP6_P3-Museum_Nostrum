@@ -24,6 +24,10 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        //Block swipes
+        base.OnBeginDrag(eventData);
+
+        //remember start position of UISlot.
         startPosition = transform.position;
     }
 
@@ -34,7 +38,11 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     public override void OnEndDrag(PointerEventData eventData)
     {
+        //reset position.
         transform.position = startPosition;
+
+        //Reenable swipes
+        base.OnEndDrag(eventData);
     }
 
     public override void OnDrop(PointerEventData eventData)

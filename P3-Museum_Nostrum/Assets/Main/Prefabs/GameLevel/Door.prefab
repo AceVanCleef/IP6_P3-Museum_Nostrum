@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4208864660535354}
   - component: {fileID: 114646661338002128}
-  - component: {fileID: 114253244242275122}
   - component: {fileID: 114318396045038502}
   - component: {fileID: 33333524304746888}
   - component: {fileID: 23302924938462220}
@@ -195,18 +194,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114253244242275122
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1999749556980134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26cf004f0429d9f4f91c94fbf619a731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionTags: 02000000
 --- !u!114 &114318396045038502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7295f636c16b2374098f1a08233d3ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineWidthOnActive: 0.15
   TargetCameraPositionNode: {fileID: 0}
 --- !u!114 &114646661338002128
 MonoBehaviour:

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// provides default implementation for IInteractiveGameObject. Inherit this class 
 /// on GameObjects and override methods to define specific behavior.
 /// </summary>
-public class AbstractInteractiveGameObject : AbstractUIDetectingGameObject, IInteractiveGameObject
+public class AbstractInteractiveGameObject : MonoBehaviour, IInteractiveGameObject
 {
 
     /// <summary>
@@ -41,14 +41,14 @@ public class AbstractInteractiveGameObject : AbstractUIDetectingGameObject, IInt
     }
 
 
-    protected new virtual void Start()
+    protected virtual void Start()
     {
-        base.Start();
         //Debug.Log("AbstractInteractiveGameObject started");
     }
 
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
+        InputManager.Instance.BlockSwipeAction();
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -57,6 +57,7 @@ public class AbstractInteractiveGameObject : AbstractUIDetectingGameObject, IInt
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
+        InputManager.Instance.UnlockSwipeAction();
     }
 
     public virtual void OnPointerClick(PointerEventData eventData)
@@ -68,6 +69,8 @@ public class AbstractInteractiveGameObject : AbstractUIDetectingGameObject, IInt
         return eventData.pointerCurrentRaycast.gameObject;
     }
 
+
+    //evtl Todo: Decorator pattern?
     public virtual void ToggleOutline()
     {
         //requires UltimateOutline shader attached as material on GameObject.

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractivePicture : AbstractInteractiveGameObject {
+public class InteractivePicture : AbstractUIDetectingGameObject {
 
     private float dist;
     private Vector3 offset;
@@ -36,6 +36,9 @@ public class InteractivePicture : AbstractInteractiveGameObject {
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        //Block swipes
+        base.OnBeginDrag(eventData);
+
         hitGameObject = GetHitGameObject(eventData);
         dist = CalculateDistance(hitGameObject);
         v3 = new Vector3(eventData.position.x, eventData.position.y, dist);
@@ -72,6 +75,9 @@ public class InteractivePicture : AbstractInteractiveGameObject {
             //if not hit, reset position => User gets feedback about what a picture can interact with.
             transform.position = startPosition;
         }
+
+        //Reenable swipes
+        base.OnEndDrag(eventData);
     }
 
     private float CalculateDistance(GameObject hitGO)

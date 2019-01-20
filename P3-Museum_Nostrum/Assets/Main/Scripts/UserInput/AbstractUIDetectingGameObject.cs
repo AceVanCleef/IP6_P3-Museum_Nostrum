@@ -4,14 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class AbstractUIDetectingGameObject : MonoBehaviour {
+public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
+{
 
     private static GraphicRaycaster m_Raycaster;
     private static PointerEventData m_PointerEventData;
     private static EventSystem m_EventSystem;
 
-    protected virtual void Start()
+    protected new virtual void Start()
     {
+        base.Start();
+
         InitializeUIDetectionTools();
         Debug.Log("AbstractUIDetectingGameObject started");
     }
