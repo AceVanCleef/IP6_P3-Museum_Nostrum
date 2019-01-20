@@ -40,10 +40,8 @@ public class PictureResolutionHandler : MonoBehaviour {
         //How much taller is the width compared to height?
         float aspectRatio = t.width / (t.height * 1.0f);
         Vector3 scale = transform.localScale;
-        Debug.Log("width " + t.width + " / height " + t.height + " = ratio: " + aspectRatio);
         scale.x = CalculateWidth(aspectRatio);
         scale.z = CalculateHeight(aspectRatio);
-        Debug.Log("Scale: " + scale);
         transform.localScale = scale;
     }
 

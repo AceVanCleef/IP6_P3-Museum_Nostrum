@@ -9,6 +9,10 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class AbstractInteractiveGUIElement : MonoBehaviour, IInteractiveGUIElement
 {
+    public virtual void OnBeginDrag(PointerEventData eventData)
+    {
+    }
+
     public virtual void OnDrag(PointerEventData eventData)
     {
     }

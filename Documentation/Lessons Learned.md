@@ -31,3 +31,17 @@ if (tapHandler != null)
     tapHandler.OnTap();
 }
 ```
+
+## C# Sealing an interface after implementing it
+In C#, a method implemented from Interface is automatically sealed by default unless you use the keyword virtual on it.
+```
+class A : ITest
+{
+    public void SomeMethod()  { ... } //sealed by default.
+}
+```
+- [Sealing an interface after implementing it](https://stackoverflow.com/questions/5386420/sealing-an-interface-after-implementing-it)
+
+## Difference between Interface and Abstract class
+An interface only allows implementation of public methods, thus guaranteeing calling classes certain methods to be found. An abstract class in the other hand allows the definition of public, protected and private classes which will be inherited by subclasses. Therefore, an abstract class provides a contract towards its subclasses. An Interface a contracts towards other classes calling the implementating classes.
+- [Why can't I have protected interface members?](https://stackoverflow.com/questions/516148/why-cant-i-have-protected-interface-members)
