@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
@@ -33,21 +34,52 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-        //Detect UISlot
-
-        //if not hit, reset position => User gets feedback about what a picture can interact with.
         transform.position = startPosition;
     }
 
     public override void OnDrop(PointerEventData eventData)
     {
-        RectTransform invPanel = transform as RectTransform;
+        //RectTransform invPanel = transform as RectTransform;
         Debug.Log("drop!");
-        /*GameObject pictureFrame = FindPictureFrame();
-        if (pictureFrame != null)
+        GameObject pictureCanvas = InteractivePicture.FindPictureCanvas(eventData.position);
+        if (pictureCanvas != null)
         {
-            AttachUISpriteToFrameBackground(pictureFrame);
-        }*/
+            AttachPictureToPictureCanvas(pictureCanvas);
+        }
         //dataLogger.Log("SwipeDragOnDrop", eventData.position.ToString(), "-");
     }
+
+
+
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        //Todo: Fix / finish image selection by tap. Issue seems to be that the raycast might get stuck in another UI element above.
+        // Other potential reasons are unkowns so far.
+        // Follow up - todo: When image is inUISlot, player should be able to select it and put it into the picturecanvas via second tap.
+
+        Debug.Log("CLICKING ON UI SLOT.");
+        if(AbstractInteractiveGameObject.SelectedGameObject != null)
+        {
+            Debug.Log("CLICKING ON UI SLOT. 222");
+            AttachPictureToUISlot( AbstractInteractiveGameObject.SelectedGameObject );
+        }
+    }
+
+
+    #region TransferTexture
+    private void AttachPictureToUISlot(GameObject selectedPicture)
+    {
+        GetComponent<RawImage>().texture = selectedPicture.GetComponent<Renderer>().material.mainTexture;
+        selectedPicture.GetComponent<IInteractiveGameObject>().DisableOutline();
+        Destroy(selectedPicture);
+    }
+
+    private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
+    {
+        RawImage ri = GetComponent<RawImage>();
+        pictureCanvas.GetComponent<Renderer>().material.mainTexture = ri.texture;
+        ri.texture = null;
+    }
+    #endregion TransferTexture
+
 }

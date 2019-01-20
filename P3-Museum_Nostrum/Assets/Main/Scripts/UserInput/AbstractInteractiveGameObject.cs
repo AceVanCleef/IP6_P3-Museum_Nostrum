@@ -16,6 +16,30 @@ public class AbstractInteractiveGameObject : AbstractUIDetectingGameObject, IInt
     /// </summary>
     protected static GameObject hitGameObject;
 
+    /// <summary>
+    /// the current game object selected by a single tap.
+    /// </summary>
+    protected static GameObject selectedGameObject = null;
+    public static GameObject SelectedGameObject
+    {
+        get
+        {
+            return selectedGameObject;
+        }
+    }
+
+    protected readonly float outlineWidthOnInactive = 0f;
+    [SerializeField][Tooltip("Defines how wide the highlightning outline should be.")]
+    private float outlineWidthOnActive = 0.15f;
+    protected float OutlineWidthOnActive
+    {
+        //readonly access while providing adjustability in inspector.
+        get
+        {
+            return outlineWidthOnActive;
+        }
+    }
+
 
     protected new virtual void Start()
     {
@@ -42,5 +66,20 @@ public class AbstractInteractiveGameObject : AbstractUIDetectingGameObject, IInt
     public virtual GameObject GetHitGameObject(PointerEventData eventData)
     {
         return eventData.pointerCurrentRaycast.gameObject;
+    }
+
+    public virtual void ToggleOutline()
+    {
+        //requires UltimateOutline shader attached as material on GameObject.
+    }
+
+    public virtual void DisableOutline()
+    {
+        //requires UltimateOutline shader attached as material on GameObject.
+    }
+
+    public virtual void EnableOutline()
+    {
+        //requires UltimateOutline shader attached as material on GameObject.
     }
 }

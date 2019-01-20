@@ -45,3 +45,48 @@ class A : ITest
 ## Difference between Interface and Abstract class
 An interface only allows implementation of public methods, thus guaranteeing calling classes certain methods to be found. An abstract class in the other hand allows the definition of public, protected and private classes which will be inherited by subclasses. Therefore, an abstract class provides a contract towards its subclasses. An Interface a contracts towards other classes calling the implementating classes.
 - [Why can't I have protected interface members?](https://stackoverflow.com/questions/516148/why-cant-i-have-protected-interface-members)
+
+
+## Unity Drag and Drop using EventSystem
+Top tutorial on how to implement user input for mobile devices. It introduces the standard interfaces IDragHandler, IBeginDragHandler and IEndHandler and follows up by showing how to define custom event handlers.
+- [Unity UI Drag and Drop Tutorial](https://www.youtube.com/watch?time_continue=989&v=c47QYgsJrWc)
+
+## Define custom events for Unity's EventSystem
+You can add custom events by declaring an interface in any .cs - file as following:
+```
+namespace UnityEngine.EventSystem {
+	public interface IMyInterface : IEventSystemHandler {
+		void MyCallback();
+	}
+}
+```
+
+Your class can then implement IMyInterface:
+```
+public class MyClass : MonoBehavior, IMyinterface{ ... }
+```
+
+- [Unity UI Drag and Drop Tutorial](https://youtu.be/c47QYgsJrWc?t=989)
+
+
+## Outline Shader for Unity 5.6+
+Shrimpey created this awesome outline highlightning shader.
+![Shader demo.](https://github.com/Shrimpey/UltimateOutline/raw/master/images/overview.jpg?raw=true "example")
+- [Github Repository](https://github.com/Shrimpey/UltimateOutline)
+- Tutorial - How to setup this shader: [Silhouette Highlight / Outline / Glow Diffuse Shader in Unity 5](https://www.youtube.com/watch?v=00qMZlacZQo)
+Please note: By importing an image, a material will be automatically generated. Change its Shader to Outlined >> UltimateOutline. After that, setup the shader to your liking.
+Tipp: In a future iteration of this game, a script could handle this shader setup to minimize manuell labor.
+
+## How to set the value of a variable in a custom shader?
+```
+//@shader
+uniform float _FirstOutlineWidth;
+```
+This can be set by...
+```
+GetComponent<Renderer>().material.SetFloat("_FirstOutlineWidth", newWidth);
+```
+and read them by...
+```
+GetComponent<Renderer>().material.GetFloat("_FirstOutlineWidth")
+```

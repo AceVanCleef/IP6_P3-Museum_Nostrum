@@ -17,7 +17,7 @@ public class InteractivePicture : AbstractInteractiveGameObject {
     [SerializeField]
     private bool CanPlayerDropPictureOnCanvasDirectly = true;
 
-    #region UserInput
+    private Renderer pictureRenderer;
 
     protected override void Start()
     {
@@ -26,7 +26,13 @@ public class InteractivePicture : AbstractInteractiveGameObject {
         startPosition = transform.position;
         //Your other initialization code...
 
+        pictureRenderer = GetComponent<Renderer>();
+        pictureRenderer.material.SetFloat("_FirstOutlineWidth", outlineWidthOnInactive);
     }
+
+    #region UserInput
+
+    #region DragAndDrop
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
@@ -51,7 +57,6 @@ public class InteractivePicture : AbstractInteractiveGameObject {
         //Detect UISlot
         GameObject uiSlot = GetFirstUIElementWith("DraggableUI");
         GameObject pictureCanvas = FindPictureCanvas(eventData.position);
-        Debug.Log("pictureCanvas != null?" + pictureCanvas.name);
 
         if (uiSlot != null)
         {
@@ -69,7 +74,16 @@ public class InteractivePicture : AbstractInteractiveGameObject {
         }
     }
 
-    private GameObject FindPictureCanvas(Vector2 pos)
+    private float CalculateDistance(GameObject hitGO)
+    {
+        return CameraViewDirection.Instance.GetCurrentState().HandleDragDistanceCalculation(hitGO.transform.position, Camera.main.transform.position);
+        //return hitGO.transform.position.z - Camera.main.transform.position.z;
+    }
+    #endregion DragAndDrop
+
+
+
+    public static GameObject FindPictureCanvas(Vector2 pos)
     {
         Ray ray = Camera.main.ScreenPointToRay(pos);
         RaycastHit[] hits = Physics.RaycastAll(ray);
@@ -85,29 +99,61 @@ public class InteractivePicture : AbstractInteractiveGameObject {
 
     public override GameObject GetHitGameObject(PointerEventData eventData)
     {
-        //different behavior when dragging with finger:
-        //return base.GetHitGameObject(eventData);
         return gameObject;
     }
 
-    private float CalculateDistance(GameObject hitGO)
+    #region SingleTap
+
+    public override void OnPointerClick(PointerEventData eventData)
     {
-        return CameraViewDirection.Instance.GetCurrentState().HandleDragDistanceCalculation(hitGO.transform.position, Camera.main.transform.position);
-        //return hitGO.transform.position.z - Camera.main.transform.position.z;
+        if (selectedGameObject == null)
+        {
+            EnableOutline();
+            selectedGameObject = gameObject;
+        }
+        else
+        {
+            //Swap focus
+            selectedGameObject.GetComponent<IInteractiveGameObject>().DisableOutline(); //other GO.
+            EnableOutline();
+            selectedGameObject = gameObject;    //updating selection to this GO.
+        }
+        //Todo: deselect when hitting no interactive object.
     }
+
+    public override void ToggleOutline()
+    {
+        float newWidth = pictureRenderer.material.GetFloat("_FirstOutlineWidth") != outlineWidthOnInactive ? outlineWidthOnInactive : OutlineWidthOnActive;
+        pictureRenderer.material.SetFloat("_FirstOutlineWidth", newWidth);
+    }
+
+    public override void DisableOutline()
+    {
+        pictureRenderer.material.SetFloat("_FirstOutlineWidth", outlineWidthOnInactive);
+    }
+
+    public override void EnableOutline()
+    {
+        pictureRenderer.material.SetFloat("_FirstOutlineWidth", OutlineWidthOnActive);
+    }
+    #endregion SingleTap
 
     #endregion UserInput
 
+
+    #region TransferTexture
     private void AttachPictureToUISlot(GameObject uiSlot)
     {
-        uiSlot.GetComponent<RawImage>().texture = gameObject.GetComponent<Renderer>().material.mainTexture;
+        uiSlot.GetComponent<RawImage>().texture = pictureRenderer.material.mainTexture;
         Destroy(gameObject);
     }
 
     private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
-        pictureCanvas.GetComponent<Renderer>().material.mainTexture = gameObject.GetComponent<Renderer>().material.mainTexture;
+        pictureCanvas.GetComponent<Renderer>().material.mainTexture = pictureRenderer.material.mainTexture;
         Destroy(gameObject);
     }
+    #endregion TransferTexture
+
 
 }

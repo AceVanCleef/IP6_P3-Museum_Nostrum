@@ -10,4 +10,8 @@ public interface IInteractiveGameObject : IDragHandler, IBeginDragHandler, IEndD
 {
 
     GameObject GetHitGameObject(PointerEventData eventData);
+
+    void ToggleOutline();
+    void DisableOutline();
+    void EnableOutline();
 }
