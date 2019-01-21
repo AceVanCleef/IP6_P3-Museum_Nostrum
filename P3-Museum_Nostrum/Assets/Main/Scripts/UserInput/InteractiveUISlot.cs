@@ -47,8 +47,6 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     public override void OnDrop(PointerEventData eventData)
     {
-        //RectTransform invPanel = transform as RectTransform;
-        Debug.Log("drop!");
         GameObject pictureCanvas = InteractivePicture.FindPictureCanvas(eventData.position);
         if (pictureCanvas != null)
         {

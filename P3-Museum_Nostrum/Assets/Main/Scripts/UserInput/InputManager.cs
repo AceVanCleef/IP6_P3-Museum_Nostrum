@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public sealed class InputManager : MonoBehaviour {
 
@@ -30,6 +31,8 @@ public sealed class InputManager : MonoBehaviour {
 
             //register swipe callback
             SwipeDetector.OnSwipe += HandleSwipe;
+
+            InitializeButtonCallbacks();
         }
     }
     #endregion SingletonSetup
@@ -40,14 +43,9 @@ public sealed class InputManager : MonoBehaviour {
     [Tooltip("Defines how long other gestures block swipe gestures.")]
     private float UnlockDuration = 0.1f;
 
-    private Vector2 fingerDownPosition;
-    private Vector2 fingerUpPosition;
-
-    private readonly float minDistanceForSwipe = 20f;
-
     private PlayerRotator playerRotator;
 
-
+    
     #region EventSystemSetup
     void AddPhysicsRaycaster()
     {
@@ -106,5 +104,43 @@ public sealed class InputManager : MonoBehaviour {
     }
 
     #endregion SwipeCallbacks
+
+    #region ButtonCallbacks
+    private void InitializeButtonCallbacks()
+    {
+        //setup left and right buttons
+        GameObject.Find("LeftButton").GetComponent<Button>().onClick.AddListener(OnLeftButtonClick);
+        GameObject.Find("RightButton").GetComponent<Button>().onClick.AddListener(OnRightButtonClick);
+        //Other callbacks...
+
+    }
+
+    private void OnLeftButtonClick()
+    {
+        if (!playerRotator.IsMoving() && !blockSwipeAction)
+        {
+            playerRotator.Rotate(PlayerRotator.RotationDirection.Left);
+            CameraViewDirection.Instance.GetCurrentState().TransitionLeft();
+            CameraViewDirection.Instance.GetCurrentState().PrintState();
+            //dataLogger.Log(data);
+            //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
+            //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+        }
+    }
+
+    private void OnRightButtonClick()
+    {
+        if (!playerRotator.IsMoving() && !blockSwipeAction)
+        {
+            playerRotator.Rotate(PlayerRotator.RotationDirection.Right);
+            CameraViewDirection.Instance.GetCurrentState().TransitionRight();
+            CameraViewDirection.Instance.GetCurrentState().PrintState();
+            //dataLogger.Log(data);
+            //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
+            //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+        }
+    }
+
+    #endregion ButtonCallbacks
 
 }

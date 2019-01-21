@@ -150,14 +150,31 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
     #region TransferTexture
     private void AttachPictureToUISlot(GameObject uiSlot)
     {
-        uiSlot.GetComponent<RawImage>().texture = pictureRenderer.material.mainTexture;
-        Destroy(gameObject);
+        RawImage ri = uiSlot.GetComponent<RawImage>();
+        if (ri.texture == null)
+        {
+            ri.texture = pictureRenderer.material.mainTexture;
+            Destroy(gameObject);
+        }
+        else
+        {
+            //reset position.
+            transform.position = startPosition;
+
+            //Todo: swap texture or does the player has to first place 
+            //the stored picture onto a picturecanvas?
+        }
     }
 
     private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
         pictureCanvas.GetComponent<Renderer>().material.mainTexture = pictureRenderer.material.mainTexture;
         Destroy(gameObject);
+
+        //Todo: If pictureCanvas already carries a texture, either...
+        //- swap textures and reset InteractivePicture's position
+        //- drop texture of pictureCanvas to inventory slot and then 
+        //  set texture of this InteractivePicture to pictureCanvas.
     }
     #endregion TransferTexture
 
