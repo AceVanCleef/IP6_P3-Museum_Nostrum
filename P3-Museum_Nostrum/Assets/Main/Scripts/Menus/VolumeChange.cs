@@ -14,7 +14,6 @@ public class VolumeChange : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
         // Assign Audio Source component to control it
         audioSrc = GetComponent<AudioSource>();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StartFadeAnimation : MonoBehaviour {
+
     private Animator anim1;
 
     void Start()
@@ -10,9 +11,9 @@ public class StartFadeAnimation : MonoBehaviour {
         anim1 = gameObject.GetComponent<Animator>();
     }
     
-
     public void startAnimation()
     {
+        //Starts Animation
         anim1.Play("FadeAnimation");
     }
 }
