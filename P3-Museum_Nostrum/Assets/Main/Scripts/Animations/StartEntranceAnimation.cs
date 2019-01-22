@@ -13,7 +13,15 @@ public class StartEntranceAnimation : MonoBehaviour {
     }
     public void startAnimation()
     {
+        //Starts Animation
         anim1.Play("EntranceAnimation");
-           // SceneManager.LoadScene("Assets/Main/Scenes/Animation/EntranceAnimation.unity");
+           
       }
+
+    public void afterAnimation()
+    {
+        //opens next scene. is triggered as event in animation "StartEntranceAnimation"
+        // SceneManager.LoadScene("Assets/Main/Scenes/Animation/EntranceAnimation.unity");
+    }
+
 }

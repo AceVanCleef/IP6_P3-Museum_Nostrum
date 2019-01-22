@@ -20,7 +20,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 4.5
+        time: 4.016667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -85,7 +85,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 4.5
+        time: 4.016667
         value: 0
         inSlope: 0
         outSlope: 0
