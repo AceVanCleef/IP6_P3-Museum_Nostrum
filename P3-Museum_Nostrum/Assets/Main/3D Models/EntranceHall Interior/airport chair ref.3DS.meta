@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 5441b59423750384d9162e33e3f2de9c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Armchair 0
+    100004: Armchair 1
+    100006: Armchair H
+    100008: Armchair L
+    100010: Box04
+    100012: chair REF
+    100014: GeoSphere0
+    100016: GeoSphere1
+    100018: Omni01
+    100020: Omni02
+    100022: pied02
+    100024: Rectangle0
+    100026: Rectangle1
+    100028: Shape01
+    100030: Shape02
+    100032: Shape03
+    100034: Shape04
+    100036: Sky01.Targ.target
+    100038: Spot01
+    100040: Spot01.target
+    100042: Table High
+    100044: 'Table Low '
+    400000: //RootNode
+    400002: Armchair 0
+    400004: Armchair 1
+    400006: Armchair H
+    400008: Armchair L
+    400010: Box04
+    400012: chair REF
+    400014: GeoSphere0
+    400016: GeoSphere1
+    400018: Omni01
+    400020: Omni02
+    400022: pied02
+    400024: Rectangle0
+    400026: Rectangle1
+    400028: Shape01
+    400030: Shape02
+    400032: Shape03
+    400034: Shape04
+    400036: Sky01.Targ.target
+    400038: Spot01
+    400040: Spot01.target
+    400042: Table High
+    400044: 'Table Low '
+    2100000: seatwhite
+    2100002: metal chrome
+    2100004: seat
+    2100006: caoutchooc
+    2100008: galss
+    2100010: ground
+    2300000: Armchair 0
+    2300002: Armchair 1
+    2300004: Armchair H
+    2300006: Armchair L
+    2300008: Box04
+    2300010: GeoSphere0
+    2300012: GeoSphere1
+    2300014: pied02
+    2300016: Rectangle0
+    2300018: Rectangle1
+    2300020: Shape01
+    2300022: Shape02
+    2300024: Shape03
+    2300026: Shape04
+    2300028: Table High
+    2300030: 'Table Low '
+    3300000: Armchair 0
+    3300002: Armchair 1
+    3300004: Armchair H
+    3300006: Armchair L
+    3300008: Box04
+    3300010: GeoSphere0
+    3300012: GeoSphere1
+    3300014: pied02
+    3300016: Rectangle0
+    3300018: Rectangle1
+    3300020: Shape01
+    3300022: Shape02
+    3300024: Shape03
+    3300026: Shape04
+    3300028: Table High
+    3300030: 'Table Low '
+    4300000: Shape02
+    4300002: pied02
+    4300004: Rectangle0
+    4300006: Shape03
+    4300008: Rectangle1
+    4300010: GeoSphere0
+    4300012: GeoSphere1
+    4300014: Armchair L
+    4300016: 'Table Low '
+    4300018: Armchair H
+    4300020: Table High
+    4300022: Armchair 0
+    4300024: Armchair 1
+    4300026: Box04
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

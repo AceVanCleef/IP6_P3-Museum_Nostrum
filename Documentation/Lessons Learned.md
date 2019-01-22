@@ -90,3 +90,11 @@ and read them by...
 ```
 GetComponent<Renderer>().material.GetFloat("_FirstOutlineWidth")
 ```
+
+## AssetPostprocessor: Changing the shader of a picture after import automatically
+Have a closer look at this: [AssetPostprocessor](https://docs.unity3d.com/ScriptReference/AssetPostprocessor.html)
+
+
+## Predefined .gitattributes
+You can google search a predefined gitattributes file that lists a large list of file formats.
+-[FullStackForger/.gitattributes](https://gist.github.com/FullStackForger/fe2b3da81e60337757fe82d74ebf7d7a)
