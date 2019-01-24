@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: 487a23a8085b29847b2deeea4774fc4f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: decor_bok1
+    100004: decor_boko
+    100006: decor_griv
+    100008: decor_niz_
+    100010: decor_noz1
+    100012: decor_noz2
+    100014: decor_noz3
+    100016: decor_nozh
+    100018: decor_pod1
+    100020: decor_podl
+    100022: decor_ugo1
+    100024: decor_ugol
+    100026: karkas
+    100028: kontur_noz
+    100030: obivka_spi
+    100032: podlokotn1
+    100034: podlokotni
+    100036: rezba_sper
+    100038: sidenie
+    100040: sub01
+    100042: sub011
+    100044: sub02
+    100046: sub021
+    400000: //RootNode
+    400002: decor_bok1
+    400004: decor_boko
+    400006: decor_griv
+    400008: decor_niz_
+    400010: decor_noz1
+    400012: decor_noz2
+    400014: decor_noz3
+    400016: decor_nozh
+    400018: decor_pod1
+    400020: decor_podl
+    400022: decor_ugo1
+    400024: decor_ugol
+    400026: karkas
+    400028: kontur_noz
+    400030: obivka_spi
+    400032: podlokotn1
+    400034: podlokotni
+    400036: rezba_sper
+    400038: sidenie
+    400040: sub01
+    400042: sub011
+    400044: sub02
+    400046: sub021
+    2100000: wire_115115115
+    2100002: wire_200200200
+    2100004: wire_135059008
+    2100006: wire_088199225
+    2100008: wire_196088225
+    2100010: wire_255255255
+    2300000: decor_bok1
+    2300002: decor_boko
+    2300004: decor_griv
+    2300006: decor_niz_
+    2300008: decor_noz1
+    2300010: decor_noz2
+    2300012: decor_noz3
+    2300014: decor_nozh
+    2300016: decor_pod1
+    2300018: decor_podl
+    2300020: decor_ugo1
+    2300022: decor_ugol
+    2300024: karkas
+    2300026: kontur_noz
+    2300028: podlokotn1
+    2300030: podlokotni
+    2300032: sidenie
+    2300034: sub01
+    2300036: sub011
+    2300038: sub02
+    2300040: sub021
+    3300000: decor_bok1
+    3300002: decor_boko
+    3300004: decor_griv
+    3300006: decor_niz_
+    3300008: decor_noz1
+    3300010: decor_noz2
+    3300012: decor_noz3
+    3300014: decor_nozh
+    3300016: decor_pod1
+    3300018: decor_podl
+    3300020: decor_ugo1
+    3300022: decor_ugol
+    3300024: karkas
+    3300026: kontur_noz
+    3300028: podlokotn1
+    3300030: podlokotni
+    3300032: sidenie
+    3300034: sub01
+    3300036: sub011
+    3300038: sub02
+    3300040: sub021
+    4300000: karkas
+    4300002: podlokotni
+    4300004: sub01
+    4300006: sub02
+    4300008: kontur_noz
+    4300010: sidenie
+    4300012: sub011
+    4300014: sub021
+    4300016: decor_niz_
+    4300018: decor_ugol
+    4300020: decor_nozh
+    4300022: decor_noz1
+    4300024: decor_podl
+    4300026: decor_pod1
+    4300028: decor_ugo1
+    4300030: decor_noz2
+    4300032: decor_noz3
+    4300034: decor_griv
+    4300036: podlokotn1
+    4300038: decor_boko
+    4300040: decor_bok1
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
