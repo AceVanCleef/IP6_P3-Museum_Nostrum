@@ -98,3 +98,9 @@ Have a closer look at this: [AssetPostprocessor](https://docs.unity3d.com/Script
 ## Predefined .gitattributes
 You can google search a predefined gitattributes file that lists a large list of file formats.
 -[FullStackForger/.gitattributes](https://gist.github.com/FullStackForger/fe2b3da81e60337757fe82d74ebf7d7a)
+
+
+## Glass material
+A shader and a fully transparent png approach described here:
+- [Glass Material for Unity 5](https://gamedev.stackexchange.com/questions/98557/glass-material-for-unity-5)
+- [Glass Shader (by Alastair Aitchison)](https://alastaira.wordpress.com/2013/12/21/glass-shader/)
