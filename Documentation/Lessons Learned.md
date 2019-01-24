@@ -104,3 +104,9 @@ You can google search a predefined gitattributes file that lists a large list of
 A shader and a fully transparent png approach described here:
 - [Glass Material for Unity 5](https://gamedev.stackexchange.com/questions/98557/glass-material-for-unity-5)
 - [Glass Shader (by Alastair Aitchison)](https://alastaira.wordpress.com/2013/12/21/glass-shader/)
+
+## Gold material
+Set smoothness and metallic to max. value and choose a yellow color that suits you.
+Next, add a reflection probe to the 3D model in your scene and adjust its box size and its type (Baked or Realtime (adapts on environment when eg. player walks by)).
+- [Creating a Gold Material / Shader in Unity 5
+](https://www.youtube.com/watch?v=Jbd0cx5GM_Q)

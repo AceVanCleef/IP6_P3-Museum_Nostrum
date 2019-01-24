@@ -1,0 +1,240 @@
+fileFormatVersion: 2
+guid: 062e3fd30c44c8247adcb6fd4d65635c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: stojak01
+    100004: stojak_02
+    100006: stojak_ha0
+    100008: stojak_hak
+    100010: stojak_ku0
+    100012: stojak_kul
+    100014: stojak_li0
+    100016: stojak_lin
+    100018: stojak_ma0
+    100020: stojak_mas
+    100022: stojak_po0
+    100024: stojak_pod
+    100026: stojak_u10
+    100028: stojak_u11
+    100030: stojak_u12
+    100032: stojak_u13
+    100034: stojak_u14
+    100036: stojak_u15
+    100038: stojak_u16
+    100040: stojak_u17
+    100042: stojak_u18
+    100044: stojak_uc0
+    100046: stojak_uc1
+    100048: stojak_uc2
+    100050: stojak_uc3
+    100052: stojak_uc4
+    100054: stojak_uc5
+    100056: stojak_uc6
+    100058: stojak_uc7
+    100060: stojak_uc8
+    100062: stojak_uc9
+    100064: stojak_uch
+    100066: stojak_za0
+    100068: stojak_zaw
+    100070: tabliczka
+    100072: tabliczka_
+    100074: zawieszka0
+    100076: zawieszka_
+    400000: //RootNode
+    400002: stojak01
+    400004: stojak_02
+    400006: stojak_ha0
+    400008: stojak_hak
+    400010: stojak_ku0
+    400012: stojak_kul
+    400014: stojak_li0
+    400016: stojak_lin
+    400018: stojak_ma0
+    400020: stojak_mas
+    400022: stojak_po0
+    400024: stojak_pod
+    400026: stojak_u10
+    400028: stojak_u11
+    400030: stojak_u12
+    400032: stojak_u13
+    400034: stojak_u14
+    400036: stojak_u15
+    400038: stojak_u16
+    400040: stojak_u17
+    400042: stojak_u18
+    400044: stojak_uc0
+    400046: stojak_uc1
+    400048: stojak_uc2
+    400050: stojak_uc3
+    400052: stojak_uc4
+    400054: stojak_uc5
+    400056: stojak_uc6
+    400058: stojak_uc7
+    400060: stojak_uc8
+    400062: stojak_uc9
+    400064: stojak_uch
+    400066: stojak_za0
+    400068: stojak_zaw
+    400070: tabliczka
+    400072: tabliczka_
+    400074: zawieszka0
+    400076: zawieszka_
+    2100000: midnight chrome
+    2100002: VR_Carpet
+    2100004: 08 - Default
+    2100006: 06 - Default
+    2300000: stojak01
+    2300002: stojak_02
+    2300004: stojak_ha0
+    2300006: stojak_hak
+    2300008: stojak_ku0
+    2300010: stojak_kul
+    2300012: stojak_li0
+    2300014: stojak_lin
+    2300016: stojak_ma0
+    2300018: stojak_mas
+    2300020: stojak_po0
+    2300022: stojak_pod
+    2300024: stojak_u11
+    2300026: stojak_u12
+    2300028: stojak_u14
+    2300030: stojak_u15
+    2300032: stojak_u17
+    2300034: stojak_u18
+    2300036: stojak_uc2
+    2300038: stojak_uc3
+    2300040: stojak_uc5
+    2300042: stojak_uc6
+    2300044: stojak_uc8
+    2300046: stojak_uc9
+    2300048: tabliczka
+    2300050: tabliczka_
+    2300052: zawieszka0
+    2300054: zawieszka_
+    3300000: stojak01
+    3300002: stojak_02
+    3300004: stojak_ha0
+    3300006: stojak_hak
+    3300008: stojak_ku0
+    3300010: stojak_kul
+    3300012: stojak_li0
+    3300014: stojak_lin
+    3300016: stojak_ma0
+    3300018: stojak_mas
+    3300020: stojak_po0
+    3300022: stojak_pod
+    3300024: stojak_u11
+    3300026: stojak_u12
+    3300028: stojak_u14
+    3300030: stojak_u15
+    3300032: stojak_u17
+    3300034: stojak_u18
+    3300036: stojak_uc2
+    3300038: stojak_uc3
+    3300040: stojak_uc5
+    3300042: stojak_uc6
+    3300044: stojak_uc8
+    3300046: stojak_uc9
+    3300048: tabliczka
+    3300050: tabliczka_
+    3300052: zawieszka0
+    3300054: zawieszka_
+    4300000: stojak_pod
+    4300002: stojak_kul
+    4300004: stojak_uc2
+    4300006: stojak_uc3
+    4300008: stojak_hak
+    4300010: stojak_mas
+    4300012: stojak_lin
+    4300014: stojak_uc3
+    4300016: stojak_u11
+    4300018: stojak_u12
+    4300020: stojak_u12
+    4300022: tabliczka
+    4300024: tabliczka_
+    4300026: zawieszka_
+    4300028: zawieszka0
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
