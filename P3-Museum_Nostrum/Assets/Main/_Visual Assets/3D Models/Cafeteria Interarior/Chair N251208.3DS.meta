@@ -1,34 +1,21 @@
 fileFormatVersion: 2
-guid: c065598b5533ce24982817f382ab084a
+guid: 5d6dc95e643aa8b44a912ac8995a9fd9
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: CHAIR
-    100002: CHAIR01
-    100004: CHAIR02
-    100006: TABLE
-    100008: //RootNode
-    400000: CHAIR
-    400002: CHAIR01
-    400004: CHAIR02
-    400006: TABLE
-    400008: //RootNode
-    2100000: Material0
-    2100002: No Name
-    2100004: Material1
-    2300000: CHAIR
-    2300002: CHAIR01
-    2300004: CHAIR02
-    2300006: TABLE
-    3300000: CHAIR
-    3300002: CHAIR01
-    3300004: CHAIR02
-    3300006: TABLE
-    4300000: CHAIR
-    4300002: CHAIR01
-    4300004: CHAIR02
-    4300006: TABLE
-    2186277476908879412: ImportLogs
+    100000: ______
+    100002: _______
+    100004: //RootNode
+    400000: ______
+    400002: _______
+    400004: //RootNode
+    2100000: 01 - Default
+    2300000: ______
+    2300002: _______
+    3300000: ______
+    3300002: _______
+    4300000: _______
+    4300002: ______
   externalObjects: {}
   materials:
     importMaterials: 1
