@@ -39,7 +39,16 @@ public class DoorConfigurator : MonoBehaviour {
         transform.localScale = scale;
         //adjust position
         Vector3 pos = transform.position;
-        pos.y = doorHeight / 2f;
+        if (transform.parent != null)
+        {
+            pos.y = transform.parent.position.y + (doorHeight / 2f);
+        }
+        else
+        {
+            pos.y = doorHeight / 2f;
+            Debug.LogWarning(transform.name + " can't be moved vertically. " + transform.name + 
+                " must be child of another GameObject. Attach it to a room, a room's Doors_Holder or any other GameObject.");
+        }
         transform.position = pos;
     }
 }
