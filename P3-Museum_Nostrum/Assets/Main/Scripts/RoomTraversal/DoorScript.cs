@@ -11,6 +11,10 @@ public class DoorScript : AbstractInteractiveGameObject
     private CameraPositionInfo targetPositionInfo;
 
     private GameObject player;
+    private GameObject hud;
+
+    private string doorAnimationName = "DoorAnimation";
+    private float doorAnimationLength = 0;
 
     protected override void Start()
     {
@@ -21,7 +25,9 @@ public class DoorScript : AbstractInteractiveGameObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        WarpToNextRoom();
+        Debug.Log("GoAnimation");
+        //WarpToNextRoom();
+        StartCoroutine(StartDoorAnimation());
     }
 
     public void WarpToNextRoom()
@@ -39,6 +45,45 @@ public class DoorScript : AbstractInteractiveGameObject
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.TraceLineBetween(previousPos, player.transform.position);
         */
         //WholeScreenFadeInOut.Instance.FadeOut();
+    }
+
+    public IEnumerator StartDoorAnimation()
+    {
+
+       
+        Animator doorAnimator = player.GetComponentInChildren<Animator>();
+        doorAnimator.Play("DoorAnimation");
+        Debug.Log("LosAnimation");
+        hud = GameObject.FindGameObjectWithTag("HUD");
+
+        if (hud != null)
+            Debug.Log("null1");
+
+        Animator fadeAnimator = hud.GetComponentInChildren<Animator>();
+        
+        if (fadeAnimator != null)
+            Debug.Log("null2");
+
+
+        fadeAnimator.Play("DoorAnimationFade");
+
+
+        
+
+        AnimationClip[] clips = doorAnimator.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if (clip.name == doorAnimationName)
+                doorAnimationLength = clip.length;            
+        }
+
+        Debug.Log(doorAnimationLength+":X:"+ doorAnimationName);
+
+
+        yield return new WaitForSeconds(doorAnimationLength - 0.75f);
+
+        WarpToNextRoom();
+
     }
 
 }

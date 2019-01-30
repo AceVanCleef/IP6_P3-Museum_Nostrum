@@ -18,8 +18,17 @@ public class PlayerBodySizeConfigurator : MonoBehaviour {
         else
         {
             // code executed in edit mode
-            Vector3 cameraPos = Camera.main.transform.position;
-            cameraPos.y = bodyHeight;
+            Transform cam = Camera.main.transform;
+            Vector3 cameraPos = cam.position;
+            if (cam.parent != null)
+            {
+                cameraPos.y = bodyHeight + cam.parent.transform.position.y;
+
+            }
+            else
+            {
+                cameraPos.y = bodyHeight;
+            }
             Camera.main.transform.position = cameraPos;
         }
         
