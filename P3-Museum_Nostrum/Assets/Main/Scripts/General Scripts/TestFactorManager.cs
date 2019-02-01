@@ -25,8 +25,8 @@ public class TestFactorManager : MonoBehaviour
     {
         audioSources = GameObject.FindGameObjectsWithTag("BackgroundMusic");
         lights = GameObject.FindGameObjectsWithTag("Lights");
-        interiorObjects = GameObject.FindGameObjectsWithTag("interiorObjects");
-        wayfinding = GameObject.FindGameObjectsWithTag("wayfinding");
+        //interiorObjects = GameObject.FindGameObjectsWithTag("interiorObjects");
+        //wayfinding = GameObject.FindGameObjectsWithTag("wayfinding");
     }
 
     //is executed when button "apply" in the inspector is clicked
