@@ -14,19 +14,33 @@ public class DoorScript : AbstractInteractiveGameObject
     private GameObject hud;
 
     private string doorAnimationName = "DoorAnimation";
-    private float doorAnimationLength = 0;
+    private float doorAnimationLength = 0f; 
+    private float doorAnimationAdjustment = 0.75f;
+    private Animator doorAnimator;
+    private Animator fadeAnimator;
 
     protected override void Start()
     {
         targetPositionInfo = TargetCameraPositionNode.GetComponent<CameraPositionInfo>();
 
         player = GameObject.FindGameObjectWithTag("Player");
+
+        //initialisations for door animations
+        doorAnimator = player.GetComponentInChildren<Animator>();
+        hud = GameObject.FindGameObjectWithTag("HUD");
+        fadeAnimator = hud.GetComponentInChildren<Animator>();
+
+        //get the length of the door animation
+        AnimationClip[] clips = doorAnimator.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if (clip.name == doorAnimationName)
+                doorAnimationLength = clip.length;
+        }
     }
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("GoAnimation");
-        //WarpToNextRoom();
         StartCoroutine(StartDoorAnimation());
     }
 
@@ -49,41 +63,18 @@ public class DoorScript : AbstractInteractiveGameObject
 
     public IEnumerator StartDoorAnimation()
     {
+        if (doorAnimator == null)
+            Debug.Log("door");
 
-       
-        Animator doorAnimator = player.GetComponentInChildren<Animator>();
+        if (fadeAnimator == null)
+            Debug.Log("fase");
+
         doorAnimator.Play("DoorAnimation");
-        Debug.Log("LosAnimation");
-        hud = GameObject.FindGameObjectWithTag("HUD");
-
-        if (hud != null)
-            Debug.Log("null1");
-
-        Animator fadeAnimator = hud.GetComponentInChildren<Animator>();
-        
-        if (fadeAnimator != null)
-            Debug.Log("null2");
-
-
         fadeAnimator.Play("DoorAnimationFade");
 
-
-        
-
-        AnimationClip[] clips = doorAnimator.runtimeAnimatorController.animationClips;
-        foreach (AnimationClip clip in clips)
-        {
-            if (clip.name == doorAnimationName)
-                doorAnimationLength = clip.length;            
-        }
-
-        Debug.Log(doorAnimationLength+":X:"+ doorAnimationName);
-
-
-        yield return new WaitForSeconds(doorAnimationLength - 0.75f);
-
+        //Wait till animation has ended to continue with warp to next room
+        yield return new WaitForSeconds(doorAnimationLength - doorAnimationAdjustment);
         WarpToNextRoom();
-
     }
 
 }

@@ -7,6 +7,9 @@ TagManager:
   - DraggableUI
   - PictureCanvas
   - HUD
+  - PictureFrameCanvas
+  - BackgroundMusic
+  - Lights
   layers:
   - Default
   - TransparentFX
