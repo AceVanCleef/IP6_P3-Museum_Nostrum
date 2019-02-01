@@ -19,6 +19,8 @@ public class DoorScript : AbstractInteractiveGameObject
     private Animator doorAnimator;
     private Animator fadeAnimator;
 
+    private MovePointMap movePointMap;
+
     protected override void Start()
     {
         targetPositionInfo = TargetCameraPositionNode.GetComponent<CameraPositionInfo>();
@@ -37,11 +39,17 @@ public class DoorScript : AbstractInteractiveGameObject
             if (clip.name == doorAnimationName)
                 doorAnimationLength = clip.length;
         }
+
+        //initialisations for map
+        GameObject mapWrapper = GameObject.Find("MapWrapper");
+        movePointMap = (MovePointMap)mapWrapper.GetComponent(typeof(MovePointMap));
     }
 
     public override void OnPointerClick(PointerEventData eventData)
     {
         StartCoroutine(StartDoorAnimation());
+
+        movePointMap.movePointMap(TargetCameraPositionNode.transform.root.gameObject.name);
     }
 
     public void WarpToNextRoom()
@@ -63,18 +71,12 @@ public class DoorScript : AbstractInteractiveGameObject
 
     public IEnumerator StartDoorAnimation()
     {
-        if (doorAnimator == null)
-            Debug.Log("door");
-
-        if (fadeAnimator == null)
-            Debug.Log("fase");
-
         doorAnimator.Play("DoorAnimation");
         fadeAnimator.Play("DoorAnimationFade");
 
         //Wait till animation has ended to continue with warp to next room
         yield return new WaitForSeconds(doorAnimationLength - doorAnimationAdjustment);
-        WarpToNextRoom();
+        WarpToNextRoom();        
     }
 
 }
