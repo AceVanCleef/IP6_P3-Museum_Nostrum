@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class MovePointMap : MonoBehaviour
 {
     Dictionary<string, float[]> dictionary = new Dictionary<string, float[]>();
-    public RectTransform rect;
+    private RectTransform rect;
+
+    public Image mapPoint;
 
     void Start()
     {
@@ -21,15 +23,24 @@ public class MovePointMap : MonoBehaviour
         rect = mapWrapper.GetComponent<RectTransform>();
     }
 
-    public void movePointMap(string parentName)
+    //inverts the alpha channel of the map point. map point can not be disabled like the map itself, because it needs to moved, eventhough its not visible.
+    public void invertVisibilityOfMapPoint()
+    {
+        var tempColor = mapPoint.color;
+        tempColor.a = ((mapPoint.color.a == 100) ? 0f : 100f);
+        mapPoint.color = tempColor;
+    }
+
+
+        public void movePointMap(string parentName)
     {
         //gets the coordinates from the dictionary
         Vector3 pos;
         pos.x = dictionary[parentName][0];
         pos.y = dictionary[parentName][1];
         pos.z = 0f;
-
-        //moves the point to the coordinates
+        
+        //sets the new position
         rect.anchoredPosition = pos;
     }
 }

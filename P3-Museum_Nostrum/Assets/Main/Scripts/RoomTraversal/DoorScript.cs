@@ -47,9 +47,7 @@ public class DoorScript : AbstractInteractiveGameObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        StartCoroutine(StartDoorAnimation());
-
-        movePointMap.movePointMap(TargetCameraPositionNode.transform.root.gameObject.name);
+        StartCoroutine(StartDoorTransition());
     }
 
     public void WarpToNextRoom()
@@ -69,14 +67,18 @@ public class DoorScript : AbstractInteractiveGameObject
         //WholeScreenFadeInOut.Instance.FadeOut();
     }
 
-    public IEnumerator StartDoorAnimation()
+    public IEnumerator StartDoorTransition()
     {
+        //play animations
         doorAnimator.Play("DoorAnimation");
         fadeAnimator.Play("DoorAnimationFade");
 
-        //Wait till animation has ended to continue with warp to next room
+        //wait till animation has ended, to continue with warp to next room
         yield return new WaitForSeconds(doorAnimationLength - doorAnimationAdjustment);
-        WarpToNextRoom();        
+        WarpToNextRoom();
+
+        //moves the point on the map
+        movePointMap.movePointMap(TargetCameraPositionNode.transform.root.gameObject.name);
     }
 
 }
