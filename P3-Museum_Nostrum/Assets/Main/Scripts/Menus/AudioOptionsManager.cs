@@ -2,35 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AudioOptionsManager : MonoBehaviour
 {
-   
-    private Slider slider;
-    public int a;
-    public int b;
-    public int c;
+    //public because they need to be set from another script
+    public float masterVolume;
+    public float musicVolume;
+    public float soundVolume;
 
+    private GameObject[] musicSources;
+    private GameObject[] soundSources;
 
-    // Use this for initialization
     void Awake()
     {
-        GameObject mapWrapper = GameObject.Find("MasterSlider");
-        if(mapWrapper)
-            slider = mapWrapper.GetComponent<Slider>();
+        DontDestroyOnLoad(this.gameObject);
 
-        a = 1;
-        b = 2;
-        c = 3;
+        //sets all volumes to 1 on start
+        masterVolume = 1;
+        musicVolume = 1;
+        soundVolume = 1;
     }
-    
-    void Update()
+
+    //needed for OnSceneLoaded()
+    void OnEnable()
     {
-        if (slider)
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    //sets the volume in the level with the values set in the startmenue
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //check if game scene
+        if (scene.name != "StartMenu" && scene.name != "EntranceAnimation")
         {
-            Debug.Log("aud" + slider.value);
-            AudioListener.volume = slider.value;
+            musicSources = GameObject.FindGameObjectsWithTag("BackgroundMusic");
+            for (int i = 0; i < musicSources.Length; i++)
+            {
+                {
+                    musicSources[i].GetComponent<AudioSource>().volume = musicVolume;
+                }
+            }
+
+            soundSources = GameObject.FindGameObjectsWithTag("Sound");
+            for (int i = 0; i < soundSources.Length; i++)
+            {
+                {
+                    soundSources[i].GetComponent<AudioSource>().volume = soundVolume;
+                }
+            }
         }
-        
     }
 }

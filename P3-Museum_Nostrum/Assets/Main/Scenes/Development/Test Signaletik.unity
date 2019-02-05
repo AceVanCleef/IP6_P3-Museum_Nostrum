@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 1.75
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -2453,7 +2453,7 @@ GameObject:
   - component: {fileID: 55401574}
   m_Layer: 0
   m_Name: Door (1)
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12523,6 +12523,22 @@ Prefab:
       propertyPath: TargetCameraPositionNode
       value: 
       objectReference: {fileID: 1123701411}
+    - target: {fileID: 1669809673290816, guid: d6f6f723e8883fe4dbf0124333af14f6, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374299760925514, guid: d6f6f723e8883fe4dbf0124333af14f6, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977609746861210, guid: d6f6f723e8883fe4dbf0124333af14f6, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316392910837020, guid: d6f6f723e8883fe4dbf0124333af14f6, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f6f723e8883fe4dbf0124333af14f6, type: 2}
   m_IsPrefabAsset: 0
@@ -12680,7 +12696,7 @@ GameObject:
   - component: {fileID: 319065284}
   m_Layer: 0
   m_Name: Door (4)
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17546,7 +17562,7 @@ GameObject:
   - component: {fileID: 432987393}
   m_Layer: 0
   m_Name: Door - Dark Double Door
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20264,6 +20280,38 @@ Prefab:
     - target: {fileID: 1329643824552438, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
       propertyPath: m_TagString
       value: Lights
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960618236109218, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810619613956322, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312799977021622, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338777605522832, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764024602953024, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343028621611718, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787978380848806, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1994386267399304, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
+      propertyPath: m_TagString
+      value: Sound
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab5b46c2a75d5b34fbf00506d66f3198, type: 2}
@@ -26545,7 +26593,7 @@ GameObject:
   - component: {fileID: 669189799}
   m_Layer: 0
   m_Name: Door (3)
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28863,6 +28911,22 @@ Prefab:
       propertyPath: TargetCameraPositionNode
       value: 
       objectReference: {fileID: 1836111011}
+    - target: {fileID: 1756584604158102, guid: 2a9014c4561056747900637ad315d52f, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980698279143338, guid: 2a9014c4561056747900637ad315d52f, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864788342207766, guid: 2a9014c4561056747900637ad315d52f, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877913437959124, guid: 2a9014c4561056747900637ad315d52f, type: 2}
+      propertyPath: m_TagString
+      value: Sound
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a9014c4561056747900637ad315d52f, type: 2}
   m_IsPrefabAsset: 0
@@ -34438,7 +34502,7 @@ GameObject:
   - component: {fileID: 882422357}
   m_Layer: 0
   m_Name: Door (Default)
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37186,7 +37250,7 @@ GameObject:
   - component: {fileID: 942669541}
   m_Layer: 0
   m_Name: Door (2)
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39168,7 +39232,7 @@ GameObject:
   - component: {fileID: 982493952}
   m_Layer: 0
   m_Name: Door - Dark Double Door
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49073,7 +49137,7 @@ GameObject:
   - component: {fileID: 1278230902}
   m_Layer: 0
   m_Name: Door - Dark Double Door
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77772,7 +77836,7 @@ GameObject:
   - component: {fileID: 1932485228}
   m_Layer: 0
   m_Name: Door - Dark Double Door (1)
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82134,7 +82198,7 @@ GameObject:
   - component: {fileID: 2022724037}
   m_Layer: 0
   m_Name: Automatic Slider Door (1)
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84803,7 +84867,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4269726252680910, guid: 03ef7abf5a5934f46a1ed9ce25af3908, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.93
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4269726252680910, guid: 03ef7abf5a5934f46a1ed9ce25af3908, type: 2}
       propertyPath: m_LocalPosition.y

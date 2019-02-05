@@ -21,7 +21,7 @@ public class StartEntranceAnimation : MonoBehaviour {
     public void afterAnimation()
     {
         //opens next scene. is triggered as event in animation "StartEntranceAnimation"
-        // SceneManager.LoadScene("Assets/Main/Scenes/Animation/EntranceAnimation.unity");
+         SceneManager.LoadScene("Assets/Main/Scenes/Development/Test Signaletik.unity");
     }
 
 }
