@@ -22,7 +22,10 @@ public class MainCameraConfigurator : MonoBehaviour, ITagEnsurance
     private void getMasterVolume()
     {
         GameObject audioManager = GameObject.Find("AudioManager");
-        audioOptionsManager = audioManager.GetComponent<AudioOptionsManager>();
-        AudioListener.volume = audioOptionsManager.masterVolume;
+        if (audioManager)
+        {
+            audioOptionsManager = audioManager.GetComponent<AudioOptionsManager>();
+            AudioListener.volume = audioOptionsManager.masterVolume;
+        }
     }
 }
