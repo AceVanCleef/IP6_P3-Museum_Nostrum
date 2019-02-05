@@ -17,15 +17,15 @@ public class RoomConfigurator : MonoBehaviour {
     [Range(3f, 8f)][Tooltip("Define how tall this room is.")]
     public float RoomHeight = 5f;
 
-    [Range(5f, 50f)]
+    [Range(5f, 25f)]
     [Tooltip("Define how wide this room is measured in meters. Direction: West / East.")]
     public float RoomWidth = 10f;
 
-    [Range(5f, 50f)]
+    [Range(5f, 25f)]
     [Tooltip("Define how long this room is measured in meters. Direction: North / South.")]
     public float RoomLength = 10f;
 
-    [SerializeField][Tooltip("Adjust to close gap and prevent light from entering this room. Expands roof by....meters.")]
+    [SerializeField][Tooltip("Adjust to close gap and prevent light from entering this room. Expands roof by n meters.")]
     private float hideGapInRoof = 2f;
 
     //prevents clipping of walls with floor.

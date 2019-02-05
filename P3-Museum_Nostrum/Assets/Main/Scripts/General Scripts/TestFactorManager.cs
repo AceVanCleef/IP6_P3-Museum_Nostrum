@@ -20,6 +20,23 @@ public class TestFactorManager : MonoBehaviour
     [SerializeField]
     private bool wayfindingActive = true;
 
+
+    private static TestFactorManager instance;
+
+    private void Awake()
+    {
+        //guarantee singleton.
+        if (!instance)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            instance.gameObject.name = "TestFactorManager";
+        }
+    }
+
     //fill the arrays with GameObjects
     void Start()
     {
@@ -48,6 +65,8 @@ public class TestFactorManager : MonoBehaviour
             }
         }
 
+/*  Todo: null pointers if no object with required tag exists in scene.
+  
         //toggle interior objects
         for (int i = 0; i < interiorObjects.Length; i++)
         {
@@ -63,7 +82,7 @@ public class TestFactorManager : MonoBehaviour
                 wayfinding[i].SetActive(wayfindingActive);
             }
         }
-
+        */
 
     }
 }

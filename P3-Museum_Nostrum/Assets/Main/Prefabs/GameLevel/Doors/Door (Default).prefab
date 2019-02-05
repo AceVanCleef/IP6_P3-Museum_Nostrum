@@ -218,6 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2634ef4ec7b32c478ed835a7cd78801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorHeight: 3.03
+  doorHeight: 2.04
   height2WidthRatio: 2.5
   isDoubleDoor: 0
