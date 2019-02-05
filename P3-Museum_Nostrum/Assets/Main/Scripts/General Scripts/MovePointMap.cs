@@ -19,8 +19,7 @@ public class MovePointMap : MonoBehaviour
         dictionary.Add("Left Gallery Room", new float[] { 130f, 300f });
 
         //initialises the RectTransfrom of the point, which indicates the position on the map
-        GameObject mapWrapper = GameObject.Find("MapPoint");
-        rect = mapWrapper.GetComponent<RectTransform>();
+        rect = mapPoint.GetComponent<RectTransform>();
     }
 
     //inverts the alpha channel of the map point. map point can not be disabled like the map itself, because it needs to moved, eventhough its not visible.
@@ -28,19 +27,23 @@ public class MovePointMap : MonoBehaviour
     {
         var tempColor = mapPoint.color;
         tempColor.a = ((mapPoint.color.a == 100) ? 0f : 100f);
+        Debug.Log(tempColor.a + ":::::..");
         mapPoint.color = tempColor;
     }
 
 
-        public void movePointMap(string parentName)
+    public void movePointMap(string parentName)
     {
-        //gets the coordinates from the dictionary
-        Vector3 pos;
-        pos.x = dictionary[parentName][0];
-        pos.y = dictionary[parentName][1];
-        pos.z = 0f;
-        
-        //sets the new position
-        rect.anchoredPosition = pos;
+        if (dictionary.ContainsKey(parentName))
+        {
+            //gets the coordinates from the dictionary
+            Vector3 pos;
+            pos.x = dictionary[parentName][0];
+            pos.y = dictionary[parentName][1];
+            pos.z = 0f;
+
+            //sets the new position
+            rect.anchoredPosition = pos;
+        }
     }
 }

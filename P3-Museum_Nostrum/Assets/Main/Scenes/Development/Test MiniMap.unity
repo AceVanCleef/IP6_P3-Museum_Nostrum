@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineWidthOnActive: 0.15
-  TargetCameraPositionNode: {fileID: 0}
+  TargetCameraPositionNode: {fileID: 535157881}
 --- !u!114 &55401579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3126,7 +3126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineWidthOnActive: 0.15
-  TargetCameraPositionNode: {fileID: 0}
+  TargetCameraPositionNode: {fileID: 535157881}
 --- !u!114 &669189804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3420,7 +3420,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 886754381}
-        m_MethodName: toggleVisibilityOfMapPoint
+        m_MethodName: invertVisibilityOfMapPoint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3917,7 +3917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineWidthOnActive: 0.15
-  TargetCameraPositionNode: {fileID: 0}
+  TargetCameraPositionNode: {fileID: 535157881}
 --- !u!114 &882422362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4179,7 +4179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineWidthOnActive: 0.15
-  TargetCameraPositionNode: {fileID: 0}
+  TargetCameraPositionNode: {fileID: 535157881}
 --- !u!114 &942669546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7681,7 +7681,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 886754381}
-        m_MethodName: toggleVisibilityOfMapPoint
+        m_MethodName: invertVisibilityOfMapPoint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

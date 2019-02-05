@@ -41,8 +41,9 @@ public class DoorScript : AbstractInteractiveGameObject
         }
 
         //initialisations for map
-        GameObject mapWrapper = GameObject.Find("MapWrapper");
-        movePointMap = (MovePointMap)mapWrapper.GetComponent(typeof(MovePointMap));
+        GameObject mapPoint = GameObject.Find("MapWrapper");
+        if (mapPoint)
+           movePointMap = (MovePointMap)mapPoint.GetComponent(typeof(MovePointMap));
     }
 
     public override void OnPointerClick(PointerEventData eventData)
@@ -78,7 +79,8 @@ public class DoorScript : AbstractInteractiveGameObject
         WarpToNextRoom();
 
         //moves the point on the map
-        movePointMap.movePointMap(TargetCameraPositionNode.transform.root.gameObject.name);
+        if (movePointMap)
+            movePointMap.movePointMap(TargetCameraPositionNode.transform.root.gameObject.name);
     }
 
 }
