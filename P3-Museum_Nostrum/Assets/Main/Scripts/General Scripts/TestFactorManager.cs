@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class TestFactorManager : MonoBehaviour
 {
@@ -68,7 +69,7 @@ public class TestFactorManager : MonoBehaviour
 /*  Todo: null pointers if no object with required tag exists in scene.
   
         //toggle interior objects
-        for (int i = 0; i < interiorObjects.Length; i++)
+        /*for (int i = 0; i < interiorObjects.Length; i++)
         {
             {
                 interiorObjects[i].SetActive(interiorObjectsActive);
@@ -81,8 +82,22 @@ public class TestFactorManager : MonoBehaviour
             {
                 wayfinding[i].SetActive(wayfindingActive);
             }
-        }
-        */
+        }*/
 
     }
 }
+/*
+[CustomEditor(typeof(TestFactorManager))]
+public class InspectorButtonTestFactorManagerAAS : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        TestFactorManager testFactorManager = (TestFactorManager)target;
+        if (GUILayout.Button("Apply"))
+        {
+            testFactorManager.Apply();
+        }
+    }
+}*/

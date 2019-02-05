@@ -110,3 +110,13 @@ Set smoothness and metallic to max. value and choose a yellow color that suits y
 Next, add a reflection probe to the 3D model in your scene and adjust its box size and its type (Baked or Realtime (adapts on environment when eg. player walks by)).
 - [Creating a Gold Material / Shader in Unity 5
 ](https://www.youtube.com/watch?v=Jbd0cx5GM_Q)
+
+##Merge conflict, remove local changes
+```
+<<<<<<< HEAD:file.txt
+Hello world ( what you already had locally)
+======= 
+Goodbye (what was introduced by the other commit, in this case 77976da35a11)
+>>>>>>> 77976da35a11db4580b80ae27e8d65caf5208086:file.txt
+```
+- [Git conflict markers](https://stackoverflow.com/questions/7901864/git-conflict-markers)
