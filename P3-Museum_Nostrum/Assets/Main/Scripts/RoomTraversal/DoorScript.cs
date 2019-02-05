@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -24,21 +25,10 @@ public class DoorScript : AbstractInteractiveGameObject
     protected override void Start()
     {
         targetPositionInfo = TargetCameraPositionNode.GetComponent<CameraPositionInfo>();
-
+        
         player = GameObject.FindGameObjectWithTag("Player");
 
-        //initialisations for door animations
-        doorAnimator = player.GetComponentInChildren<Animator>();
-        hud = GameObject.FindGameObjectWithTag("HUD");
-        fadeAnimator = hud.GetComponentInChildren<Animator>();
-
-        //get the length of the door animation
-        AnimationClip[] clips = doorAnimator.runtimeAnimatorController.animationClips;
-        foreach (AnimationClip clip in clips)
-        {
-            if (clip.name == doorAnimationName)
-                doorAnimationLength = clip.length;
-        }
+        InitializeWalkAnimation();
 
         //initialisations for map
         GameObject mapPoint = GameObject.Find("MapWrapper");
@@ -83,4 +73,20 @@ public class DoorScript : AbstractInteractiveGameObject
             movePointMap.movePointMap(TargetCameraPositionNode.transform.root.gameObject.name);
     }
 
+
+    private void InitializeWalkAnimation()
+    {
+        //initialisations for door animations
+        doorAnimator = player.GetComponentInChildren<Animator>();
+        hud = GameObject.FindGameObjectWithTag("HUD");
+        fadeAnimator = hud.GetComponentInChildren<Animator>();
+
+        //get the length of the door animation
+        AnimationClip[] clips = doorAnimator.runtimeAnimatorController.animationClips;
+        foreach (AnimationClip clip in clips)
+        {
+            if (clip.name == doorAnimationName)
+                doorAnimationLength = clip.length;
+        }
+    }
 }
