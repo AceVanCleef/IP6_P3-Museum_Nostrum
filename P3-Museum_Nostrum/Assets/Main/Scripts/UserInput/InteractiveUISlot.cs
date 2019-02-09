@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     Vector3 startPosition;
+    RawImage ri;
 
     void Start()
     {
         InitializeTag();
+        ri = GetComponent<RawImage>();
     }
 
     public void InitializeTag()
@@ -33,7 +35,10 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     public override void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        if (ri.texture != null)
+        {
+            transform.position = Input.mousePosition;
+        }
     }
 
     public override void OnEndDrag(PointerEventData eventData)
@@ -75,16 +80,18 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
     #region TransferTexture
     private void AttachPictureToUISlot(GameObject selectedPicture)
     {
-        GetComponent<RawImage>().texture = selectedPicture.GetComponent<Renderer>().material.mainTexture;
+        ri.texture = selectedPicture.GetComponent<Renderer>().material.mainTexture;
         selectedPicture.GetComponent<IInteractiveGameObject>().DisableOutline();
         Destroy(selectedPicture);
     }
 
     private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
-        RawImage ri = GetComponent<RawImage>();
-        pictureCanvas.GetComponent<Renderer>().material.mainTexture = ri.texture;
-        ri.texture = null;
+        Renderer otherRenderer = pictureCanvas.GetComponent<Renderer>();
+        //swap
+        Texture cachedTexture = otherRenderer.material.mainTexture;
+        otherRenderer.material.mainTexture = ri.texture;
+        ri.texture = cachedTexture;
     }
     #endregion TransferTexture
 

@@ -27,6 +27,10 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         m_EventSystem = GetComponent<EventSystem>();
     }
 
+    /// <summary>
+    /// returns alls RaycastResults.
+    /// </summary>
+    /// <returns></returns>
     protected List<RaycastResult> GetAllUIRaycastResults()
     {
         //source: https://docs.unity3d.com/ScriptReference/UI.GraphicRaycaster.Raycast.html
@@ -46,6 +50,11 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         return results;
     }
 
+    /// <summary>
+    /// returns the all detected GameObjects marked by "yourTag".
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <returns></returns>
     protected List<GameObject> GetAllUIElementsWith(string tag)
     {
         List<RaycastResult> allRayCastHits = GetAllUIRaycastResults();
@@ -62,6 +71,11 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         return results;
     }
 
+    /// <summary>
+    /// returns the first detected GameObject marked by "yourTag".
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <returns></returns>
     protected GameObject GetFirstUIElementWith(string tag)
     {
         List<RaycastResult> allRayCastHits = GetAllUIRaycastResults();

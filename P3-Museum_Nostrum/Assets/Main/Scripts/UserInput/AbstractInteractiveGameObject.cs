@@ -33,7 +33,7 @@ public class AbstractInteractiveGameObject : MonoBehaviour, IInteractiveGameObje
     private float outlineWidthOnActive = 0.15f;
     protected float OutlineWidthOnActive
     {
-        //readonly access while providing adjustability in inspector.
+        //read-only access while providing adjustability in inspector.
         get
         {
             return outlineWidthOnActive;
