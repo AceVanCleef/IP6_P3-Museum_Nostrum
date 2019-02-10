@@ -10,7 +10,8 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
     RawImage ri;
 
     private static readonly Vector2 InitialSize = new Vector2(160f, 160f);
-    private static readonly Vector2 HoverSize = new Vector2(300f, 150f);
+    private static readonly Vector2 HoverSize = new Vector2(200f, 200f);
+    //private static readonly Vector2 squareHoverSize = new Vector2(300f, 150f);
 
     void Start()
     {
@@ -34,9 +35,9 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
         //remember start position of UISlot.
         startPosition = transform.position;
-        /*
+        
         if (ri.texture != null)
-            GetComponent<RectTransform>().sizeDelta = HoverSize;*/
+            GetComponent<RectTransform>().sizeDelta = HoverSize;
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -60,7 +61,7 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
         //reset position.
         transform.position = startPosition;
 
-        //GetComponent<RectTransform>().sizeDelta = InitialSize;
+        GetComponent<RectTransform>().sizeDelta = InitialSize;
 
         //Reenable swipes
         base.OnEndDrag(eventData);
