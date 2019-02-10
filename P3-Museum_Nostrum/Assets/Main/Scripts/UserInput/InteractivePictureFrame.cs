@@ -23,6 +23,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     private Renderer pictureRenderer;
 
+
     protected new virtual void Start()
     {
         base.Start();
@@ -32,7 +33,6 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         //Your other initialization code...
 
         pictureRenderer = GetComponent<Renderer>();
-
     }
 
 
@@ -51,6 +51,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         v3 = new Vector3(eventData.position.x, eventData.position.y, dist);
         v3 = Camera.main.ScreenToWorldPoint(v3);
         offset = hitGameObject.transform.position - v3;
+
+        HighlightAllUISlots();
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -87,6 +89,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
         //reset position.
         transform.position = startPosition;
+
+        DeactivateHighlightningOfAllUISlots();
 
         //Reenable swipes
         base.OnEndDrag(eventData);
@@ -189,12 +193,15 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     {
         RawImage ri = uiSlot.GetComponent<RawImage>();
 
-        //Todo: figure out, why texture from plane doesn't get applied to raw image.
-
         //Swap
         Texture cachedTexture = ri.texture;
         ri.texture = pictureRenderer.material.mainTexture;
         pictureRenderer.material.mainTexture = cachedTexture;
+
+        if (ri.texture != null)
+        {
+            ri.color = Color.white;
+        }
     }
 
     private void SwapTexturesOf(GameObject thisCanvas, GameObject otherCanvas)

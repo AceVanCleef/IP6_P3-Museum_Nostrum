@@ -32,7 +32,9 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
 
         pictureRenderer = GetComponent<Renderer>();
         pictureRenderer.material.SetFloat("_FirstOutlineWidth", outlineWidthOnInactive);
+
     }
+
 
     #region UserInput
 
@@ -48,6 +50,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
         v3 = new Vector3(eventData.position.x, eventData.position.y, dist);
         v3 = Camera.main.ScreenToWorldPoint(v3);
         offset = hitGameObject.transform.position - v3;
+
+        HighlightAllUISlots();
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -79,6 +83,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
             //if not hit, reset position => User gets feedback about what a picture can interact with.
             transform.position = startPosition;
         }
+
+        DeactivateHighlightningOfAllUISlots();
 
         //Reenable swipes
         base.OnEndDrag(eventData);
@@ -177,12 +183,15 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
         if (ri.texture == null)
         {
             ri.texture = pictureRenderer.material.mainTexture;
+            ri.color = Color.white;
             Destroy(gameObject);
         }
         else
         {
             //reset position.
             transform.position = startPosition;
+
+            ri.color = Color.white;
 
             //Swap
             Texture cachedTexture = ri.texture;
@@ -215,6 +224,4 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
         //  set texture of this InteractivePicture to pictureCanvas.
     }
     #endregion TransferTexture
-
-
 }

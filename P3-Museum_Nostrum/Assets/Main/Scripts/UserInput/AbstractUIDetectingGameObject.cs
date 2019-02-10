@@ -11,12 +11,18 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
     private static PointerEventData m_PointerEventData;
     private static EventSystem m_EventSystem;
 
+
+    private List<UISlotHighlighter> allUISlotHighlighters = new List<UISlotHighlighter>();
+
+
     protected new virtual void Start()
     {
         base.Start();
 
         InitializeUIDetectionTools();
         Debug.Log("AbstractUIDetectingGameObject started");
+
+        GetAllUISlotHighlighters();
     }
 
     private void InitializeUIDetectionTools()
@@ -90,4 +96,28 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         }
         return null;
     }
+
+
+    #region UISlotHighlightning
+    private void GetAllUISlotHighlighters()
+    {
+        allUISlotHighlighters.AddRange(UnityEngine.Object.FindObjectsOfType<UISlotHighlighter>());
+    }
+
+    protected void HighlightAllUISlots()
+    {
+        for (int i = 0; i < allUISlotHighlighters.Count; ++i)
+        {
+            allUISlotHighlighters[i].HighlightSlot();
+        }
+    }
+
+    protected void DeactivateHighlightningOfAllUISlots()
+    {
+        for (int i = 0; i < allUISlotHighlighters.Count; ++i)
+        {
+            allUISlotHighlighters[i].DeactivateHighlightning();
+        }
+    }
+    #endregion UISlotHighlightning
 }
