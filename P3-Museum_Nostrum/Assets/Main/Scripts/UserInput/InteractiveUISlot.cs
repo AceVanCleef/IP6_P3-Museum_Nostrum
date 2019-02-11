@@ -7,10 +7,16 @@ using UnityEngine.UI;
 public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     Vector3 startPosition;
+    RawImage ri;
+
+    private static readonly Vector2 InitialSize = new Vector2(160f, 160f);
+    private static readonly Vector2 HoverSize = new Vector2(200f, 200f);
+    //private static readonly Vector2 squareHoverSize = new Vector2(300f, 150f);
 
     void Start()
     {
         InitializeTag();
+        ri = GetComponent<RawImage>();
     }
 
     public void InitializeTag()
@@ -29,34 +35,40 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
         //remember start position of UISlot.
         startPosition = transform.position;
+        
+        if (ri.texture != null)
+            GetComponent<RectTransform>().sizeDelta = HoverSize;
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        if (ri.texture != null)
+        {
+            transform.position = Input.mousePosition;
+        }
     }
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-        //reset position.
-        transform.position = startPosition;
-
-        //Reenable swipes
-        base.OnEndDrag(eventData);
-    }
-
-    public override void OnDrop(PointerEventData eventData)
-    {
         GameObject pictureCanvas = InteractivePicture.FindPictureCanvas(eventData.position);
+        Debug.Log("Can find pictureCanvas (UIslot): " + (pictureCanvas != null));
         if (pictureCanvas != null)
         {
             AttachPictureToPictureCanvas(pictureCanvas);
         }
         //dataLogger.Log("SwipeDragOnDrop", eventData.position.ToString(), "-");
+
+        //reset position.
+        transform.position = startPosition;
+
+        GetComponent<RectTransform>().sizeDelta = InitialSize;
+
+        //Reenable swipes
+        base.OnEndDrag(eventData);
     }
 
 
-
+    
     public override void OnPointerClick(PointerEventData eventData)
     {
         //Todo: Fix / finish image selection by tap. Issue seems to be that the raycast might get stuck in another UI element above.
@@ -75,16 +87,20 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
     #region TransferTexture
     private void AttachPictureToUISlot(GameObject selectedPicture)
     {
-        GetComponent<RawImage>().texture = selectedPicture.GetComponent<Renderer>().material.mainTexture;
+        ri.texture = selectedPicture.GetComponent<Renderer>().material.mainTexture;
         selectedPicture.GetComponent<IInteractiveGameObject>().DisableOutline();
         Destroy(selectedPicture);
     }
 
     private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
-        RawImage ri = GetComponent<RawImage>();
-        pictureCanvas.GetComponent<Renderer>().material.mainTexture = ri.texture;
-        ri.texture = null;
+        Renderer otherRenderer = pictureCanvas.GetComponent<Renderer>();
+        //swap
+        Texture cachedTexture = otherRenderer.material.mainTexture;
+        otherRenderer.material.mainTexture = ri.texture;
+        ri.texture = cachedTexture;
+
+        if (ri.texture == null) ri.color = Color.black;
     }
     #endregion TransferTexture
 

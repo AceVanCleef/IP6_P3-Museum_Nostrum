@@ -111,7 +111,7 @@ Next, add a reflection probe to the 3D model in your scene and adjust its box si
 - [Creating a Gold Material / Shader in Unity 5
 ](https://www.youtube.com/watch?v=Jbd0cx5GM_Q)
 
-##Merge conflict, remove local changes
+## Merge conflict, remove local changes
 ```
 <<<<<<< HEAD:file.txt
 Hello world ( what you already had locally)
@@ -120,3 +120,14 @@ Goodbye (what was introduced by the other commit, in this case 77976da35a11)
 >>>>>>> 77976da35a11db4580b80ae27e8d65caf5208086:file.txt
 ```
 - [Git conflict markers](https://stackoverflow.com/questions/7901864/git-conflict-markers)
+
+
+### How to Change Alpha of color
+```
+image = GetComponent<Image>();
+var tempColor = image.color;
+tempColor.a = 1f;
+image.color = tempColor;
+```
+- [How to modify color.alpha in UI Image?
+](https://answers.unity.com/questions/1121691/how-to-modify-images-coloralpha.html)

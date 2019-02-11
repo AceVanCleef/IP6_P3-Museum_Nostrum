@@ -11,12 +11,18 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
     private static PointerEventData m_PointerEventData;
     private static EventSystem m_EventSystem;
 
+
+    private List<UISlotHighlighter> allUISlotHighlighters = new List<UISlotHighlighter>();
+
+
     protected new virtual void Start()
     {
         base.Start();
 
         InitializeUIDetectionTools();
         Debug.Log("AbstractUIDetectingGameObject started");
+
+        GetAllUISlotHighlighters();
     }
 
     private void InitializeUIDetectionTools()
@@ -27,6 +33,10 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         m_EventSystem = GetComponent<EventSystem>();
     }
 
+    /// <summary>
+    /// returns alls RaycastResults.
+    /// </summary>
+    /// <returns></returns>
     protected List<RaycastResult> GetAllUIRaycastResults()
     {
         //source: https://docs.unity3d.com/ScriptReference/UI.GraphicRaycaster.Raycast.html
@@ -46,6 +56,11 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         return results;
     }
 
+    /// <summary>
+    /// returns the all detected GameObjects marked by "yourTag".
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <returns></returns>
     protected List<GameObject> GetAllUIElementsWith(string tag)
     {
         List<RaycastResult> allRayCastHits = GetAllUIRaycastResults();
@@ -62,6 +77,11 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         return results;
     }
 
+    /// <summary>
+    /// returns the first detected GameObject marked by "yourTag".
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <returns></returns>
     protected GameObject GetFirstUIElementWith(string tag)
     {
         List<RaycastResult> allRayCastHits = GetAllUIRaycastResults();
@@ -76,4 +96,28 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         }
         return null;
     }
+
+
+    #region UISlotHighlightning
+    private void GetAllUISlotHighlighters()
+    {
+        allUISlotHighlighters.AddRange(UnityEngine.Object.FindObjectsOfType<UISlotHighlighter>());
+    }
+
+    protected void HighlightAllUISlots()
+    {
+        for (int i = 0; i < allUISlotHighlighters.Count; ++i)
+        {
+            allUISlotHighlighters[i].HighlightSlot();
+        }
+    }
+
+    protected void DeactivateHighlightningOfAllUISlots()
+    {
+        for (int i = 0; i < allUISlotHighlighters.Count; ++i)
+        {
+            allUISlotHighlighters[i].DeactivateHighlightning();
+        }
+    }
+    #endregion UISlotHighlightning
 }

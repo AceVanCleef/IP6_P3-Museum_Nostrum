@@ -79,6 +79,9 @@ public class DoorScript : AbstractInteractiveGameObject
         //initialisations for door animations
         doorAnimator = player.GetComponentInChildren<Animator>();
         hud = GameObject.FindGameObjectWithTag("HUD");
+
+        //Todo: Check if prefab "FadeBlackDoor" already exists. If not, instantiate one as child of HUD.
+
         fadeAnimator = hud.GetComponentInChildren<Animator>();
 
         //get the length of the door animation

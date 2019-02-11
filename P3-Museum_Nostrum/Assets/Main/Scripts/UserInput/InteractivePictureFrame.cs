@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractivePicture : AbstractUIDetectingGameObject {
+public class InteractivePictureFrame : AbstractUIDetectingGameObject
+{
 
     private float dist;
     private Vector3 offset;
@@ -23,16 +23,16 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
 
     private Renderer pictureRenderer;
 
-    protected override void Start()
+
+    protected new virtual void Start()
     {
         base.Start();
-        //Debug.Log("InteractivePic started");
+
+        Debug.Log("InteractivePictureFrame started");
         startPosition = transform.position;
         //Your other initialization code...
 
         pictureRenderer = GetComponent<Renderer>();
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", outlineWidthOnInactive);
-
     }
 
 
@@ -46,7 +46,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
         base.OnBeginDrag(eventData);
 
         hitGameObject = GetHitGameObject(eventData);
-        dist = CalculateDistance(hitGameObject);
+        dist = CalculateDistance(hitGameObject);    //todo: bring dragging GO closer to camera.
+        Debug.Log("distance: " + dist);
         v3 = new Vector3(eventData.position.x, eventData.position.y, dist);
         v3 = Camera.main.ScreenToWorldPoint(v3);
         offset = hitGameObject.transform.position - v3;
@@ -56,33 +57,38 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
 
     public override void OnDrag(PointerEventData eventData)
     {
-        v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData) );
-        v3 = Camera.main.ScreenToWorldPoint(v3);
-        hitGameObject.transform.position = v3 + offset;
+        if (pictureRenderer.material.mainTexture != null)
+        {
+            v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData) );
+            v3 = Camera.main.ScreenToWorldPoint(v3);
+            hitGameObject.transform.position = v3 + offset;
+        }  
     }
 
 
-    
+
     public override void OnEndDrag(PointerEventData eventData)
     {
         //Detect UISlot
         GameObject uiSlot = GetFirstUIElementWith("DraggableUI");
-        GameObject pictureCanvas = FindPictureCanvas(eventData.position);
+        GameObject[] pictureCanvases = FindBothOverlappingPictureCanvases(eventData.position);
+
+        Debug.Log("Caught uiSlot? " + (uiSlot != null));
+        Debug.Log("Caught both pictureCanvas? " + (pictureCanvases != null));
+        Debug.Log("Amt. of UIslots found: " + GetAllUIElementsWith("DraggableUI").Count);
 
         if (uiSlot != null)
         {
             Debug.Log("ui slot: " + uiSlot.name);
             AttachPictureToUISlot(uiSlot);
         }
-        else if (CanPlayerDropPictureOnCanvasDirectly && pictureCanvas != null)
+        else if (CanPlayerDropPictureOnCanvasDirectly && pictureCanvases != null)
         {
-            AttachPictureToPictureCanvas(pictureCanvas);
+            SwapTexturesOf(pictureCanvases[0], pictureCanvases[1]);
         }
-        else
-        {
-            //if not hit, reset position => User gets feedback about what a picture can interact with.
-            transform.position = startPosition;
-        }
+
+        //reset position.
+        transform.position = startPosition;
 
         DeactivateHighlightningOfAllUISlots();
 
@@ -98,18 +104,13 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
 
     private float GetHoverDistanceFromCamera(PointerEventData eventData)
     {
-        GameObject pc = FindPictureCanvas(eventData.position);
-        if (pc != null)
-        {
-            float deltaDistToPictureFrame = 0.05f;
-            switch (CameraViewDirection.Instance.GetCurrentState().GetDirectionIdentifier())
-            {
-                case Direction.North: return pc.transform.parent.transform.position.z - deltaDistToPictureFrame;
-                case Direction.East: return pc.transform.parent.transform.position.x - deltaDistToPictureFrame;
-                case Direction.South: return (pc.transform.parent.transform.position.z + deltaDistToPictureFrame) * -1f;
-                case Direction.West: return (pc.transform.parent.transform.position.x + deltaDistToPictureFrame) * -1f;
-            }
+        if (FindBothOverlappingPictureCanvases(eventData.position) != null) {
+            return dist - 0.05f;
+            // Note: A CameraViewDirection state based solution could be implemented where this PictureFrame Background will
+            // hover slightly in front of the other PictureFrame. But since Picture Frames are supposed to be positioned 
+            // slightly in front of the wall, this simple solution should suffice.
         }
+        //Todo: return dist - 0.05f when picture is above the frame the user picked it up from.
 
         return dist - (dist - distanceFromCamera);  //e.g. 4.5 - (4.5 - 1) = 4.5 - 3.5 = 1 (unit away from camera).
     }
@@ -117,16 +118,27 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
     #endregion DragAndDrop
 
 
-
-    public static GameObject FindPictureCanvas(Vector2 pos)
+    /// <summary>
+    /// returns the first two detected GameObject tagged "PictureCanvas".
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    public static GameObject[] FindBothOverlappingPictureCanvases(Vector2 pos)
     {
+        GameObject[] pictureCanvases = new GameObject[2];
+        int j = 0;
+
         Ray ray = Camera.main.ScreenPointToRay(pos);
         RaycastHit[] hits = Physics.RaycastAll(ray);
         for (int i = 0; i < hits.Length; ++i)
         {
+            // Note: The raycast hits overlapping GameObjects.
             if (hits[i].collider.tag == "PictureCanvas")
             {
-                return hits[i].collider.gameObject;
+                pictureCanvases[j] = hits[i].collider.gameObject;
+                ++j;
+                if (j == pictureCanvases.Length)
+                    return pictureCanvases; //Therefore, the hovering and the target pictureCanvas are returned.
             }
         }
         return null;
@@ -180,48 +192,29 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
     private void AttachPictureToUISlot(GameObject uiSlot)
     {
         RawImage ri = uiSlot.GetComponent<RawImage>();
-        if (ri.texture == null)
-        {
-            ri.texture = pictureRenderer.material.mainTexture;
-            ri.color = Color.white;
-            Destroy(gameObject);
-        }
-        else
-        {
-            //reset position.
-            transform.position = startPosition;
 
-            ri.color = Color.white;
+        //Swap
+        Texture cachedTexture = ri.texture;
+        ri.texture = pictureRenderer.material.mainTexture;
+        pictureRenderer.material.mainTexture = cachedTexture;
 
-            //Swap
-            Texture cachedTexture = ri.texture;
-            ri.texture = pictureRenderer.material.mainTexture;
-            pictureRenderer.material.mainTexture = cachedTexture;
+        if (ri.texture != null)
+        {
+            ri.color = Color.white;
         }
     }
 
-    private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
+    private void SwapTexturesOf(GameObject thisCanvas, GameObject otherCanvas)
     {
-        Renderer otherRenderer = pictureCanvas.GetComponent<Renderer>();
+        Debug.Log("Executing SwapTexturesOf()");
+        Renderer thisRenderer = thisCanvas.GetComponent<Renderer>();
+        Renderer otherRenderer = otherCanvas.GetComponent<Renderer>();
 
         //swap
         Texture cachedTexture = otherRenderer.material.mainTexture;
-        otherRenderer.material.mainTexture = pictureRenderer.material.mainTexture;
-        pictureRenderer.material.mainTexture = cachedTexture;
-
-        if (pictureRenderer.material.mainTexture == null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            transform.position = startPosition;
-        }
-
-        //Todo: If pictureCanvas already carries a texture, either...
-        //- swap textures and reset InteractivePicture's position
-        //- drop texture of pictureCanvas to inventory slot and then 
-        //  set texture of this InteractivePicture to pictureCanvas.
+        otherRenderer.material.mainTexture = thisRenderer.material.mainTexture;
+        thisRenderer.material.mainTexture = cachedTexture;
     }
     #endregion TransferTexture
+
 }
