@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISlotHighlighter : MonoBehaviour {
+public class UISlotHighlighter : MonoBehaviour, IHighlighter
+{
 
     private Image img;
 
@@ -12,10 +13,10 @@ public class UISlotHighlighter : MonoBehaviour {
         img = GetComponent<Image>();
 
         //Guarantee correct start transparency.
-        DeactivateHighlightning();
+        Off();
     }
 	
-	public void HighlightSlot()
+	public void On()
     {
         //Todo: evtl. check whether slot is free
         Color current = img.color;
@@ -23,7 +24,7 @@ public class UISlotHighlighter : MonoBehaviour {
         img.color = current;
     }
 
-    public void DeactivateHighlightning()
+    public void Off()
     {
         Color current = img.color;
         current.a = 0f;

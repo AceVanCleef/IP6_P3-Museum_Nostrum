@@ -52,7 +52,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         v3 = Camera.main.ScreenToWorldPoint(v3);
         offset = hitGameObject.transform.position - v3;
 
-        HighlightAllUISlots();
+        ActivateUISlotHighlightning();
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -90,7 +90,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         //reset position.
         transform.position = startPosition;
 
-        DeactivateHighlightningOfAllUISlots();
+        DeactivateUISlotHighlightning();
 
         //Reenable swipes
         base.OnEndDrag(eventData);
@@ -155,33 +155,14 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     {
         if (selectedGameObject == null)
         {
-            EnableOutline();
             selectedGameObject = gameObject;
         }
         else
         {
             //Swap focus
-            selectedGameObject.GetComponent<IInteractiveGameObject>().DisableOutline(); //other GO.
-            EnableOutline();
             selectedGameObject = gameObject;    //updating selection to this GO.
         }
         //Todo: deselect when hitting no interactive object.
-    }
-
-    public override void ToggleOutline()
-    {
-        float newWidth = pictureRenderer.material.GetFloat("_FirstOutlineWidth") != outlineWidthOnInactive ? outlineWidthOnInactive : OutlineWidthOnActive;
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", newWidth);
-    }
-
-    public override void DisableOutline()
-    {
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", outlineWidthOnInactive);
-    }
-
-    public override void EnableOutline()
-    {
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", OutlineWidthOnActive);
     }
     #endregion SingleTap
 

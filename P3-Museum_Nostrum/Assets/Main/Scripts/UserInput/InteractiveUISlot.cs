@@ -13,8 +13,10 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
     private static readonly Vector2 HoverSize = new Vector2(200f, 200f);
     //private static readonly Vector2 squareHoverSize = new Vector2(300f, 150f);
 
-    void Start()
+    protected new virtual void Start()
     {
+        base.Start();
+
         InitializeTag();
         ri = GetComponent<RawImage>();
     }
@@ -30,19 +32,23 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
-        //Block swipes
-        base.OnBeginDrag(eventData);
+        if (HasTexture())
+        {
+            //Block swipes
+            base.OnBeginDrag(eventData);
 
-        //remember start position of UISlot.
-        startPosition = transform.position;
+            //remember start position of UISlot.
+            startPosition = transform.position;
         
-        if (ri.texture != null)
             GetComponent<RectTransform>().sizeDelta = HoverSize;
+
+            ActivatePictureFrameHighlightning();
+        }
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
-        if (ri.texture != null)
+        if (HasTexture())
         {
             transform.position = Input.mousePosition;
         }
@@ -50,21 +56,26 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-        GameObject pictureCanvas = InteractivePicture.FindPictureCanvas(eventData.position);
-        Debug.Log("Can find pictureCanvas (UIslot): " + (pictureCanvas != null));
-        if (pictureCanvas != null)
+        if (HasTexture())
         {
-            AttachPictureToPictureCanvas(pictureCanvas);
+            GameObject pictureCanvas = InteractivePicture.FindPictureCanvas(eventData.position);
+            Debug.Log("Can find pictureCanvas (UIslot): " + (pictureCanvas != null));
+            if (pictureCanvas != null)
+            {
+                AttachPictureToPictureCanvas(pictureCanvas);
+            }
+            //dataLogger.Log("SwipeDragOnDrop", eventData.position.ToString(), "-");
+
+            //reset position.
+            transform.position = startPosition;
+
+            GetComponent<RectTransform>().sizeDelta = InitialSize;
+
+            DeactivatePictureFrameHighlightning();
+
+            //Reenable swipes
+            base.OnEndDrag(eventData);
         }
-        //dataLogger.Log("SwipeDragOnDrop", eventData.position.ToString(), "-");
-
-        //reset position.
-        transform.position = startPosition;
-
-        GetComponent<RectTransform>().sizeDelta = InitialSize;
-
-        //Reenable swipes
-        base.OnEndDrag(eventData);
     }
 
 
@@ -88,7 +99,6 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
     private void AttachPictureToUISlot(GameObject selectedPicture)
     {
         ri.texture = selectedPicture.GetComponent<Renderer>().material.mainTexture;
-        selectedPicture.GetComponent<IInteractiveGameObject>().DisableOutline();
         Destroy(selectedPicture);
     }
 
@@ -101,6 +111,11 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
         ri.texture = cachedTexture;
 
         if (ri.texture == null) ri.color = Color.black;
+    }
+
+    private bool HasTexture()
+    {
+        return ri.texture != null;
     }
     #endregion TransferTexture
 
