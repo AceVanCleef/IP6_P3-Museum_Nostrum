@@ -157,6 +157,12 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         {
             IHighlighter selectionHighlighter = transform.parent.gameObject.GetComponentInChildren<PictureFrameSelectedHighlighter>();
             Select(selectionHighlighter, gameObject);
+            DeactivateDoorHighlightning();
+            ActivatePictureFrameHighlightning();
+            ActivateUISlotHighlightning();
+            //prevent overlapping highlightning of this picture frame.
+            transform.parent.gameObject.GetComponentInChildren<PictureFrameHighlighter>().Off();
+            selectionHighlighter.On();
         }
         //receiving a texture
         else if ( HasPlayerSelectedAnObject() )
@@ -164,10 +170,15 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
             if(HasPlayerSelectedGUIElement() )
             {
                 ReceiveTextureSelectedFromGUIElement();
+                ActivateDoorHighlightning();
+                DeactivatePictureFrameHighlightning();
             }
             else
             {
                 ReceiveTextureFromSelectedGameObject();
+                ActivateDoorHighlightning();
+                DeactivatePictureFrameHighlightning();
+                DeactivateUISlotHighlightning();
             }
         }
     }

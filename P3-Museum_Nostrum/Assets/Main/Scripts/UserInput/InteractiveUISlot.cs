@@ -87,10 +87,15 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
         {
             GameObject highlighterCarryingGUIElement = transform.parent.transform.parent.gameObject;
             Select(highlighterCarryingGUIElement.GetComponent<UISlotSelectedHighlighter>(), gameObject, true);
+            DeactivateDoorHighlightning();
+            ActivatePictureFrameHighlightning();
         }
         else if (HasPlayerSelectedAnObject() && !HasPlayerSelectedGUIElement())
         {
             ReceiveTextureFromSelectedGameObject();
+            ActivateDoorHighlightning();
+            DeactivatePictureFrameHighlightning();
+            DeactivateUISlotHighlightning();
         }
 
     }

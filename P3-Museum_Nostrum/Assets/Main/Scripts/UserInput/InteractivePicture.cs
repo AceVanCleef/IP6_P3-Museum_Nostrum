@@ -150,6 +150,9 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         Debug.Log("Clicking on Picture.");
 
         Select( GetComponentInChildren<PictureSelectedHighlighter>(), gameObject );
+        DeactivateDoorHighlightning();
+        ActivatePictureFrameHighlightning();
+        ActivateUISlotHighlightning();
 
     }
 
