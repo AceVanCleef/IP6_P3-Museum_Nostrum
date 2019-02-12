@@ -5,8 +5,7 @@ using UnityEngine;
 /// <summary>
 /// highlights the surface of a picture frame when activated.
 /// </summary>
-public class PictureFrameHighlighter : AbstractSilhouetteHighlighter {
-    
+public class PictureFrameSelectedHighlighter : AbstractSilhouetteHighlighter
+{
     //Implementation done in super class.
-
 }

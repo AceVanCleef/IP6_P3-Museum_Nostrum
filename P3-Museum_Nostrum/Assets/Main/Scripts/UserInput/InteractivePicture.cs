@@ -139,6 +139,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log("Clicking on Picture.");
         if (selectedGameObject == null)
         {
             selectedGameObject = gameObject;

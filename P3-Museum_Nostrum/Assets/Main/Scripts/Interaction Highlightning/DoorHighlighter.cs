@@ -2,29 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorHighlighter : MonoBehaviour, IHighlighter
+public class DoorHighlighter : AbstractOutlineHighlighter
 {
-    private Outline outlineScript;
-
-    void Start()
+    protected new virtual void Start()
     {
-        outlineScript = gameObject.GetComponent<Outline>();
-        if (outlineScript.OutlineMode != Outline.Mode.OutlineAll ||
-            outlineScript.OutlineMode != Outline.Mode.OutlineVisible)
-        {
-            Debug.LogWarning("Outline mode 'OutlineAll or OutlineVisible' recommended.");
-        }
-
+        base.Start();
         On();
-    }
-
-    public void Off()
-    {
-        outlineScript.OutlineWidth = 0f;
-    }
-
-    public void On()
-    {
-        outlineScript.OutlineWidth = 30f;
     }
 }

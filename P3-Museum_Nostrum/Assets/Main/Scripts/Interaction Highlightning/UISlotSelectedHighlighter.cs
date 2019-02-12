@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// highlights the surface of a picture frame when activated.
+/// highlights the UISlot in its outlineColor when activated.
 /// </summary>
-public class PictureFrameHighlighter : AbstractSilhouetteHighlighter {
-    
+public class UISlotSelectedHighlighter : UISlotHighlighter {
+
     //Implementation done in super class.
 
 }

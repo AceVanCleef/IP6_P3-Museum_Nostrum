@@ -153,6 +153,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        Debug.Log("Clicking on PicutreFrame");
         if (selectedGameObject == null)
         {
             selectedGameObject = gameObject;

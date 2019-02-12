@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4063574465928748}
-  - component: {fileID: 114908763023266420}
+  - component: {fileID: 114474529842354394}
   - component: {fileID: 114345225604615744}
   - component: {fileID: 33202755515906710}
   - component: {fileID: 23315112121916504}
@@ -117,7 +117,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &114908763023266420
+--- !u!114 &114474529842354394
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1246672662167694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcff5c39741581b4a98b446adeae0eba, type: 3}
+  m_Script: {fileID: 11500000, guid: c7634985b66c85f4da38bc1dc603878d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetColor: {r: 0.7627337, g: 0.8509804, b: 0, a: 0.2}
+  color: {r: 0.7627337, g: 0.8509804, b: 0, a: 0.2}

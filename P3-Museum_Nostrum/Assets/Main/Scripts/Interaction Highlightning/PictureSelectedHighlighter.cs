@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// highlights the surface of a picture frame when activated.
+/// marker class: switches highlightning on/off.
 /// </summary>
-public class PictureFrameHighlighter : AbstractSilhouetteHighlighter {
-    
+public class PictureSelectedHighlighter : AbstractSilhouetteHighlighter
+{
     //Implementation done in super class.
-
+    
 }

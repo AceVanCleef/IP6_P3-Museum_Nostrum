@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PictureHighlighter : MonoBehaviour, IHighlighter {
+public class AbstractSilhouetteHighlighter : MonoBehaviour, IHighlighter {
 
     /// <summary>
     /// grants access to shader properties.
@@ -10,22 +10,27 @@ public class PictureHighlighter : MonoBehaviour, IHighlighter {
     private Outline outlineScript;
 
     [Tooltip("Define the highlightning color and its transparency.")]
-    public Color targetColor;
+    public Color color;
     /// <summary>
     /// stores the target color in its invisible state (alphe = 0f).
     /// </summary>
     private Color invisible;
 
-    void Start()
+    protected virtual void Start()
     {
+        //Get shader handling script.
         outlineScript = gameObject.GetComponent<Outline>();
+        //Set Outline mode to SilhouetteOnly.
         if (outlineScript.OutlineMode != Outline.Mode.SilhouetteOnly)
         {
             Debug.LogWarning("Outline mode 'SilhouetteOnly' expected. Settings have been automatically adjusted.");
             outlineScript.OutlineMode = Outline.Mode.SilhouetteOnly;
         }
-        invisible = targetColor;
+
+        //Setup values for Off().
+        invisible = color;
         invisible.a = 0f;
+
         Off();
     }
 
@@ -36,6 +41,6 @@ public class PictureHighlighter : MonoBehaviour, IHighlighter {
 
     public void On()
     {
-        outlineScript.OutlineColor = targetColor;
+        outlineScript.OutlineColor = color;
     }
 }
