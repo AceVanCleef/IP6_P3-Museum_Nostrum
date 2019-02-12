@@ -11,6 +11,7 @@ TagManager:
   - BackgroundMusic
   - Lights
   - Sound
+  - Picture
   layers:
   - Default
   - TransparentFX

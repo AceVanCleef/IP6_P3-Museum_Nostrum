@@ -57,7 +57,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     public override void OnDrag(PointerEventData eventData)
     {
-        if (pictureRenderer.material.mainTexture != null)
+        if (HasTexture())
         {
             v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData) );
             v3 = Camera.main.ScreenToWorldPoint(v3);
@@ -153,17 +153,23 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Clicking on PicutreFrame");
-        if (selectedGameObject == null)
+        if( HasTexture() && !HasPlayerSelectedAnObject() )
         {
-            selectedGameObject = gameObject;
+            IHighlighter selectionHighlighter = transform.parent.gameObject.GetComponentInChildren<PictureFrameSelectedHighlighter>();
+            Select(selectionHighlighter, gameObject);
         }
-        else
+        //receiving a texture
+        else if ( HasPlayerSelectedAnObject() )
         {
-            //Swap focus
-            selectedGameObject = gameObject;    //updating selection to this GO.
+            if(HasPlayerSelectedGUIElement() )
+            {
+                ReceiveTextureSelectedFromGUIElement();
+            }
+            else
+            {
+                ReceiveTextureFromSelectedGameObject();
+            }
         }
-        //Todo: deselect when hitting no interactive object.
     }
     #endregion SingleTap
 
@@ -196,6 +202,38 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = thisRenderer.material.mainTexture;
         thisRenderer.material.mainTexture = cachedTexture;
+    }
+
+    private bool HasTexture()
+    {
+        return pictureRenderer.material.mainTexture != null;
+    }
+
+    private void ReceiveTextureSelectedFromGUIElement()
+    {
+        RawImage ri = GetSelectedGameObject().GetComponent<RawImage>();
+        Renderer renderer = GetComponent<Renderer>();
+        //swap
+        Texture cachedTexture = renderer.material.mainTexture;
+        renderer.material.mainTexture = ri.texture;
+        ri.texture = cachedTexture;
+
+        if (ri.texture == null) ri.color = Color.black;
+
+        Deselect();
+    }
+
+    private void ReceiveTextureFromSelectedGameObject()
+    {
+        GameObject selectedGO = GetSelectedGameObject();
+        SwapTexturesOf(gameObject, selectedGO);
+
+        Renderer otherRenderer = selectedGO.GetComponent<Renderer>();
+        if (selectedGO.tag == "Picture" && otherRenderer.material.mainTexture == null)
+        {
+            Destroy(selectedGO);
+        }
+        Deselect();
     }
     #endregion TransferTexture
 

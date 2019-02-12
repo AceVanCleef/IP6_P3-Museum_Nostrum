@@ -26,7 +26,14 @@ public class DoorConfigurator : MonoBehaviour {
 
     void Update()
     {
-        UpdateDoorDimensions();
+        if (Application.isPlaying)
+        {
+            // code executed in play mode
+        }
+        else
+        {
+            UpdateDoorDimensions();
+        }
     }
 
     private void UpdateDoorDimensions()

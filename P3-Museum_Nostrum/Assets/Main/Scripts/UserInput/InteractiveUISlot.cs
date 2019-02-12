@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
+public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
+{
 
     Vector3 startPosition;
     RawImage ri;
@@ -39,7 +40,7 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
 
             //remember start position of UISlot.
             startPosition = transform.position;
-        
+
             GetComponent<RectTransform>().sizeDelta = HoverSize;
 
             ActivatePictureFrameHighlightning();
@@ -59,7 +60,6 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
         if (HasTexture())
         {
             GameObject pictureCanvas = InteractivePicture.FindPictureCanvas(eventData.position);
-            Debug.Log("Can find pictureCanvas (UIslot): " + (pictureCanvas != null));
             if (pictureCanvas != null)
             {
                 AttachPictureToPictureCanvas(pictureCanvas);
@@ -79,29 +79,24 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
     }
 
 
-    
+
     public override void OnPointerClick(PointerEventData eventData)
     {
-        //Todo: Fix / finish image selection by tap. Issue seems to be that the raycast might get stuck in another UI element above.
-        // Other potential reasons are unkowns so far.
-        // Follow up - todo: When image is inUISlot, player should be able to select it and put it into the picturecanvas via second tap.
-
         Debug.Log("CLICKING ON UI SLOT.");
-        if(AbstractInteractiveGameObject.SelectedGameObject != null)
+        if (HasTexture() && !HasPlayerSelectedAnObject())
         {
-            Debug.Log("CLICKING ON UI SLOT. 222");
-            AttachPictureToUISlot( AbstractInteractiveGameObject.SelectedGameObject );
+            GameObject highlighterCarryingGUIElement = transform.parent.transform.parent.gameObject;
+            Select(highlighterCarryingGUIElement.GetComponent<UISlotSelectedHighlighter>(), gameObject, true);
         }
+        else if (HasPlayerSelectedAnObject() && !HasPlayerSelectedGUIElement())
+        {
+            ReceiveTextureFromSelectedGameObject();
+        }
+
     }
 
 
     #region TransferTexture
-    private void AttachPictureToUISlot(GameObject selectedPicture)
-    {
-        ri.texture = selectedPicture.GetComponent<Renderer>().material.mainTexture;
-        Destroy(selectedPicture);
-    }
-
     private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
         Renderer otherRenderer = pictureCanvas.GetComponent<Renderer>();
@@ -116,6 +111,24 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance {
     private bool HasTexture()
     {
         return ri.texture != null;
+    }
+
+    private void ReceiveTextureFromSelectedGameObject()
+    {
+        GameObject selectedGO = GetSelectedGameObject();
+        Renderer otherRenderer = selectedGO.GetComponent<Renderer>();
+        ri.color = Color.white;
+
+        Texture cachedTexture = otherRenderer.material.mainTexture;
+        otherRenderer.material.mainTexture = ri.texture;
+        ri.texture = cachedTexture;
+
+        if (selectedGO.tag == "Picture" && otherRenderer.material.mainTexture == null)
+        {
+            
+            Destroy(selectedGO);
+        }
+        Deselect();
     }
     #endregion TransferTexture
 

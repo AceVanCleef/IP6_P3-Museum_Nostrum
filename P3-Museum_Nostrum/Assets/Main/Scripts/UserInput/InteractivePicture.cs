@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractivePicture : AbstractUIDetectingGameObject {
+public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
 
     private float dist;
     private Vector3 offset;
@@ -26,6 +26,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
     protected override void Start()
     {
         base.Start();
+        InitializeTag();
         //Debug.Log("InteractivePic started");
         startPosition = transform.position;
         //Your other initialization code...
@@ -33,6 +34,13 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
         pictureRenderer = GetComponent<Renderer>();
     }
 
+    public void InitializeTag()
+    {
+        if (gameObject.tag != "Picture")
+        {
+            gameObject.tag = "Picture";
+        }
+    }
 
     #region UserInput
 
@@ -140,16 +148,9 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
     public override void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Clicking on Picture.");
-        if (selectedGameObject == null)
-        {
-            selectedGameObject = gameObject;
-        }
-        else
-        {
-            //Swap focus
-            selectedGameObject = gameObject;    //updating selection to this GO.
-        }
-        //Todo: deselect when hitting no interactive object.
+
+        Select( GetComponentInChildren<PictureSelectedHighlighter>(), gameObject );
+
     }
 
     #endregion SingleTap
@@ -198,11 +199,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
         {
             transform.position = startPosition;
         }
-
-        //Todo: If pictureCanvas already carries a texture, either...
-        //- swap textures and reset InteractivePicture's position
-        //- drop texture of pictureCanvas to inventory slot and then 
-        //  set texture of this InteractivePicture to pictureCanvas.
     }
+
     #endregion TransferTexture
 }
