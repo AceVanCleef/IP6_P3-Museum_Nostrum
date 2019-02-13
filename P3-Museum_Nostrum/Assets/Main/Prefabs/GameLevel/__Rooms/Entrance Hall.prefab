@@ -76058,7 +76058,7 @@ MonoBehaviour:
   RoomHeight: 6
   RoomWidth: 20
   RoomLength: 20
-  hideGapInRoof: 2
+  hideGapInRoof: 0.8
 --- !u!114 &114081491517636632
 MonoBehaviour:
   m_ObjectHideFlags: 1

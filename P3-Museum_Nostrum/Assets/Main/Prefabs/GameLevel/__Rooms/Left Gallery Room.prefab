@@ -14070,7 +14070,7 @@ MonoBehaviour:
   RoomHeight: 5
   RoomWidth: 15
   RoomLength: 15
-  hideGapInRoof: 2
+  hideGapInRoof: 0.8
 --- !u!114 &114437997338272290
 MonoBehaviour:
   m_ObjectHideFlags: 1
