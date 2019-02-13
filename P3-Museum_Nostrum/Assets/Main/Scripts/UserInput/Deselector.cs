@@ -36,8 +36,11 @@ public class Deselector : AbstractInteractiveGameObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Hit DeselectPlane");
+        Debug.Log("Hit Deselector.");
         Deselect();
+        ActivateDoorHighlightning();
+        DeactivatePictureFrameHighlightning();
+        DeactivateUISlotHighlightning();
     }
     #endregion UserInput
 
