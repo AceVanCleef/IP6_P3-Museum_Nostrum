@@ -131,3 +131,10 @@ image.color = tempColor;
 ```
 - [How to modify color.alpha in UI Image?
 ](https://answers.unity.com/questions/1121691/how-to-modify-images-coloralpha.html)
+
+
+### GUI - How to ensure responsiveness
+1. Make sure Canvas has a Canvas Scaler setup using Scale Mode = "Scale with Screen Size", a reference resolution of e.g. 1920 : 1080 and other values (default should work fine).
+2. For GUI elements, make sure their anchor points are set to the correct part of the screen. E.g. a button on the bottom right should have its anchor in the bottom right. An inventory bar at the top center should have its anchor on the top center, and so on.
+- [Designing UI for Multiple Resolutions
+](https://docs.unity3d.com/Manual/HOWTO-UIMultiResolution.html)
