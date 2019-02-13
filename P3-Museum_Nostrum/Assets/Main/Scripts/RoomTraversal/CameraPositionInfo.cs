@@ -12,4 +12,11 @@ public class CameraPositionInfo : MonoBehaviour {
     {
         return transform.parent.transform.position;
     }
+
+
+    public void UpdatePlayerCameraRendering()
+    {
+        //passing call from DoorScript to RoomConfigurator which holds the information about room dimensions.
+        transform.parent.GetComponent<RoomConfigurator>().AdjustRenderingRangeOfPlayerCamera();
+    }
 }
