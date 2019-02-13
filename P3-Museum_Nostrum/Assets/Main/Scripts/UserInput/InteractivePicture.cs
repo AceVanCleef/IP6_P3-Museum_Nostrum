@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractivePicture : AbstractUIDetectingGameObject {
+public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
 
     private float dist;
     private Vector3 offset;
@@ -26,15 +26,21 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
     protected override void Start()
     {
         base.Start();
+        InitializeTag();
         //Debug.Log("InteractivePic started");
         startPosition = transform.position;
         //Your other initialization code...
 
         pictureRenderer = GetComponent<Renderer>();
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", outlineWidthOnInactive);
-
     }
 
+    public void InitializeTag()
+    {
+        if (gameObject.tag != "Picture")
+        {
+            gameObject.tag = "Picture";
+        }
+    }
 
     #region UserInput
 
@@ -51,7 +57,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
         v3 = Camera.main.ScreenToWorldPoint(v3);
         offset = hitGameObject.transform.position - v3;
 
-        HighlightAllUISlots();
+        ActivateUISlotHighlightning();
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -84,7 +90,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
             transform.position = startPosition;
         }
 
-        DeactivateHighlightningOfAllUISlots();
+        DeactivateUISlotHighlightning();
 
         //Reenable swipes
         base.OnEndDrag(eventData);
@@ -141,36 +147,15 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        if (selectedGameObject == null)
-        {
-            EnableOutline();
-            selectedGameObject = gameObject;
-        }
-        else
-        {
-            //Swap focus
-            selectedGameObject.GetComponent<IInteractiveGameObject>().DisableOutline(); //other GO.
-            EnableOutline();
-            selectedGameObject = gameObject;    //updating selection to this GO.
-        }
-        //Todo: deselect when hitting no interactive object.
+        Debug.Log("Clicking on Picture.");
+
+        Select( GetComponentInChildren<PictureSelectedHighlighter>(), gameObject );
+        DeactivateDoorHighlightning();
+        ActivatePictureFrameHighlightning();
+        ActivateUISlotHighlightning();
+
     }
 
-    public override void ToggleOutline()
-    {
-        float newWidth = pictureRenderer.material.GetFloat("_FirstOutlineWidth") != outlineWidthOnInactive ? outlineWidthOnInactive : OutlineWidthOnActive;
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", newWidth);
-    }
-
-    public override void DisableOutline()
-    {
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", outlineWidthOnInactive);
-    }
-
-    public override void EnableOutline()
-    {
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", OutlineWidthOnActive);
-    }
     #endregion SingleTap
 
     #endregion UserInput
@@ -217,11 +202,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject {
         {
             transform.position = startPosition;
         }
-
-        //Todo: If pictureCanvas already carries a texture, either...
-        //- swap textures and reset InteractivePicture's position
-        //- drop texture of pictureCanvas to inventory slot and then 
-        //  set texture of this InteractivePicture to pictureCanvas.
     }
+
     #endregion TransferTexture
 }

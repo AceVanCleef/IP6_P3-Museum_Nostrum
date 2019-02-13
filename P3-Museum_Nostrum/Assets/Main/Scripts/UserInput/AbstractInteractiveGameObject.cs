@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// provides default implementation for IInteractiveGameObject. Inherit this class 
 /// on GameObjects and override methods to define specific behavior.
 /// </summary>
-public class AbstractInteractiveGameObject : MonoBehaviour, IInteractiveGameObject
+public class AbstractInteractiveGameObject : HighlightingObject, IInteractiveGameObject
 {
 
     /// <summary>
@@ -16,39 +16,19 @@ public class AbstractInteractiveGameObject : MonoBehaviour, IInteractiveGameObje
     /// </summary>
     protected static GameObject hitGameObject;
 
-    /// <summary>
-    /// the current game object selected by a single tap.
-    /// </summary>
-    protected static GameObject selectedGameObject = null;
-    public static GameObject SelectedGameObject
+    protected new virtual void Start()
     {
-        get
-        {
-            return selectedGameObject;
-        }
-    }
-
-    protected readonly float outlineWidthOnInactive = 0f;
-    [SerializeField][Tooltip("Defines how wide the highlightning outline should be.")]
-    private float outlineWidthOnActive = 0.15f;
-    protected float OutlineWidthOnActive
-    {
-        //read-only access while providing adjustability in inspector.
-        get
-        {
-            return outlineWidthOnActive;
-        }
-    }
-
-
-    protected virtual void Start()
-    {
+        base.Start();
         //Debug.Log("AbstractInteractiveGameObject started");
+
     }
 
+    #region UserInput
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         InputManager.Instance.BlockSwipeAction();
+        DeactivateDoorHighlightning();
+        ActivatePictureFrameHighlightning();
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -57,6 +37,8 @@ public class AbstractInteractiveGameObject : MonoBehaviour, IInteractiveGameObje
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
+        ActivateDoorHighlightning();
+        DeactivatePictureFrameHighlightning();
         InputManager.Instance.UnlockSwipeAction();
     }
 
@@ -68,21 +50,5 @@ public class AbstractInteractiveGameObject : MonoBehaviour, IInteractiveGameObje
     {
         return eventData.pointerCurrentRaycast.gameObject;
     }
-
-
-    //evtl Todo: Decorator pattern?
-    public virtual void ToggleOutline()
-    {
-        //requires UltimateOutline shader attached as material on GameObject.
-    }
-
-    public virtual void DisableOutline()
-    {
-        //requires UltimateOutline shader attached as material on GameObject.
-    }
-
-    public virtual void EnableOutline()
-    {
-        //requires UltimateOutline shader attached as material on GameObject.
-    }
+    #endregion UserInput
 }

@@ -26,7 +26,7 @@ public class RoomConfigurator : MonoBehaviour {
     public float RoomLength = 10f;
 
     [SerializeField][Tooltip("Adjust to close gap and prevent light from entering this room. Expands roof by n meters.")]
-    private float hideGapInRoof = 2f;
+    private float hideGapInRoof = 0.8f;
 
     //prevents clipping of walls with floor.
     private readonly float wallPositionOffset = 0.25f;

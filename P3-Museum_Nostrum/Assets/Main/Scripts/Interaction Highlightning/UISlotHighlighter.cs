@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISlotHighlighter : MonoBehaviour {
+/// <summary>
+/// highlights the UISlot in its outlineColor when activated.
+/// </summary>
+public class UISlotHighlighter : MonoBehaviour, IHighlighter
+{
 
+    [Tooltip("Define the highlightning color.")]
+    public Color outlineColor;
     private Image img;
 
 	// Use this for initialization
@@ -12,18 +18,18 @@ public class UISlotHighlighter : MonoBehaviour {
         img = GetComponent<Image>();
 
         //Guarantee correct start transparency.
-        DeactivateHighlightning();
+        Off();
     }
 	
-	public void HighlightSlot()
+	public void On()
     {
         //Todo: evtl. check whether slot is free
-        Color current = img.color;
+        Color current = outlineColor;
         current.a = 0.75f;
         img.color = current;
     }
 
-    public void DeactivateHighlightning()
+    public void Off()
     {
         Color current = img.color;
         current.a = 0f;

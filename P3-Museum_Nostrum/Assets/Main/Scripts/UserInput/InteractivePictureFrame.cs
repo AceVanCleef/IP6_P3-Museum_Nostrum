@@ -52,12 +52,12 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         v3 = Camera.main.ScreenToWorldPoint(v3);
         offset = hitGameObject.transform.position - v3;
 
-        HighlightAllUISlots();
+        ActivateUISlotHighlightning();
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
-        if (pictureRenderer.material.mainTexture != null)
+        if (HasTexture())
         {
             v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData) );
             v3 = Camera.main.ScreenToWorldPoint(v3);
@@ -90,7 +90,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         //reset position.
         transform.position = startPosition;
 
-        DeactivateHighlightningOfAllUISlots();
+        DeactivateUISlotHighlightning();
 
         //Reenable swipes
         base.OnEndDrag(eventData);
@@ -153,35 +153,34 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        if (selectedGameObject == null)
+        if( HasTexture() && !HasPlayerSelectedAnObject() )
         {
-            EnableOutline();
-            selectedGameObject = gameObject;
+            IHighlighter selectionHighlighter = transform.parent.gameObject.GetComponentInChildren<PictureFrameSelectedHighlighter>();
+            Select(selectionHighlighter, gameObject);
+            DeactivateDoorHighlightning();
+            ActivatePictureFrameHighlightning();
+            ActivateUISlotHighlightning();
+            //prevent overlapping highlightning of this picture frame.
+            transform.parent.gameObject.GetComponentInChildren<PictureFrameHighlighter>().Off();
+            selectionHighlighter.On();
         }
-        else
+        //receiving a texture
+        else if ( HasPlayerSelectedAnObject() )
         {
-            //Swap focus
-            selectedGameObject.GetComponent<IInteractiveGameObject>().DisableOutline(); //other GO.
-            EnableOutline();
-            selectedGameObject = gameObject;    //updating selection to this GO.
+            if(HasPlayerSelectedGUIElement() )
+            {
+                ReceiveTextureSelectedFromGUIElement();
+                ActivateDoorHighlightning();
+                DeactivatePictureFrameHighlightning();
+            }
+            else
+            {
+                ReceiveTextureFromSelectedGameObject();
+                ActivateDoorHighlightning();
+                DeactivatePictureFrameHighlightning();
+                DeactivateUISlotHighlightning();
+            }
         }
-        //Todo: deselect when hitting no interactive object.
-    }
-
-    public override void ToggleOutline()
-    {
-        float newWidth = pictureRenderer.material.GetFloat("_FirstOutlineWidth") != outlineWidthOnInactive ? outlineWidthOnInactive : OutlineWidthOnActive;
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", newWidth);
-    }
-
-    public override void DisableOutline()
-    {
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", outlineWidthOnInactive);
-    }
-
-    public override void EnableOutline()
-    {
-        pictureRenderer.material.SetFloat("_FirstOutlineWidth", OutlineWidthOnActive);
     }
     #endregion SingleTap
 
@@ -214,6 +213,38 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = thisRenderer.material.mainTexture;
         thisRenderer.material.mainTexture = cachedTexture;
+    }
+
+    private bool HasTexture()
+    {
+        return pictureRenderer.material.mainTexture != null;
+    }
+
+    private void ReceiveTextureSelectedFromGUIElement()
+    {
+        RawImage ri = GetSelectedGameObject().GetComponent<RawImage>();
+        Renderer renderer = GetComponent<Renderer>();
+        //swap
+        Texture cachedTexture = renderer.material.mainTexture;
+        renderer.material.mainTexture = ri.texture;
+        ri.texture = cachedTexture;
+
+        if (ri.texture == null) ri.color = Color.black;
+
+        Deselect();
+    }
+
+    private void ReceiveTextureFromSelectedGameObject()
+    {
+        GameObject selectedGO = GetSelectedGameObject();
+        SwapTexturesOf(gameObject, selectedGO);
+
+        Renderer otherRenderer = selectedGO.GetComponent<Renderer>();
+        if (selectedGO.tag == "Picture" && otherRenderer.material.mainTexture == null)
+        {
+            Destroy(selectedGO);
+        }
+        Deselect();
     }
     #endregion TransferTexture
 
