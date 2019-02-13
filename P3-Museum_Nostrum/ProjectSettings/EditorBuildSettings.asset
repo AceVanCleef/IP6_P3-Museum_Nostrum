@@ -8,13 +8,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Main/Scenes/Development/Test Raum.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/StartMenu.unity
     guid: ac3c848cc590c3647b7b067edafabb92
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/Animation/EntranceAnimation.unity
     guid: b39a0d7787c6dbf4bbed22037ad561db
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/Development/Test Signaletik.unity
     guid: 15b4a45a03b534d4eab665b910ddef3e
+  - enabled: 0
+    path: Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 01.unity
+    guid: 7fac1737280fbd649a79a442c4b228d7
+  - enabled: 0
+    path: Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 02.unity
+    guid: 05d5c4dae5c6807479c9da17ae0d6bee
+  - enabled: 1
+    path: Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 03.unity
+    guid: 6952edd4aa28f9648bc0a6a52c5ceac9
   m_configObjects: {}
