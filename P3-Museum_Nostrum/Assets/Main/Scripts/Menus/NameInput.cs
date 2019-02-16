@@ -7,7 +7,7 @@ public class NameInput : MonoBehaviour {
 
     private string playerName;
     private string greeting = "Guten Tag ";
-    private string askForMuseumname = "\nWie möchten Sie ihr Museum nennen?";
+    private string askForMuseumname = "\nKlicken Sie auf die Tür, um das Museum zu betreten";
     private string museumName;
     public InputField playerField;
     public InputField museumField;

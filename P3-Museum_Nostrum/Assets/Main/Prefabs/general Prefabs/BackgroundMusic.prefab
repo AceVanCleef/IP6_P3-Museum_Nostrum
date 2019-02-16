@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1560079185304436}
+  m_RootGameObject: {fileID: 1080263979657876}
   m_IsPrefabAsset: 1
---- !u!1 &1560079185304436
+--- !u!1 &1080263979657876
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4471137966845208}
-  - component: {fileID: 82463373636249908}
+  - component: {fileID: 4889433089167168}
+  - component: {fileID: 82731899938887374}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4471137966845208
+--- !u!4 &4889433089167168
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1560079185304436}
+  m_GameObject: {fileID: 1080263979657876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,16 +40,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82463373636249908
+--- !u!82 &82731899938887374
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1560079185304436}
+  m_GameObject: {fileID: 1080263979657876}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 608b18b388b9ef84986f714513f785bd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -70,8 +70,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.94610596
-      value: 0.952549
+      time: 0.94408077
+      value: 0.9968147
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -79,13 +79,13 @@ AudioSource:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.95895386
+      time: 0.98916626
       value: 0
-      inSlope: 0.030005882
-      outSlope: 0.030005882
+      inSlope: -3.8305318
+      outSlope: -3.8305318
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.16646539
+      inWeight: 0.08053145
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

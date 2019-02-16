@@ -2,35 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCameraConfigurator : MonoBehaviour, ITagEnsurance
-{
-    AudioOptionsManager audioOptionsManager;
+public class SetScreenResolution : MonoBehaviour {
 
     void Start()
-    {
-        //setScreenResolution();
-        InitializeTag();
-        getMasterVolume();
-    }
-
-    public void InitializeTag()
-    {
-        if (gameObject.tag != "MainCamera")
-        {
-            gameObject.tag = "MainCamera";
-        }
-    }
-    private void getMasterVolume()
-    {
-        GameObject audioManager = GameObject.Find("AudioManager");
-        if (audioManager)
-        {
-            audioOptionsManager = audioManager.GetComponent<AudioOptionsManager>();
-            AudioListener.volume = audioOptionsManager.masterVolume;
-        }
-    }
-
-    private void setScreenResolution()
     {
         // set the desired aspect ratio (the values in this example are
         // hard-coded for 16:9, but you could make them into public
