@@ -50,6 +50,7 @@ public class DoorScript : AbstractInteractiveGameObject
         Vector3 previousPos = player.transform.position;
 
         player.transform.position = targetPositionInfo.GetWorldPosition();
+        targetPositionInfo.UpdatePlayerCameraRendering();
         /*
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.PlayerEnteredNewRoom();
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();

@@ -178,4 +178,21 @@ public class RoomConfigurator : MonoBehaviour {
         }
         //moving the roof up/down: see UpdatePositions().
     }
+
+
+    #region dynamicCameraRenderingRange
+    //reduces the amount of highlightning shaders seen by the player which aren't within his actual line of sight (in the same room as he is).
+
+    public void AdjustRenderingRangeOfPlayerCamera()
+    {
+        //calculating the room diagonal using pythagoras.
+        float roomDiagonal = Mathf.Sqrt(RoomWidth * RoomWidth + RoomLength * RoomLength);
+        Debug.Log("length, width: " + RoomLength + " , " + RoomWidth + " => " + roomDiagonal + " => " + (roomDiagonal / 2f));
+
+        //only half of it is needed.
+        float newRenderDistance = roomDiagonal / 2f;
+        //finally, set render distance of the player camera.
+        Camera.main.GetComponent<Camera>().farClipPlane = newRenderDistance;
+    }
+    #endregion dynamicCameraRenderingRange
 }
