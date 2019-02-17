@@ -26,7 +26,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 01.unity
     guid: 6952edd4aa28f9648bc0a6a52c5ceac9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/Development/Test Minimap.unity
     guid: 2e4a67d9d5d8e224b837e3d7c3c9581e
+  - enabled: 1
+    path: Assets/SingleFeaturesTesting/SceneLoadingTest/preloadTestScene.unity
+    guid: 53af96796f478094193dc56c12a4ad8c
+  - enabled: 1
+    path: Assets/SingleFeaturesTesting/SceneLoadingTest/A.unity
+    guid: 95c7c315acb9e4e4090e67887cc42884
+  - enabled: 1
+    path: Assets/SingleFeaturesTesting/SceneLoadingTest/B.unity
+    guid: 231d42333f8d75c44890091e48a305b7
+  - enabled: 1
+    path: Assets/SingleFeaturesTesting/SceneLoadingTest/C.unity
+    guid: 5578f1e0b83d84145a5a99c979a4c883
   m_configObjects: {}
