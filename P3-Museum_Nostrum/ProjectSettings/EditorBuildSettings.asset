@@ -18,12 +18,6 @@ EditorBuildSettings:
     path: Assets/Main/Scenes/Development/Test Signaletik.unity
     guid: 15b4a45a03b534d4eab665b910ddef3e
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
     path: Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 01.unity
     guid: 6952edd4aa28f9648bc0a6a52c5ceac9
   - enabled: 0
