@@ -138,3 +138,13 @@ image.color = tempColor;
 2. For GUI elements, make sure their anchor points are set to the correct part of the screen. E.g. a button on the bottom right should have its anchor in the bottom right. An inventory bar at the top center should have its anchor on the top center, and so on.
 - [Designing UI for Multiple Resolutions
 ](https://docs.unity3d.com/Manual/HOWTO-UIMultiResolution.html)
+
+
+## Scene Management: How to properly setup your project.
+In every Unity project you must have A PRELOAD SCENE and one DontDestryoOnSceneLoad object called e.g. AppData which carries all required data throughout your project, meaning in all scenes. This will prevent cases where scripts can no longer be executed.
+Additionally, Scenes can be setup with GameObjects which will then access the AppData to initialize themselves. No nasty instantiation handling needed.
+- [](https://stackoverflow.com/questions/35890932/unity-game-manager-script-works-only-one-time/35891919#35891919)
+
+## Loading a Scene
+Quote from [SceneManager.LoadScene](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html): "In most cases, to avoid pauses or performance hiccups while loading, you should use the asynchronous version of this command which is: LoadSceneAsync."
+- [SceneManager.LoadSceneAsync](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadSceneAsync.html)
