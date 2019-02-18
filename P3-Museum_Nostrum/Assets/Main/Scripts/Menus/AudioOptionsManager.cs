@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class AudioOptionsManager : MonoBehaviour
 {
+    //todo: AudioOptionsManager still required?
+
     //public because they need to be set from another script
     public float masterVolume;
     public float musicVolume;
@@ -16,7 +18,7 @@ public class AudioOptionsManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         //sets all volumes to 1 on start
         masterVolume = 1;
@@ -27,7 +29,7 @@ public class AudioOptionsManager : MonoBehaviour
     //needed for OnSceneLoaded()
     void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     //sets the volume in the level with the values set in the startmenue

@@ -21,7 +21,8 @@ public class StartEntranceAnimation : MonoBehaviour {
     public void afterAnimation()
     {
         //opens next scene. is triggered as event in animation "StartEntranceAnimation"
-         SceneManager.LoadScene("Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 01.unity");
+        // SceneManager.LoadScene("Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 01.unity");
+        UnityEngine.Object.FindObjectOfType<SceneLoader>().LoadScene();
     }
 
 }

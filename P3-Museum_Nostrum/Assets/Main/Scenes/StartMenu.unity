@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2661,6 +2661,10 @@ Prefab:
         type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
       value: 0.9662758
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269924779882508, guid: 6a27945a543fa804a914cd0c8910c64a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a27945a543fa804a914cd0c8910c64a, type: 2}
