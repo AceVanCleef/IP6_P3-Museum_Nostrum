@@ -12,6 +12,8 @@ TagManager:
   - Lights
   - Sound
   - Picture
+  - InteriorHolder
+  - WayfindingHolder
   layers:
   - Default
   - TransparentFX
