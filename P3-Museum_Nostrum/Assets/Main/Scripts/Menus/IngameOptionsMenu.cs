@@ -14,10 +14,10 @@ public class IngameOptionsMenu : MonoBehaviour
     GameObject[] interiorFurnishingHolders;
     GameObject[] signPostingHolders;
 
-    private bool audioBreadcrumbsActive = false;
-    private bool lightsActive = false;
-    private bool interiorFurnishingActive = false;
-    private bool signPostingActive = false;
+    private bool audioBreadcrumbsActive = true;
+    private bool lightsActive = true;
+    private bool interiorFurnishingActive = true;
+    private bool signPostingActive = true;
 
     private float masterVolume;
     private float musicVolume;
@@ -114,6 +114,7 @@ public class IngameOptionsMenu : MonoBehaviour
             interiorToggle.isOn = AppData.TestFactorSettings.interiorFurnishingVisible;
             wayfindingToggle.isOn = AppData.TestFactorSettings.signPostsVisible;
         }
+        
         //Options panel is expected to be active when scene is being loaded.
         GameObject.Find("Options").SetActive(false);
     }
