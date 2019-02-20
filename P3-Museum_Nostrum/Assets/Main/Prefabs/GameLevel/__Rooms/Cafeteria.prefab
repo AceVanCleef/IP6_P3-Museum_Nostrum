@@ -4921,6 +4921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4419263685479316}
+  - component: {fileID: 114779868550365190}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -7154,7 +7155,7 @@ GameObject:
   - component: {fileID: 114641346314303098}
   m_Layer: 0
   m_Name: Cafeteria
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9994,7 +9995,7 @@ Transform:
   m_GameObject: {fileID: 1858258142762314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5.55, z: 0}
-  m_LocalScale: {x: 22, y: 0.1, z: 22}
+  m_LocalScale: {x: 20.8, y: 0.1, z: 20.8}
   m_Children: []
   m_Father: {fileID: 4660315851529508}
   m_RootOrder: 5
@@ -32015,6 +32016,17 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &114779868550365190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613381167574860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114804518565293308
 MonoBehaviour:
   m_ObjectHideFlags: 1

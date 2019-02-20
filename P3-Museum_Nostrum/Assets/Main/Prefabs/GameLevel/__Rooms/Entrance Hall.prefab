@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 114062337196880230}
   m_Layer: 0
   m_Name: Entrance Hall
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15083,6 +15083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4729194305896262}
+  - component: {fileID: 114517612559250648}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -79458,6 +79459,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineColor: {r: 1, g: 0.553443, b: 0, a: 1}
+--- !u!114 &114517612559250648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799832658751482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114582525685308136
 MonoBehaviour:
   m_ObjectHideFlags: 1

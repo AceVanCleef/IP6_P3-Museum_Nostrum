@@ -1273,6 +1273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 40428943}
   - component: {fileID: 40428944}
+  - component: {fileID: 40428945}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -1390,6 +1391,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &40428945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 40428942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &40712014
 Prefab:
   m_ObjectHideFlags: 0
@@ -2972,6 +2984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 105058723}
   - component: {fileID: 105058724}
+  - component: {fileID: 105058725}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -3089,6 +3102,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &105058725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 105058722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &105401810
 Prefab:
   m_ObjectHideFlags: 0
@@ -5110,6 +5134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 171599244}
   - component: {fileID: 171599245}
+  - component: {fileID: 171599246}
   m_Layer: 0
   m_Name: BackgroundMusic (1)
   m_TagString: BackgroundMusic
@@ -5227,6 +5252,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &171599246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 171599243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &172941279
 GameObject:
   m_ObjectHideFlags: 0
@@ -5542,6 +5578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 176405566}
   - component: {fileID: 176405567}
+  - component: {fileID: 176405568}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -5659,6 +5696,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &176405568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 176405565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &179100399
 Prefab:
   m_ObjectHideFlags: 0
@@ -13308,6 +13356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 364354592}
+  - component: {fileID: 364354593}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -13329,6 +13378,17 @@ Transform:
   m_Father: {fileID: 1909495503}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &364354593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 364354591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &364455690
 GameObject:
   m_ObjectHideFlags: 0
@@ -18326,6 +18386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529350238}
   - component: {fileID: 529350239}
+  - component: {fileID: 529350240}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -18443,6 +18504,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &529350240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 529350237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &535435713 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4555391638405836, guid: 675488e7fc29c1c45b9074dc2aea9f3d,
@@ -18456,6 +18528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 536264556}
+  - component: {fileID: 536264557}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -18478,6 +18551,17 @@ Transform:
   m_Father: {fileID: 1617282077}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &536264557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 536264555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &538390371
 GameObject:
   m_ObjectHideFlags: 0
@@ -18654,6 +18738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 542939759}
   - component: {fileID: 542939760}
+  - component: {fileID: 542939761}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -18771,6 +18856,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &542939761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542939758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &543354350
 GameObject:
   m_ObjectHideFlags: 0
@@ -18906,7 +19002,8 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 730b385763760bc45acf3a6dd81cd7f7, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114868762517187758, guid: 3745d3c36b4321b48af2c1e4c2cb61a4, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 3745d3c36b4321b48af2c1e4c2cb61a4, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &543391175 stripped
@@ -18914,6 +19011,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4889433089167168, guid: 3745d3c36b4321b48af2c1e4c2cb61a4,
     type: 2}
   m_PrefabInternal: {fileID: 543391174}
+--- !u!1 &543391176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080263979657876, guid: 3745d3c36b4321b48af2c1e4c2cb61a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 543391174}
+--- !u!114 &543391177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543391176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &543869806
 GameObject:
   m_ObjectHideFlags: 0
@@ -20037,6 +20150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 574592438}
   - component: {fileID: 574592439}
+  - component: {fileID: 574592440}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -20154,6 +20268,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &574592440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 574592437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &587699826
 GameObject:
   m_ObjectHideFlags: 0
@@ -25255,9 +25380,26 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: d88773841e3e4b24b86a21c1e2cc98bd, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114868762517187758, guid: 3745d3c36b4321b48af2c1e4c2cb61a4, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 3745d3c36b4321b48af2c1e4c2cb61a4, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &810095637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080263979657876, guid: 3745d3c36b4321b48af2c1e4c2cb61a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 810095636}
+--- !u!114 &810095638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 810095637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &811357936
 GameObject:
   m_ObjectHideFlags: 0
@@ -28340,6 +28482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 926749115}
+  - component: {fileID: 926749116}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -28363,6 +28506,17 @@ Transform:
   m_Father: {fileID: 1623200757}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &926749116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926749114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928184335
 GameObject:
   m_ObjectHideFlags: 0
@@ -29816,6 +29970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 976534820}
+  - component: {fileID: 976534821}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -29839,6 +29994,17 @@ Transform:
   m_Father: {fileID: 1837153087}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &976534821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 976534819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &977384103
 GameObject:
   m_ObjectHideFlags: 0
@@ -30744,6 +30910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1015695273}
+  - component: {fileID: 1015695274}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -30765,6 +30932,17 @@ Transform:
   m_Father: {fileID: 1679601892}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1015695274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1015695272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019280016
 GameObject:
   m_ObjectHideFlags: 0
@@ -33001,6 +33179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1082952747}
   - component: {fileID: 1082952748}
+  - component: {fileID: 1082952749}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -33118,6 +33297,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1082952749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1082952746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1083781843
 GameObject:
   m_ObjectHideFlags: 0
@@ -33821,6 +34011,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1120999696}
+  - component: {fileID: 1120999697}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -33842,6 +34033,17 @@ Transform:
   m_Father: {fileID: 535435713}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1120999697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1120999695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1123001697
 GameObject:
   m_ObjectHideFlags: 0
@@ -34996,6 +35198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1146489243}
+  - component: {fileID: 1146489244}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -35018,6 +35221,17 @@ Transform:
   m_Father: {fileID: 1657667647}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1146489244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1146489242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1149689155
 GameObject:
   m_ObjectHideFlags: 0
@@ -35102,6 +35316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1151293698}
+  - component: {fileID: 1151293699}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: WayfindingHolder
@@ -35127,6 +35342,17 @@ Transform:
   m_Father: {fileID: 1050971617}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1151293699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1151293697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1152883682
 Prefab:
   m_ObjectHideFlags: 0
@@ -37838,6 +38064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1201533334}
+  - component: {fileID: 1201533335}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -37860,6 +38087,17 @@ Transform:
   m_Father: {fileID: 429914625}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1201533335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201533333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1201684264
 GameObject:
   m_ObjectHideFlags: 0
@@ -40356,6 +40594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1291649444}
+  - component: {fileID: 1291649445}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -40378,6 +40617,17 @@ Transform:
   m_Father: {fileID: 1745427344}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1291649445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291649443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1292336278
 GameObject:
   m_ObjectHideFlags: 0
@@ -40532,6 +40782,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1302079999}
+  - component: {fileID: 1302080000}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -40554,6 +40805,17 @@ Transform:
   m_Father: {fileID: 260833095}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1302080000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1302079998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1303198198
 Prefab:
   m_ObjectHideFlags: 0
@@ -41040,6 +41302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1320799918}
   - component: {fileID: 1320799919}
+  - component: {fileID: 1320799920}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -41157,6 +41420,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1320799920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1320799917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1324544643
 GameObject:
   m_ObjectHideFlags: 0
@@ -47871,6 +48145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546165949}
+  - component: {fileID: 1546165950}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -47892,6 +48167,17 @@ Transform:
   m_Father: {fileID: 2138290653}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1546165950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1546165948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1547121172
 GameObject:
   m_ObjectHideFlags: 0
@@ -50557,6 +50843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623608506}
   - component: {fileID: 1623608507}
+  - component: {fileID: 1623608508}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -50674,6 +50961,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1623608508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1623608505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1631693468
 GameObject:
   m_ObjectHideFlags: 0
@@ -51027,7 +51325,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4410237484821370, guid: 75e139d7989381542a9dbea2b4b8a770, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 4.035529
+      value: 4.035966
       objectReference: {fileID: 0}
     - target: {fileID: 4257130163924642, guid: 75e139d7989381542a9dbea2b4b8a770, type: 2}
       propertyPath: m_LocalPosition.x
@@ -52603,6 +52901,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1690533830}
   - component: {fileID: 1690533831}
+  - component: {fileID: 1690533832}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -52720,6 +53019,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1690533832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1690533829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1692679439
 GameObject:
   m_ObjectHideFlags: 0
@@ -54169,9 +54479,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114868762517187758, guid: 3745d3c36b4321b48af2c1e4c2cb61a4, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 3745d3c36b4321b48af2c1e4c2cb61a4, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1747398993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080263979657876, guid: 3745d3c36b4321b48af2c1e4c2cb61a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1747398992}
+--- !u!114 &1747398994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1747398993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1747901412
 GameObject:
   m_ObjectHideFlags: 0
@@ -55988,6 +56315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826042124}
+  - component: {fileID: 1826042125}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -56009,6 +56337,17 @@ Transform:
   m_Father: {fileID: 208097348}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826042125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1826042123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1826257392
 GameObject:
   m_ObjectHideFlags: 0
@@ -59197,6 +59536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1942276589}
+  - component: {fileID: 1942276590}
   m_Layer: 0
   m_Name: WayFinding_Holder
   m_TagString: Untagged
@@ -59223,6 +59563,17 @@ Transform:
   m_Father: {fileID: 588239287}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1942276590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1942276588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4409c9c56396a459ea3bda24eeb8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1944494216
 Prefab:
   m_ObjectHideFlags: 0
@@ -61083,6 +61434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1990425513}
   - component: {fileID: 1990425514}
+  - component: {fileID: 1990425515}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: BackgroundMusic
@@ -61200,6 +61552,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1990425515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1990425512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9325c4feece9534fa87477fa969618c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1992336244
 Prefab:
   m_ObjectHideFlags: 0

@@ -952,6 +952,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 20061747582778412, guid: 75e139d7989381542a9dbea2b4b8a770,
+        type: 2}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 8400000, guid: 03f8f8c362dd61247a1b62c76da98285, type: 2}
+    - target: {fileID: 23751897268899976, guid: 75e139d7989381542a9dbea2b4b8a770,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b50483d29be6cb1439ba90aab97a62b5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e139d7989381542a9dbea2b4b8a770, type: 2}
   m_IsPrefabAsset: 0
