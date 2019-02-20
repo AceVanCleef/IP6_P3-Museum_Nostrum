@@ -13,6 +13,8 @@ TagManager:
   - Sound
   - Picture
   - Room
+  - InteriorHolder
+  - WayfindingHolder
   layers:
   - Default
   - TransparentFX
