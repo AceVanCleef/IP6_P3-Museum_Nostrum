@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class RoomConfigurator : MonoBehaviour {
+public class RoomConfigurator : MonoBehaviour, ITagEnsurance {
    
 
     private Transform northWall;
@@ -195,4 +195,18 @@ public class RoomConfigurator : MonoBehaviour {
         Camera.main.GetComponent<Camera>().farClipPlane = newRenderDistance;
     }
     #endregion dynamicCameraRenderingRange
+
+
+    void Start()
+    {
+        InitializeTag();
+    }
+
+    public void InitializeTag()
+    {
+        if (gameObject.tag != "Room")
+        {
+            gameObject.tag = "Room";
+        }
+    }
 }

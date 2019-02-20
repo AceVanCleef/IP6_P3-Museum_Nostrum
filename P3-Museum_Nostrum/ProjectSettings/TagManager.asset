@@ -12,6 +12,7 @@ TagManager:
   - Lights
   - Sound
   - Picture
+  - Room
   layers:
   - Default
   - TransparentFX

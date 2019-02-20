@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1924076063626268}
+  m_IsPrefabAsset: 1
+--- !u!1 &1924076063626268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4791851805472270}
+  - component: {fileID: 114157831260841088}
+  - component: {fileID: 114276389546552024}
+  m_Layer: 0
+  m_Name: DataVisualizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4791851805472270
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924076063626268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114157831260841088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924076063626268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888c58d07d36f7e44b9cdae8a2f2c003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ViewDirectionHeatmapPrefab: {fileID: 1497624602063130, guid: 2bbac696e76def04fbce0fccfc29ea5f,
+    type: 2}
+  LineRendererPrefab: {fileID: 1309130290864490, guid: 4d0ed538d0831b544a69d23a70adaa4e,
+    type: 2}
+--- !u!114 &114276389546552024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924076063626268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09187369f57102e4b9bc3a56cb51390e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrawnSwipePrefab: {fileID: 1282844259927318, guid: 63927eff945ca9141858ae16230bfd78,
+    type: 2}
+  Heatmap2DForSwipes: 1
+  DrawnTouchPrefab: {fileID: 1560115458069464, guid: dddfba6296688584b87335d11bb47b6c,
+    type: 2}
+  Heatmap2DForTouches: 1
+  Heatmap2DForDrags: 1
