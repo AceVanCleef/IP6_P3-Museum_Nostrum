@@ -70,8 +70,8 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             transform.position = startPosition;
 
             GetComponent<RectTransform>().sizeDelta = InitialSize;
-
-            DeactivatePictureFrameHighlightning();
+            //toggle highlightnings.
+            Deselect();
 
             //Reenable swipes
             base.OnEndDrag(eventData);

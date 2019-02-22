@@ -26,6 +26,7 @@ public class AbstractInteractiveGameObject : HighlightingObject, IInteractiveGam
     #region UserInput
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
+        Deselect(); //guarantees expected user behavior of "either select/deselect" or "drag n drop".
         InputManager.Instance.BlockSwipeAction();
         DeactivateDoorHighlightning();
         ActivatePictureFrameHighlightning();
@@ -37,8 +38,6 @@ public class AbstractInteractiveGameObject : HighlightingObject, IInteractiveGam
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        ActivateDoorHighlightning();
-        DeactivatePictureFrameHighlightning();
         InputManager.Instance.UnlockSwipeAction();
     }
 

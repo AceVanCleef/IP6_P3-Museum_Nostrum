@@ -90,7 +90,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         //reset position.
         transform.position = startPosition;
 
-        DeactivateUISlotHighlightning();
+        //toggle highlightnings.
+        Deselect();
 
         //Reenable swipes
         base.OnEndDrag(eventData);

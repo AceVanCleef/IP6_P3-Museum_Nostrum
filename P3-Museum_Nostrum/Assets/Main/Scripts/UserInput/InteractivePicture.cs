@@ -89,8 +89,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
             //if not hit, reset position => User gets feedback about what a picture can interact with.
             transform.position = startPosition;
         }
-
-        DeactivateUISlotHighlightning();
+        //toggle highlightnings.
+        Deselect();
 
         //Reenable swipes
         base.OnEndDrag(eventData);

@@ -2185,6 +2185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4153397967117078}
   - component: {fileID: 114571527043515742}
+  - component: {fileID: 114205130028688844}
   - component: {fileID: 33439493109096932}
   - component: {fileID: 23459304758713044}
   - component: {fileID: 64435364693423988}
@@ -3580,6 +3581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4753375949385558}
   - component: {fileID: 114889003616742688}
+  - component: {fileID: 114931049804490950}
   - component: {fileID: 33019373485887780}
   - component: {fileID: 23813761874990088}
   - component: {fileID: 64317951806314574}
@@ -31731,6 +31733,19 @@ MonoBehaviour:
   doorHeight: 2.25
   height2WidthRatio: 2.5
   isDoubleDoor: 1
+--- !u!114 &114205130028688844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1274109097769048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2739709f6de4c2f4cb2c3a62b5b5aae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromCamera: 2
+  CanPlayerDropPictureOnCanvasDirectly: 1
 --- !u!114 &114261750099109602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -32091,6 +32106,19 @@ MonoBehaviour:
   doorHeight: 2.41
   height2WidthRatio: 2
   isDoubleDoor: 0
+--- !u!114 &114931049804490950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434769356782540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2739709f6de4c2f4cb2c3a62b5b5aae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromCamera: 2
+  CanPlayerDropPictureOnCanvasDirectly: 1
 --- !u!114 &114962825001850218
 MonoBehaviour:
   m_ObjectHideFlags: 1

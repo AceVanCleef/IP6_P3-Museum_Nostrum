@@ -38,9 +38,6 @@ public class Deselector : AbstractInteractiveGameObject
     {
         Debug.Log("Hit Deselector.");
         Deselect();
-        ActivateDoorHighlightning();
-        DeactivatePictureFrameHighlightning();
-        DeactivateUISlotHighlightning();
     }
     #endregion UserInput
 
