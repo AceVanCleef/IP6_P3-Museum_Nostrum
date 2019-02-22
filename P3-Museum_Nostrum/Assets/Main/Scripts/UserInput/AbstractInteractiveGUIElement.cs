@@ -20,6 +20,7 @@ public class AbstractInteractiveGUIElement : HighlightingObject, IInteractiveGUI
     #region UserInput
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
+        Deselect(); //guarantees expected user behavior of "either select/deselect" or "drag n drop".
         InputManager.Instance.BlockSwipeAction();
         DeactivateDoorHighlightning();
     }

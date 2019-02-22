@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class IngameOptionsMenu : MonoBehaviour
 {
 
     //arrays for respective gameObjects
     GameObject[] musicSources;
     GameObject[] lights;
-    GameObject[] interiorObjects;
-    GameObject[] wayfinding;
+    GameObject[] interiorFurnishingHolders;
+    GameObject[] signPostingHolders;
 
-    private bool audioActive = false;
-    private bool lightsActive = false;
-    private bool interiorObjectsActive = false;
-    private bool wayfindingActive = false;
+    private bool audioBreadcrumbsActive = true;
+    private bool lightsActive = true;
+    private bool interiorFurnishingActive = true;
+    private bool signPostingActive = true;
 
     private float masterVolume;
     private float musicVolume;
@@ -25,20 +26,35 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private GameObject[] soundSources;
 
+    Slider masterVolumeSlider;
+    Slider musicSlider;
+    Slider soundSlider;
 
-    GameObject musicSlider;
-    GameObject soundSlider;
-
-    Slider slider;
+    Toggle audioToggle;
+    Toggle lightsToggle;
+    Toggle interiorToggle;
+    Toggle wayfindingToggle;
 
     void Awake()
     {
+        //default values
         masterVolume = 1;
         musicVolume = 1;
         soundVolume = 1;
-        // masterVolume = datacarrier.instance.masterVolume;
-        // musicVolume = datacarrier.instance.musicVolume;
-        //  soundVolume = datacarrier.instance.soundVolume;
+        //Get values from other scenes set by player.
+        if (AppData.Instance)
+        {
+            //audio start values.
+            masterVolume = AppData.AudioSettings.masterVolume;
+            musicVolume = AppData.AudioSettings.musicVolume;
+            soundVolume = AppData.AudioSettings.soundVolume;
+            //test factor start values.
+            audioBreadcrumbsActive = AppData.TestFactorSettings.audioBreadcrumsAudible;
+            lightsActive = AppData.TestFactorSettings.lightsShining;
+            interiorFurnishingActive = AppData.TestFactorSettings.interiorFurnishingVisible;
+            signPostingActive = AppData.TestFactorSettings.signPostsVisible;
+        }
+
 
 
     }
@@ -46,15 +62,61 @@ public class IngameOptionsMenu : MonoBehaviour
     {
         musicSources = GameObject.FindGameObjectsWithTag("BackgroundMusic");
         lights = GameObject.FindGameObjectsWithTag("Lights");
-        interiorObjects = GameObject.FindGameObjectsWithTag("InteriorHolder");
-        wayfinding = GameObject.FindGameObjectsWithTag("WayfindingHolder");
+        interiorFurnishingHolders = GameObject.FindGameObjectsWithTag("InteriorHolder");
+        signPostingHolders = GameObject.FindGameObjectsWithTag("WayfindingHolder");
         soundSources = GameObject.FindGameObjectsWithTag("Sound");
 
-        MainCameraConfigurator mCC = GameObject.Find("Main Camera").GetComponent<MainCameraConfigurator>();
+        Slider[] sliders = GetComponentsInChildren<Slider>();
+        Debug.Log(sliders.Length);
+        for (int i = 0; i < sliders.Length; ++i)
+        {
+            if (sliders[i].name == "MasterSlider") masterVolumeSlider = sliders[i];
+            if (sliders[i].name == "MusicSlider") musicSlider = sliders[i];
+            if (sliders[i].name == "SoundSlider") soundSlider = sliders[i];
+        }
+
+        Toggle[] toggles = GetComponentsInChildren<Toggle>();
+        for (int i = 0; i < toggles.Length; ++i)
+        {
+            if (toggles[i].name == "Audio") audioToggle = toggles[i];
+            if (toggles[i].name == "Light") lightsToggle = toggles[i];
+            if (toggles[i].name == "Interior") interiorToggle = toggles[i];
+            if (toggles[i].name == "WayFinding") wayfindingToggle = toggles[i];
+        }
+
+        InitGameObjectValues(); //Must come first.
+        InitGUIElements();      //Must come second.
+    }
+
+    private void InitGameObjectValues()
+    {
+        MainCameraConfigurator mCC = Camera.main.GetComponent<MainCameraConfigurator>(); //replaced Gameobject.Find("Main Camera"), da fehleranfällig.
 
         mCC.setMasterVolume();
         setMusicVolume();
         setSoundVolume();
+        SetInteriorVisbility();
+        SetAudioBreadcrumsAudability();
+        SetLights();
+        SetWayfindingVisibility();
+    }
+
+    private void InitGUIElements()
+    {
+        if (AppData.Instance)
+        {
+            masterVolumeSlider.value = AppData.AudioSettings.masterVolume;
+            musicSlider.value = AppData.AudioSettings.musicVolume;
+            soundSlider.value = AppData.AudioSettings.soundVolume;
+
+            audioToggle.isOn = AppData.TestFactorSettings.audioBreadcrumsAudible;
+            lightsToggle.isOn = AppData.TestFactorSettings.lightsShining;
+            interiorToggle.isOn = AppData.TestFactorSettings.interiorFurnishingVisible;
+            wayfindingToggle.isOn = AppData.TestFactorSettings.signPostsVisible;
+        }
+        
+        //Options panel is expected to be active when scene is being loaded.
+        GameObject.Find("Options").SetActive(false);
     }
 
     public void closeScene()
@@ -67,7 +129,7 @@ public class IngameOptionsMenu : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Assets/Main/Scenes/StartMenu.unity");
+            LoadScene("StartMenu");
         }
     }
 
@@ -76,68 +138,109 @@ public class IngameOptionsMenu : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name == "StartMenu")
         {
-            SceneManager.LoadScene("Assets/Main/Scenes/Animation/EntranceAnimation.unity");
+            LoadScene("EntranceAnimation");
         }
     }
+
+
+    #region LoadingScenes
+    /// <summary>
+    /// loads a scene asynchronously.
+    /// </summary>
+    /// <param name="scenename">The name of the scene which has to be loaded.</param>
+    public void LoadScene(string scenename)
+    {
+        StartCoroutine(LoadSceneAsync(scenename));
+    }
+
+    IEnumerator LoadSceneAsync(string scenename)
+    {
+        // "The Application loads the Scene in the background as the current Scene runs.
+        // This is particularly good for creating loading screens."
+        // Source: https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadSceneAsync.html
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scenename);
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+    #endregion LoadingScenes
 
     public void toggleAudio()
     {
         //toggle audio
+        SetAudioBreadcrumsAudability();
+        audioBreadcrumbsActive = !audioBreadcrumbsActive;
+    }
+
+    private void SetAudioBreadcrumsAudability()
+    {
+        Debug.Log("SetAudioBC: " + audioBreadcrumbsActive);
         for (int i = 0; i < musicSources.Length; i++)
         {
             {
-                musicSources[i].SetActive(audioActive);
+                musicSources[i].SetActive(audioBreadcrumbsActive);
             }
         }
-        audioActive = !audioActive;
     }
 
     public void toggleLights()
     {
         //toggle lights
+        SetLights();
+        lightsActive = !lightsActive;
+    }
+
+    private void SetLights()
+    {
         for (int i = 0; i < lights.Length; i++)
         {
             {
                 lights[i].SetActive(lightsActive);
             }
         }
-        lightsActive = !lightsActive;
     }
 
     public void toggleInterior()
     {
         //toggle interior objects
-        for (int i = 0; i < interiorObjects.Length; i++)
+        SetInteriorVisbility();
+        interiorFurnishingActive = !interiorFurnishingActive;
+    }
+
+    private void SetInteriorVisbility()
+    {
+        for (int i = 0; i < interiorFurnishingHolders.Length; i++)
         {
             {
-                interiorObjects[i].SetActive(interiorObjectsActive);
+                interiorFurnishingHolders[i].SetActive(interiorFurnishingActive);
             }
         }
-        interiorObjectsActive = !interiorObjectsActive;
     }
 
     public void toggleWayfinding()
     {
         //toggle wayfinding
-        for (int i = 0; i < wayfinding.Length; i++)
+        SetWayfindingVisibility();
+        signPostingActive = !signPostingActive;
+    }
+
+    private void SetWayfindingVisibility()
+    {
+        for (int i = 0; i < signPostingHolders.Length; i++)
         {
             {
-                wayfinding[i].SetActive(wayfindingActive);
+                signPostingHolders[i].SetActive(signPostingActive);
             }
         }
-        wayfindingActive = !wayfindingActive;
     }
 
     public void setMusicVolumeValue()
     {
-        if (!musicSlider)
-            musicSlider = GameObject.Find("MusicSlider");
-
-        if (musicSlider)
-        {
-            slider = musicSlider.GetComponent<Slider>();
-            musicVolume = slider.value;
-        }
+        musicVolume = musicSlider.value;
 
         setMusicVolume();
     }
@@ -155,14 +258,7 @@ public class IngameOptionsMenu : MonoBehaviour
     }
     public void setSoundVolumeValue()
     {
-        if (!soundSlider)
-            soundSlider = GameObject.Find("SoundSlider");
-
-        if (soundSlider)
-        {
-            slider = soundSlider.GetComponent<Slider>();
-            soundVolume = slider.value;
-        }
+        soundVolume = soundSlider.value;
         setSoundVolume();
     }
 
@@ -175,5 +271,24 @@ public class IngameOptionsMenu : MonoBehaviour
                 soundSources[i].GetComponent<AudioSource>().volume = soundVolume;
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("OnDisable in IngameOptionsManager");
+        if (AppData.Instance)
+        {
+            //store audio settings.
+            AppData.AudioSettings.masterVolume = masterVolume;
+            AppData.AudioSettings.musicVolume = musicVolume;
+            AppData.AudioSettings.soundVolume = soundVolume;
+            //store test factor settings.
+            AppData.TestFactorSettings.audioBreadcrumsAudible = audioBreadcrumbsActive;
+            AppData.TestFactorSettings.lightsShining = lightsActive;
+            AppData.TestFactorSettings.interiorFurnishingVisible = interiorFurnishingActive;
+            AppData.TestFactorSettings.signPostsVisible = signPostingActive;
+        }
+        Debug.Log(AppData.AudioSettings.masterVolume + " - " + AppData.AudioSettings.musicVolume + " - " + AppData.AudioSettings.soundVolume);
+        Debug.Log(AppData.TestFactorSettings.audioBreadcrumsAudible + " - " + AppData.TestFactorSettings.lightsShining + " - " + AppData.TestFactorSettings.interiorFurnishingVisible + " - " + AppData.TestFactorSettings.signPostsVisible);
     }
 }

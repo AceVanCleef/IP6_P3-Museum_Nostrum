@@ -1824,6 +1824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4377007863748366}
+  - component: {fileID: 114003473450688480}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -4361,7 +4362,7 @@ GameObject:
   - component: {fileID: 114259225682112506}
   m_Layer: 0
   m_Name: Garden
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21877,6 +21878,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114003473450688480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1393526060987602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114025945610219578
 MonoBehaviour:
   m_ObjectHideFlags: 1

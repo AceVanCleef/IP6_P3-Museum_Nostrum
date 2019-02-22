@@ -5,9 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(DDOL))]
 public class AppData : MonoBehaviour {
 
-    private AppData instance = null;
+    private static AppData instance = null;
 
-    public AppData Instance
+    public static AppData Instance
     {
         get
         {
@@ -81,4 +81,5 @@ public class AppData : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
 }

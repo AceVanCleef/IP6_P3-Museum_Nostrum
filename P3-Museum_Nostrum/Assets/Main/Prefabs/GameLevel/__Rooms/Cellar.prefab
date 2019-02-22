@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 114789182360912600}
   m_Layer: 0
   m_Name: Cellar Room DE4
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -625,6 +625,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4212994531831342}
+  - component: {fileID: 114500341232882070}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -4372,6 +4373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4774053140130862}
+  - component: {fileID: 114673509898083024}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -9175,6 +9177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4954470867324220}
+  - component: {fileID: 114127245964375200}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -9412,6 +9415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4329373756902880}
+  - component: {fileID: 114374697310107882}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -9447,7 +9451,7 @@ GameObject:
   - component: {fileID: 114074281744257442}
   m_Layer: 0
   m_Name: Cellar Room DE1
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11389,7 +11393,7 @@ GameObject:
   - component: {fileID: 114607016178595880}
   m_Layer: 0
   m_Name: Cellar Room DE3
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12768,7 +12772,7 @@ GameObject:
   - component: {fileID: 114394543196269328}
   m_Layer: 0
   m_Name: Cellar Room A
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17329,7 +17333,7 @@ GameObject:
   - component: {fileID: 114589910264208932}
   m_Layer: 0
   m_Name: Cellar Room B
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17819,6 +17823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4819845184704316}
+  - component: {fileID: 114257625867635162}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -18506,6 +18511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4810742987902566}
+  - component: {fileID: 114399194619481534}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -19303,6 +19309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4090330389991396}
+  - component: {fileID: 114489383440416802}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -24812,7 +24819,7 @@ GameObject:
   - component: {fileID: 114450216608558646}
   m_Layer: 0
   m_Name: Cellar Room C
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25128,6 +25135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266166123467436}
+  - component: {fileID: 114548763585178200}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -27133,7 +27141,7 @@ GameObject:
   - component: {fileID: 114222584263892212}
   m_Layer: 0
   m_Name: Cellar Room DE2
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28281,6 +28289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4077564756905734}
+  - component: {fileID: 114388840313174636}
   m_Layer: 0
   m_Name: InteriorDecor_Holder
   m_TagString: Untagged
@@ -28466,7 +28475,7 @@ GameObject:
   - component: {fileID: 114514512596746980}
   m_Layer: 0
   m_Name: Cellar Room E
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29144,7 +29153,7 @@ GameObject:
   - component: {fileID: 114674418406160928}
   m_Layer: 0
   m_Name: Cellar Room D
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48377,7 +48386,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778871252989514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0000020094403, y: 3.5500002, z: 0.00000047683716}
+  m_LocalPosition: {x: 0.0000008940697, y: 3.55, z: -0.0000014305115}
   m_LocalScale: {x: 12, y: 0.1, z: 12}
   m_Children: []
   m_Father: {fileID: 4773338171353700}
@@ -132962,6 +132971,17 @@ MonoBehaviour:
   doorHeight: 2.25
   height2WidthRatio: 3
   isDoubleDoor: 1
+--- !u!114 &114127245964375200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1295470277267762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114141861838044600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133168,6 +133188,17 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &114257625867635162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1565128562785156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114264837743340704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133354,6 +133385,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683a5fa29c75dd14c83c60dc6fe053f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114374697310107882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302526460867794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114375024558220856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133368,6 +133410,17 @@ MonoBehaviour:
   doorHeight: 2.25
   height2WidthRatio: 3
   isDoubleDoor: 1
+--- !u!114 &114388840313174636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886902060326092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114394543196269328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133383,6 +133436,17 @@ MonoBehaviour:
   RoomWidth: 10
   RoomLength: 10
   hideGapInRoof: 2
+--- !u!114 &114399194619481534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1586495950134484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114404302699692270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133496,6 +133560,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineColor: {r: 1, g: 0.553443, b: 0, a: 1}
+--- !u!114 &114489383440416802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1610514578863186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114492324126087058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133522,6 +133597,17 @@ MonoBehaviour:
   doorHeight: 2.25
   height2WidthRatio: 3
   isDoubleDoor: 1
+--- !u!114 &114500341232882070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023206102712260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114503985981005604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133639,6 +133725,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcba781a1fd7db141a139f9fcca674eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114548763585178200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1791226526710350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114555170722595968
@@ -133955,6 +134052,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 683a5fa29c75dd14c83c60dc6fe053f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114673509898083024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1149623051440514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20828b585ceed448f88610f5eebe03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114673516175544604

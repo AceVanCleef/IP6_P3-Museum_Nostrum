@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class PlayerBodySizeConfigurator : MonoBehaviour {
+public class PlayerBodySizeConfigurator : MonoBehaviour, ITagEnsurance {
 
     [SerializeField]
     [Range(1.4f, 2.0f)][Tooltip("Define how tall the player character is (in meters).")]
     private float bodyHeight = 1.75f;
-	
 
-	void Update () {
+    void Update () {
         if (Application.isPlaying)
         {
             // code executed in play mode
@@ -32,5 +31,18 @@ public class PlayerBodySizeConfigurator : MonoBehaviour {
             Camera.main.transform.position = cameraPos;
         }
         
+    }
+
+    void Start()
+    {
+        InitializeTag();
+    }
+
+    public void InitializeTag()
+    {
+        if (gameObject.tag != "Player")
+        {
+            gameObject.tag = "Player";
+        }
     }
 }

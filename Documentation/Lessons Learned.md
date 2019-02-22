@@ -148,3 +148,21 @@ Additionally, Scenes can be setup with GameObjects which will then access the Ap
 ## Loading a Scene
 Quote from [SceneManager.LoadScene](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html): "In most cases, to avoid pauses or performance hiccups while loading, you should use the asynchronous version of this command which is: LoadSceneAsync."
 - [SceneManager.LoadSceneAsync](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadSceneAsync.html)
+
+
+## Special Folders: Plugins/DataVisualizer/Scripts scripts couldn't see dependencies in main game
+"The reason is this: [Special folders and script compilation order](http://docs.unity3d.com/Manual/ScriptCompileOrderFolders.html).
+
+Basically, scripts in a folder named Plugins are compiled first, separately from scripts outside the Plugins folders.
+
+So the script inside the Plugins folder can't see the other scripts because they don't exist yet.
+
+This has the benefit that C# scripts in the Plugins folder can be seen by UnityScript scripts, but it also has the requirement that scripts in Plugins can only really see other scripts inside plugins."
+Quote from DanSuperGP: [The class doesn't see another from other folder](https://answers.unity.com/questions/877502/the-class-doesnt-see-another-from-other-folder.html)
+See also: [Special folder names](https://docs.unity3d.com/Manual/SpecialFolders.html)
+
+
+## Namespaces
+You can use namespaces to structure your project. When a project becomes larger over time, developers might name classes identically. A Distionction through namespaces such as Enemy.Controller and Player.Controller can be helpful. Through "using" directives, you can minimize the effort needed to adjust existing scripts who use a Controller.cs.
+Here is how to use namespaces:
+- [Namespaces (Unity Docs)](https://docs.unity3d.com/Manual/Namespaces.html)

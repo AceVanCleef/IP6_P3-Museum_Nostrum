@@ -12,6 +12,7 @@ TagManager:
   - Lights
   - Sound
   - Picture
+  - Room
   - InteriorHolder
   - WayfindingHolder
   layers:

@@ -135,6 +135,9 @@ public abstract class HighlightingObject : MonoBehaviour {
         }
         currentlySelected = null;
         selectedGO = null;
+        DeactivatePictureFrameHighlightning();
+        DeactivateUISlotHighlightning();
+        ActivateDoorHighlightning();
     }
 
     protected GameObject GetSelectedGameObject()

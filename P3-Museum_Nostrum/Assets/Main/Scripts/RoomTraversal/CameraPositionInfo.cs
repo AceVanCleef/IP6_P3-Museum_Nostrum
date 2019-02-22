@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// offers information about the room CameraPositionInfo is attached to.
+/// </summary>
 public class CameraPositionInfo : MonoBehaviour {
 
     /// <summary>
