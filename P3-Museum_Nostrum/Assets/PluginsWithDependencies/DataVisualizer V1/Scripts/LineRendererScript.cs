@@ -66,8 +66,6 @@ public class LineRendererScript : MonoBehaviour {
     {
         routUsedCount++;
         SetWidth(lr.startWidth + deltaWidth, lr.endWidth + deltaWidth);
-        //pointing towards endPos like an arrow.
-        //SetWidth(lr.startWidth + deltaWidth, lr.endWidth);
     }
 
 }

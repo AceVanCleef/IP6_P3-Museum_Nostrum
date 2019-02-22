@@ -38,16 +38,19 @@ public class DataVisualizerManager : MonoBehaviour {
 
     #region LineRendererFields
     public GameObject LineRendererPrefab;
+    [Tooltip("Sets the transform.position.y value of lines.")]
+    public float elevationOfLinesAboveFloor = 0.25f;
     private Transform lineRendererHolder;
     private List<LineRendererScript> allLineRenderers = new List<LineRendererScript>();
-    //                  start   list of end pos
+    //                  start   list of end pos (neighbouring rooms)
     private Dictionary<Vector3, List<Vector3>> lineRendererIndex = new Dictionary<Vector3, List<Vector3>>();
     #endregion LineRendererFields
 
 
-    #region RoomHeadNodeFields
+    #region RoomHeatNodeFields
     public GameObject RoomHeatNodePrefab;
-    #endregion RoomHeadNodeFields
+    public float elevationOfRoomHeatNodesAboveFloor = 0.25f;
+    #endregion RoomHeatNodeFields
 
     void Awake()
     {
@@ -113,6 +116,10 @@ public class DataVisualizerManager : MonoBehaviour {
     /// <param name="end"></param>
     public void TraceLineBetween(Vector3 start, Vector3 end)
     {
+        //ensure line is visible above floor.
+        start.y += elevationOfLinesAboveFloor;
+        end.y += elevationOfLinesAboveFloor;
+
         bool lineAdded = AddLineBetween(start, end);
         if (!lineAdded)
         {
@@ -141,9 +148,9 @@ public class DataVisualizerManager : MonoBehaviour {
             }
             else
             {
-                List<Vector3> list = new List<Vector3>();
-                list.Add(end);
-                lineRendererIndex.Add(start, list);
+                List<Vector3> neighbouringRooms = new List<Vector3>();
+                neighbouringRooms.Add(end);
+                lineRendererIndex.Add(start, neighbouringRooms);
             }
             return true;
         }
@@ -178,7 +185,6 @@ public class DataVisualizerManager : MonoBehaviour {
         for (int i = 0; i < allRooms.Count; ++i)
         {
             GameObject vdh = Instantiate(ViewDirectionHeatmapPrefab, allRooms[i].transform);
-            //vdh.GetComponent<ViewDirectionHeatmap>().AdjustTriangleDimensionsTo( allRooms[i].GetComponent<RoomConfigurator>() );
             RoomConfigurator currentRC = allRooms[i].GetComponent<RoomConfigurator>();
             TriangleInfo[] ti = vdh.GetComponentsInChildren<TriangleInfo>();
             for (int j = 0; j < ti.Length; ++j)
@@ -231,6 +237,10 @@ public class DataVisualizerManager : MonoBehaviour {
         for (int i = 0; i < allRooms.Count; ++i)
         {
             GameObject rhn = Instantiate(RoomHeatNodePrefab, allRooms[i].transform);
+            //ensure line is visible above floor.
+            Vector3 pos = rhn.transform.localPosition;
+            pos.y += elevationOfRoomHeatNodesAboveFloor;
+            rhn.transform.localPosition = pos;
         }
     }
 
