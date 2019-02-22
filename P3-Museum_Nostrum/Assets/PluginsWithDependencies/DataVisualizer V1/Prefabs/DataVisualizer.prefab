@@ -56,6 +56,8 @@ MonoBehaviour:
     type: 2}
   LineRendererPrefab: {fileID: 1309130290864490, guid: 4d0ed538d0831b544a69d23a70adaa4e,
     type: 2}
+  RoomHeatNodePrefab: {fileID: 1640818147253742, guid: 2c9a41585f10da2439d5f9e54d9a8494,
+    type: 2}
 --- !u!114 &114276389546552024
 MonoBehaviour:
   m_ObjectHideFlags: 1

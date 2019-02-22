@@ -30,11 +30,11 @@ public class ViewDirectionHeatmap : MonoBehaviour {
     {
         Direction currentDirection = CameraViewDirection.Instance.GetCurrentState().GetDirectionIdentifier();
         directionCounts[currentDirection] += 1;
-        UpdateForDebugging();
+        UpdateInspectorForDebugging();
         return directionCounts[currentDirection];
     }
 
-    private void UpdateForDebugging()
+    private void UpdateInspectorForDebugging()
     {
         north = directionCounts[Direction.North];
         east = directionCounts[Direction.East];
@@ -75,4 +75,5 @@ public class ViewDirectionHeatmap : MonoBehaviour {
     {
         return directionCounts;
     }
+
 }

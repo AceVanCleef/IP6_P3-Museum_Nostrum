@@ -124,7 +124,7 @@ public sealed class InputManager : MonoBehaviour {
             CameraViewDirection.Instance.GetCurrentState().PrintState();
             //dataLogger.Log(data);
             //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
-            //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+            if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
         }
     }
 
@@ -137,7 +137,7 @@ public sealed class InputManager : MonoBehaviour {
             CameraViewDirection.Instance.GetCurrentState().PrintState();
             //dataLogger.Log(data);
             //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
-            //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+            if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
         }
     }
 

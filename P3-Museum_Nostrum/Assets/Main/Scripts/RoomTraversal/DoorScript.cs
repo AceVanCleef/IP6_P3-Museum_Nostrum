@@ -43,7 +43,6 @@ public class DoorScript : AbstractInteractiveGameObject
 
     public void WarpToNextRoom()
     {
-        //WholeScreenFadeInOut.Instance.FadeIn();
         GetComponent<AudioSource>().Play();
 
         //for DataVisualizerManager:
@@ -51,12 +50,11 @@ public class DoorScript : AbstractInteractiveGameObject
 
         player.transform.position = targetPositionInfo.GetWorldPosition();
         targetPositionInfo.UpdatePlayerCameraRendering();
-        /*
+        
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.PlayerEnteredNewRoom();
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.TraceLineBetween(previousPos, player.transform.position);
-        */
-        //WholeScreenFadeInOut.Instance.FadeOut();
+        
     }
 
     public IEnumerator StartDoorTransition()

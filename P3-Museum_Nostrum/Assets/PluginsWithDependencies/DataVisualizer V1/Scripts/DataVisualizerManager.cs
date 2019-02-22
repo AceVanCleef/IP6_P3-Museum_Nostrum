@@ -13,7 +13,14 @@ public class DataVisualizerManager : MonoBehaviour {
      *
      */
 
-    public static DataVisualizerManager Instance;
+    private static DataVisualizerManager instance;
+    public static DataVisualizerManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
 
     private List<GameObject> allRooms = new List<GameObject>();
@@ -38,11 +45,15 @@ public class DataVisualizerManager : MonoBehaviour {
     #endregion LineRendererFields
 
 
+    #region RoomHeadNodeFields
+    public GameObject RoomHeatNodePrefab;
+    #endregion RoomHeadNodeFields
+
     void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
         }
     }
 
@@ -67,6 +78,7 @@ public class DataVisualizerManager : MonoBehaviour {
 
 
         InstantiateFloorHeatmaps();
+        InstantiateRoomHeatNodes();
 
         //Prepare connection to GUIDataVisualizer
         gdv = GetComponent<GUIDataVisualizer>();
@@ -139,7 +151,7 @@ public class DataVisualizerManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// checks whether start is already used if if so, whether end is already used in combination with it.
+    /// checks whether start is already used and if so, whether end is already used in combination with it.
     /// </summary>
     /// <param name="start"></param>
     /// <param name="end"></param>
@@ -166,8 +178,13 @@ public class DataVisualizerManager : MonoBehaviour {
         for (int i = 0; i < allRooms.Count; ++i)
         {
             GameObject vdh = Instantiate(ViewDirectionHeatmapPrefab, allRooms[i].transform);
-
-            //Todo: declare name via code?
+            //vdh.GetComponent<ViewDirectionHeatmap>().AdjustTriangleDimensionsTo( allRooms[i].GetComponent<RoomConfigurator>() );
+            RoomConfigurator currentRC = allRooms[i].GetComponent<RoomConfigurator>();
+            TriangleInfo[] ti = vdh.GetComponentsInChildren<TriangleInfo>();
+            for (int j = 0; j < ti.Length; ++j)
+            {
+                ti[j].AdjustTriangleDimensionsTo(currentRC);
+            }
         }
     }
 
@@ -176,12 +193,16 @@ public class DataVisualizerManager : MonoBehaviour {
         return CurrentRoom.GetComponentInChildren<ViewDirectionHeatmap>();
     }
 
+    /// <summary>
+    /// updates the ViewDirectionHeatmaps.
+    /// </summary>
     public void AfterViewDirectionChange()
     {
         totalViewDirectionChanges++;
         int changedCount = GetCurrentViewDirectionHeatmap().IncrementDirectionCount();
         if (changedCount > highest) highest = changedCount;
         UpdateLowest();
+        //Update all heatmaps.
         foreach (GameObject room in allRooms)
         {
             ViewDirectionHeatmap vdh = room.GetComponentInChildren<ViewDirectionHeatmap>();
@@ -205,6 +226,15 @@ public class DataVisualizerManager : MonoBehaviour {
 
     // ---------------------------- RoomHeatNode API -----------------------
     #region RoomHeatNodeAPI
+    private void InstantiateRoomHeatNodes()
+    {
+        for (int i = 0; i < allRooms.Count; ++i)
+        {
+            GameObject rhn = Instantiate(RoomHeatNodePrefab, allRooms[i].transform);
+        }
+    }
+
+
     private RoomFrequencyNode GetCurrentRoomFrequenceyNode()
     {
         return CurrentRoom.GetComponentInChildren<RoomFrequencyNode>();
@@ -212,6 +242,9 @@ public class DataVisualizerManager : MonoBehaviour {
 
 
     //used in door script
+    /// <summary>
+    /// updates the DataVisualizer regarding the player's current position.
+    /// </summary>
     public void PlayerEnteredNewRoom()
     {
         UpdateCurrentRoom();
