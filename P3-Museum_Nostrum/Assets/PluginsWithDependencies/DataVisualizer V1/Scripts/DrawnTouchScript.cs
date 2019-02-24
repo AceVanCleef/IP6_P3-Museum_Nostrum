@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawnTouchScript : MonoBehaviour {
 
     public Color InitColor = Color.blue;
-    public float radius = 0.5f;
+    public float radius = 0.25f;
     private float zOffset = 1.75f;
     private SpriteRenderer sr;
 
@@ -37,10 +37,17 @@ public class DrawnTouchScript : MonoBehaviour {
         return gameObject;
     }
 
-    public void DrawTouch(Vector2 pos, Color c)
+    public GameObject DrawTouch(Vector2 pos, Color c)
     {
         DrawTouch(pos);
         sr.color = c;
+
+        return gameObject;
+    }
+
+    public void SetRadiusTo(float r)
+    {
+        transform.localScale = new Vector3(r, r, transform.localScale.z);
     }
 
     #region InFrontOfCameraMode

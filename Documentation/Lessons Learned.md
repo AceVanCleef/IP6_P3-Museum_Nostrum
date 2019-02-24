@@ -166,3 +166,45 @@ See also: [Special folder names](https://docs.unity3d.com/Manual/SpecialFolders.
 You can use namespaces to structure your project. When a project becomes larger over time, developers might name classes identically. A Distionction through namespaces such as Enemy.Controller and Player.Controller can be helpful. Through "using" directives, you can minimize the effort needed to adjust existing scripts who use a Controller.cs.
 Here is how to use namespaces:
 - [Namespaces (Unity Docs)](https://docs.unity3d.com/Manual/Namespaces.html)
+
+## Hide, Show or Toggle a Layer from Camera
+You can adjust whether a layer has to be rendered by a camera via its culling mask. You can adjust it in inspector or via code.
+```
+ // Turn on the bit using an OR operation:
+private void Show() {
+     camera.cullingMask |= 1 << LayerMask.NameToLayer("SomeLayer");
+}
+// Turn off the bit using an AND operation with the complement of the shifted int:
+private void Hide() {
+     camera.cullingMask &=  ~(1 << LayerMask.NameToLayer("SomeLayer"));
+}
+// Toggle the bit using a XOR operation:
+private void Toggle() {
+     camera.cullingMask ^= 1 << LayerMask.NameToLayer("SomeLayer");
+}
+```
+- [How to toggle on or off a single layer of the camera's culling mask?](https://forum.unity.com/threads/how-to-toggle-on-or-off-a-single-layer-of-the-cameras-culling-mask.340369/)
+
+
+## How to always draw the view field of a camera
+```
+ using UnityEngine;
+ [ExecuteInEditMode]
+ public class FrustumAlways : MonoBehaviour {
+     public Camera cameraShowFrustumAlways;
+     private void OnDrawGizmos()
+     {
+         if (cameraShowFrustumAlways)
+         {
+             Gizmos.matrix = cameraShowFrustumAlways.transform.localToWorldMatrix;
+             Gizmos.DrawFrustum(cameraShowFrustumAlways.transform.position, 
+                 cameraShowFrustumAlways.fieldOfView, 
+                 cameraShowFrustumAlways.farClipPlane, 
+                 cameraShowFrustumAlways.nearClipPlane, 
+                 cameraShowFrustumAlways.aspect);
+         }
+     }
+ }
+```
+- Source [Setting to Show Camera Cone Always?
+](https://answers.unity.com/questions/1159913/setting-to-show-camera-cone-always.html)

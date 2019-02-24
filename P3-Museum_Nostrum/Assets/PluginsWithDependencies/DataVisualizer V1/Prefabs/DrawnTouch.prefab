@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212860674827169170}
   - component: {fileID: 114251849821306458}
   - component: {fileID: 227796695213074044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DrawnTouch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InitColor: {r: 0, g: 0, b: 1, a: 1}
-  radius: 0.5
+  radius: 0.25
   HasToReposition: 0
 --- !u!212 &212860674827169170
 SpriteRenderer:
