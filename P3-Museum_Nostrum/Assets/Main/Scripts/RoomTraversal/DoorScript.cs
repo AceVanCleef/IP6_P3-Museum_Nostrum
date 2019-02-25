@@ -21,6 +21,8 @@ public class DoorScript : AbstractInteractiveGameObject
     private Animator fadeAnimator;
 
     private MovePointMap movePointMap;
+    
+    private DataLogger dataLogger;
 
     protected override void Start()
     {
@@ -34,6 +36,10 @@ public class DoorScript : AbstractInteractiveGameObject
         GameObject mapPoint = GameObject.Find("MapWrapper");
         if (mapPoint)
            movePointMap = (MovePointMap)mapPoint.GetComponent(typeof(MovePointMap));
+
+        //get DataLogger
+        GameObject go = GameObject.Find("DataLogger");
+        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
 
     public override void OnPointerClick(PointerEventData eventData)
@@ -55,6 +61,7 @@ public class DoorScript : AbstractInteractiveGameObject
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
         if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.TraceLineBetween(previousPos, player.transform.position);
         
+        dataLogger.Log("goToRoom", targetPositionInfo.transform.root.name, targetPositionInfo.GetWorldPosition().ToString(), previousPos.ToString(),null, null);
     }
 
     public IEnumerator StartDoorTransition()

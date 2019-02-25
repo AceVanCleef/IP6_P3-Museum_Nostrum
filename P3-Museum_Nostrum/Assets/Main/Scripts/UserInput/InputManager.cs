@@ -34,6 +34,10 @@ public sealed class InputManager : MonoBehaviour {
 
             InitializeButtonCallbacks();
         }
+
+        //get DataLogger
+        GameObject go = GameObject.Find("DataLogger");
+        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
     #endregion SingletonSetup
 
@@ -45,7 +49,8 @@ public sealed class InputManager : MonoBehaviour {
 
     private PlayerRotator playerRotator;
 
-    
+    private DataLogger dataLogger;
+
     #region EventSystemSetup
     void AddPhysicsRaycaster()
     {
@@ -86,8 +91,8 @@ public sealed class InputManager : MonoBehaviour {
                 playerRotator.Rotate(PlayerRotator.RotationDirection.Right);
                 CameraViewDirection.Instance.GetCurrentState().TransitionRight();
                 CameraViewDirection.Instance.GetCurrentState().PrintState();
-                //dataLogger.Log(data);
-                //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
+
+                dataLogger.Log("turnSwipeLeft", CameraViewDirection.Instance.GetCurrentState().ToString(), null, null, null, null);
                 //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
             }
             else if (data.Direction == SwipeDirection.Right)
@@ -95,8 +100,8 @@ public sealed class InputManager : MonoBehaviour {
                 playerRotator.Rotate(PlayerRotator.RotationDirection.Left);
                 CameraViewDirection.Instance.GetCurrentState().TransitionLeft();
                 CameraViewDirection.Instance.GetCurrentState().PrintState();
-                //dataLogger.Log(data);
-                //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
+
+                dataLogger.Log("turnSwipeRight", CameraViewDirection.Instance.GetCurrentState().ToString(), null, null, null, null);
                 //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
             }
         }
@@ -122,8 +127,8 @@ public sealed class InputManager : MonoBehaviour {
             playerRotator.Rotate(PlayerRotator.RotationDirection.Left);
             CameraViewDirection.Instance.GetCurrentState().TransitionLeft();
             CameraViewDirection.Instance.GetCurrentState().PrintState();
-            //dataLogger.Log(data);
-            //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
+
+            dataLogger.Log("turnButtonLeft", CameraViewDirection.Instance.GetCurrentState().ToString(), null, null, null, null);
             if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
         }
     }
@@ -135,8 +140,8 @@ public sealed class InputManager : MonoBehaviour {
             playerRotator.Rotate(PlayerRotator.RotationDirection.Right);
             CameraViewDirection.Instance.GetCurrentState().TransitionRight();
             CameraViewDirection.Instance.GetCurrentState().PrintState();
-            //dataLogger.Log(data);
-            //dataLogger.Log(CameraViewDirection.Instance.GetCurrentState().ToString());
+
+            dataLogger.Log("turnButtonRight", CameraViewDirection.Instance.GetCurrentState().ToString(), null, null, null, null);
             if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
         }
     }

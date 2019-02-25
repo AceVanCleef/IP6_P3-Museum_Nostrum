@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class toDelete : MonoBehaviour {
+public class JSONParser : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

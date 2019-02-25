@@ -10,6 +10,10 @@ public class MovePointMap : MonoBehaviour
 
     public Image mapPoint;
 
+    private bool isMapOpen = false;
+
+    private DataLogger dataLogger;
+
     void Start()
     {
         //coordindates uf each room on the ground view
@@ -65,19 +69,31 @@ public class MovePointMap : MonoBehaviour
         dictionary.Add("Cellar Room DE4", new float[] { 482f, 267f});
         dictionary.Add("Cellar Room DE3", new float[] { 442f, 354f});
         dictionary.Add("Cellar Room E", new float[] { 442f, 311f});
-
-
-
+        
         //initialises the RectTransfrom of the point, which indicates the position on the map
         rect = mapPoint.GetComponent<RectTransform>();
-    }
 
-    //inverts the alpha channel of the map point. map point can not be disabled like the map itself, because it needs to moved, eventhough its not visible.
-    public void invertVisibilityOfMapPoint()
+        //get DataLogger
+        GameObject go = GameObject.Find("DataLogger");
+        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
+    }
+    
+    //inverts the alpha channel of the map point.map point can not be disabled like the map itself, because it needs to moved, eventhough its not visible.
+    public void toggleMap()
     {
         var tempColor = mapPoint.color;
-        tempColor.a = ((mapPoint.color.a == 100) ? 0f : 100f);
+        if (!isMapOpen)
+        {
+            dataLogger.Log("openMap", null, null, null, null, null);
+            tempColor.a = 100f;
+        }
+        else
+        {
+            dataLogger.Log("closeMap", null, null, null, null, null);
+            tempColor.a = 0f;
+        }
         mapPoint.color = tempColor;
+        isMapOpen = !isMapOpen;
     }
 
 

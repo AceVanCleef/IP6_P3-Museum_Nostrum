@@ -23,6 +23,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     private Renderer pictureRenderer;
 
+    private DataLogger dataLogger;
+
 
     protected new virtual void Start()
     {
@@ -33,6 +35,10 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         //Your other initialization code...
 
         pictureRenderer = GetComponent<Renderer>();
+
+        //get DataLogger
+        GameObject go = GameObject.Find("DataLogger");
+        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
 
 
@@ -52,6 +58,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         v3 = Camera.main.ScreenToWorldPoint(v3);
         offset = hitGameObject.transform.position - v3;
 
+        dataLogger.Log("dragBeginFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), null);
+
         ActivateUISlotHighlightning();
     }
 
@@ -62,6 +70,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
             v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData) );
             v3 = Camera.main.ScreenToWorldPoint(v3);
             hitGameObject.transform.position = v3 + offset;
+
+            //dataLogger.Log("dragOnFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString());
         }  
     }
 
@@ -81,10 +91,16 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         {
             Debug.Log("ui slot: " + uiSlot.name);
             AttachPictureToUISlot(uiSlot);
+            
         }
         else if (CanPlayerDropPictureOnCanvasDirectly && pictureCanvases != null)
         {
             SwapTexturesOf(pictureCanvases[0], pictureCanvases[1]);
+            
+        }
+        else
+        {
+            dataLogger.Log("dragEndFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), null);
         }
 
         //reset position.
@@ -164,6 +180,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
             //prevent overlapping highlightning of this picture frame.
             transform.parent.gameObject.GetComponentInChildren<PictureFrameHighlighter>().Off();
             selectionHighlighter.On();
+
+            dataLogger.Log("selectFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), null);
         }
         //receiving a texture
         else if ( HasPlayerSelectedAnObject() )
@@ -173,6 +191,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
                 ReceiveTextureSelectedFromGUIElement();
                 ActivateDoorHighlightning();
                 DeactivatePictureFrameHighlightning();
+                
             }
             else
             {
@@ -181,6 +200,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
                 DeactivatePictureFrameHighlightning();
                 DeactivateUISlotHighlightning();
             }
+            
         }
     }
     #endregion SingleTap
@@ -192,7 +212,9 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     private void AttachPictureToUISlot(GameObject uiSlot)
     {
         RawImage ri = uiSlot.GetComponent<RawImage>();
-
+        
+        dataLogger.Log("frameToSlotDrag", uiSlot.transform.parent.transform.parent.name, gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, ri.mainTexture.name);
+        
         //Swap
         Texture cachedTexture = ri.texture;
         ri.texture = pictureRenderer.material.mainTexture;
@@ -202,6 +224,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         {
             ri.color = Color.white;
         }
+
+        
     }
 
     private void SwapTexturesOf(GameObject thisCanvas, GameObject otherCanvas)
@@ -209,11 +233,24 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         Debug.Log("Executing SwapTexturesOf()");
         Renderer thisRenderer = thisCanvas.GetComponent<Renderer>();
         Renderer otherRenderer = otherCanvas.GetComponent<Renderer>();
+        Debug.Log("ohterCanves" + otherCanvas.name);
 
+        if(otherCanvas.name == "16:9 Background")
+        {
+            dataLogger.Log("frameToFrame", gameObject.transform.root.name, otherCanvas.transform.parent.name, gameObject.transform.parent.name, thisRenderer.material.ToString(), otherRenderer.material.ToString());
+        }
+        else
+        {
+            dataLogger.Log("picToFrameClick", otherCanvas.transform.name, gameObject.transform.root.name, gameObject.transform.parent.name,  thisRenderer.material.ToString(), otherRenderer.material.ToString());
+        }
+        
+       
         //swap
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = thisRenderer.material.mainTexture;
         thisRenderer.material.mainTexture = cachedTexture;
+
+        
     }
 
     private bool HasTexture()
@@ -225,6 +262,10 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     {
         RawImage ri = GetSelectedGameObject().GetComponent<RawImage>();
         Renderer renderer = GetComponent<Renderer>();
+        dataLogger.Log("slotToFrameClick", gameObject.transform.root.name, gameObject.transform.parent.name,
+            renderer.material.ToString(), 
+            ri.texture.name, null);
+
         //swap
         Texture cachedTexture = renderer.material.mainTexture;
         renderer.material.mainTexture = ri.texture;

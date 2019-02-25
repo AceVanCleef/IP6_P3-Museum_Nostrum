@@ -23,6 +23,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
 
     private Renderer pictureRenderer;
 
+    private DataLogger dataLogger;
+
     protected override void Start()
     {
         base.Start();
@@ -32,6 +34,10 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         //Your other initialization code...
 
         pictureRenderer = GetComponent<Renderer>();
+
+        //get DataLogger
+        GameObject go = GameObject.Find("DataLogger");
+        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
 
     public void InitializeTag()
@@ -55,9 +61,11 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         dist = CalculateDistance(hitGameObject);
         v3 = new Vector3(eventData.position.x, eventData.position.y, dist);
         v3 = Camera.main.ScreenToWorldPoint(v3);
-        offset = hitGameObject.transform.position - v3;
+        offset = hitGameObject.transform.position - v3; 
 
         ActivateUISlotHighlightning();
+
+        dataLogger.Log("dragBeginPic", gameObject.name, pictureRenderer.material.ToString(), eventData.position.ToString(), gameObject.transform.position.ToString(), null);
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -65,6 +73,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData) );
         v3 = Camera.main.ScreenToWorldPoint(v3);
         hitGameObject.transform.position = v3 + offset;
+
+        //dataLogger.Log("dragOnPic", gameObject.transform.root.name, gameObject.name, eventData.position.ToString(), null, null);
     }
 
 
@@ -86,6 +96,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         }
         else
         {
+            dataLogger.Log("dragEndPic", gameObject.transform.name, pictureRenderer.material.mainTexture.ToString(), eventData.position.ToString(), null, null);
+            
             //if not hit, reset position => User gets feedback about what a picture can interact with.
             transform.position = startPosition;
         }
@@ -147,13 +159,12 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Clicking on Picture.");
-
         Select( GetComponentInChildren<PictureSelectedHighlighter>(), gameObject );
         DeactivateDoorHighlightning();
         ActivatePictureFrameHighlightning();
         ActivateUISlotHighlightning();
 
+        dataLogger.Log("selectPic", gameObject.name, pictureRenderer.material.mainTexture.ToString(), eventData.position.ToString(), null,null);
     }
 
     #endregion SingleTap
@@ -170,6 +181,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
             ri.texture = pictureRenderer.material.mainTexture;
             ri.color = Color.white;
             Destroy(gameObject);
+            dataLogger.Log("picToSlotDrag", uiSlot.transform.parent.transform.parent.name,  gameObject.transform.name, pictureRenderer.material.mainTexture.ToString(), gameObject.transform.position.ToString(), null);
         }
         else
         {
@@ -178,10 +190,12 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
 
             ri.color = Color.white;
 
-            //Swap
-            Texture cachedTexture = ri.texture;
+             //Swap
+             Texture cachedTexture = ri.texture;
             ri.texture = pictureRenderer.material.mainTexture;
             pictureRenderer.material.mainTexture = cachedTexture;
+
+            dataLogger.Log("picToSlotDragSwap", uiSlot.transform.parent.transform.parent.name, ri.texture.name, gameObject.transform.name, pictureRenderer.material.mainTexture.ToString(), gameObject.transform.position.ToString());
         }
     }
 
@@ -193,6 +207,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = pictureRenderer.material.mainTexture;
         pictureRenderer.material.mainTexture = cachedTexture;
+
+        dataLogger.Log("picToFrameDrag", otherRenderer.transform.root.name, otherRenderer.transform.parent.name, otherRenderer.material.mainTexture.ToString(), gameObject.transform.name, pictureRenderer.material.ToString());
 
         if (pictureRenderer.material.mainTexture == null)
         {

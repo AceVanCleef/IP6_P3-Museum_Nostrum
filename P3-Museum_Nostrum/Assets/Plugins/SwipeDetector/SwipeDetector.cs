@@ -15,6 +15,14 @@ public class SwipeDetector : MonoBehaviour
 
     public static event Action<SwipeData> OnSwipe = delegate { };
 
+   // private DataLogger dataLogger;
+
+    void Awake()
+    {
+        //get DataLogger
+        GameObject go = GameObject.Find("DataLogger");
+       // dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
+    }
 
     private void Update()
     {
@@ -47,18 +55,28 @@ public class SwipeDetector : MonoBehaviour
             if (IsVerticalSwipe())
             {
                 var direction = fingerDownPosition.y - fingerUpPosition.y > 0 ? SwipeDirection.Up : SwipeDirection.Down;
+
+                //hereComesLogger
+                Debug.Log("swipeUpDownRegistered" + direction + "::" + fingerDownPosition.ToString() + "::" + fingerUpPosition.ToString());
+
                 SendSwipe(direction);
             }
             else
             {
                 var direction = fingerDownPosition.x - fingerUpPosition.x > 0 ? SwipeDirection.Right : SwipeDirection.Left;
+                
+                //hereComesLogger
+                Debug.Log("swipeRightLeftRegistered" + direction + "::" + fingerDownPosition.ToString() + "::" + fingerUpPosition.ToString());
+
                 SendSwipe(direction);
             }
             fingerUpPosition = fingerDownPosition;
         }
         else
         {
-            //dataLogger.Log("Touch", Time.time, fingerDownPosition.ToString());
+            //dataLogger.Log("touch", fingerDownPosition.ToString(), null, null);
+            //hereComesLogger
+            Debug.Log("touchRegistered" + fingerDownPosition.ToString());
         }
     }
 

@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class AbstractInteractiveGUIElement : HighlightingObject, IInteractiveGUIElement
 {
-    
     protected new virtual void Start()
     {
         base.Start();

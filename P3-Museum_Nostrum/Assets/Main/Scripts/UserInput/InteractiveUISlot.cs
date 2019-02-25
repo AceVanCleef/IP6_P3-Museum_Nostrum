@@ -14,12 +14,18 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
     private static readonly Vector2 HoverSize = new Vector2(200f, 200f);
     //private static readonly Vector2 squareHoverSize = new Vector2(300f, 150f);
 
+    private DataLogger dataLogger;
+
     protected new virtual void Start()
     {
         base.Start();
 
         InitializeTag();
         ri = GetComponent<RawImage>();
+
+        //get DataLogger
+        GameObject go = GameObject.Find("DataLogger");
+        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
 
     public void InitializeTag()
@@ -44,6 +50,8 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             GetComponent<RectTransform>().sizeDelta = HoverSize;
 
             ActivatePictureFrameHighlightning();
+
+            dataLogger.Log("dragBeginSlot", gameObject.transform.parent.transform.parent.name, ri.texture.name, eventData.position.ToString(), null, null);
         }
     }
 
@@ -52,6 +60,7 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
         if (HasTexture())
         {
             transform.position = Input.mousePosition;
+            // dataLogger.Log("dragOnSlot", gameObject.transform.parent.transform.parent.name, ri.texture.name, eventData.position.ToString(), null);
         }
     }
 
@@ -63,9 +72,13 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             if (pictureCanvas != null)
             {
                 AttachPictureToPictureCanvas(pictureCanvas);
+                
             }
-            //dataLogger.Log("SwipeDragOnDrop", eventData.position.ToString(), "-");
-
+            else
+            {
+                dataLogger.Log("dragEndSlot", gameObject.transform.parent.transform.parent.name, ri.texture.name, eventData.position.ToString(), null, null);
+            }
+            
             //reset position.
             transform.position = startPosition;
 
@@ -89,6 +102,8 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             Select(highlighterCarryingGUIElement.GetComponent<UISlotSelectedHighlighter>(), gameObject, true);
             DeactivateDoorHighlightning();
             ActivatePictureFrameHighlightning();
+
+            dataLogger.Log("selectSlot", gameObject.transform.parent.transform.parent.name, ri.texture.name, eventData.position.ToString(), null, null);
         }
         else if (HasPlayerSelectedAnObject() && !HasPlayerSelectedGUIElement())
         {
@@ -96,6 +111,8 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             ActivateDoorHighlightning();
             DeactivatePictureFrameHighlightning();
             DeactivateUISlotHighlightning();
+
+            
         }
 
     }
@@ -105,6 +122,8 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
     private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
         Renderer otherRenderer = pictureCanvas.GetComponent<Renderer>();
+        dataLogger.Log("slotToFrameDrag", pictureCanvas.transform.root.name, pictureCanvas.transform.parent.name, gameObject.transform.parent.transform.parent.name, ri.texture.name, otherRenderer.material.name);
+        
         //swap
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = ri.texture;
@@ -123,10 +142,12 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
         GameObject selectedGO = GetSelectedGameObject();
         Renderer otherRenderer = selectedGO.GetComponent<Renderer>();
         ri.color = Color.white;
-
+        dataLogger.Log("toSlotClick", gameObject.transform.parent.transform.parent.name, ri.mainTexture.name, otherRenderer.material.name, null, null);
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = ri.texture;
         ri.texture = cachedTexture;
+
+       
 
         if (selectedGO.tag == "Picture" && otherRenderer.material.mainTexture == null)
         {

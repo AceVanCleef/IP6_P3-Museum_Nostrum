@@ -35,6 +35,8 @@ public class IngameOptionsMenu : MonoBehaviour
     Toggle interiorToggle;
     Toggle wayfindingToggle;
 
+    private DataLogger dataLogger;
+
     void Awake()
     {
         //default values
@@ -55,7 +57,9 @@ public class IngameOptionsMenu : MonoBehaviour
             signPostingActive = AppData.TestFactorSettings.signPostsVisible;
         }
 
-
+        //get DataLogger
+        GameObject go = GameObject.Find("DataLogger");
+        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
 
     }
     void Start()
@@ -129,6 +133,8 @@ public class IngameOptionsMenu : MonoBehaviour
         }
         else
         {
+            dataLogger.Log("endGame", null, null, null, null, null);
+            dataLogger.PrintDataList();
             LoadScene("StartMenu");
         }
     }
@@ -178,7 +184,7 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void SetAudioBreadcrumsAudability()
     {
-        Debug.Log("SetAudioBC: " + audioBreadcrumbsActive);
+        dataLogger.Log("setAudioBreadcrumsAudability", audioBreadcrumbsActive.ToString(), null, null, null, null);
         for (int i = 0; i < musicSources.Length; i++)
         {
             {
@@ -196,6 +202,7 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void SetLights()
     {
+        dataLogger.Log("setLights", lightsActive.ToString(), null, null, null, null);
         for (int i = 0; i < lights.Length; i++)
         {
             {
@@ -213,6 +220,7 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void SetInteriorVisbility()
     {
+        dataLogger.Log("setInteriorVisbility", interiorFurnishingActive.ToString(), null, null, null, null);
         for (int i = 0; i < interiorFurnishingHolders.Length; i++)
         {
             {
@@ -230,6 +238,7 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void SetWayfindingVisibility()
     {
+        dataLogger.Log("setWayfindingVisibility", signPostingActive.ToString(), null, null, null, null);
         for (int i = 0; i < signPostingHolders.Length; i++)
         {
             {
@@ -247,6 +256,7 @@ public class IngameOptionsMenu : MonoBehaviour
 
     public void setMusicVolume()
     {
+        dataLogger.Log("setMusicVolume", musicVolume.ToString(), null, null, null, null);
         for (int i = 0; i < musicSources.Length; i++)
         {
             {
@@ -264,6 +274,7 @@ public class IngameOptionsMenu : MonoBehaviour
 
     public void setSoundVolume()
     {
+        dataLogger.Log("setSoundVolume", soundVolume.ToString(), null, null, null, null);
         soundSources = GameObject.FindGameObjectsWithTag("Sound");
         for (int i = 0; i < soundSources.Length; i++)
         {
