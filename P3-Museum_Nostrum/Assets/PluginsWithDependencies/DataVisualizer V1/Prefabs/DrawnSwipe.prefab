@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4189545926507150}
   - component: {fileID: 114855366979704480}
   - component: {fileID: 120466099525467590}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DrawnSwipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c813a65ce47544f893d748994aff68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitColor: {r: 0.127759, g: 0.8207547, b: 0.18754694, a: 1}
-  StrokeWidth: 0.1
+  InitColor: {r: 1, g: 0, b: 0, a: 1}
+  StrokeWidth: 0.05
   HasToReposition: 0
 --- !u!120 &120466099525467590
 LineRenderer:

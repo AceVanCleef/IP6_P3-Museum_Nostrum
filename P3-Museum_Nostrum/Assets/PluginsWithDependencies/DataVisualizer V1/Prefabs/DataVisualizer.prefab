@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4791851805472270}
   - component: {fileID: 114157831260841088}
   - component: {fileID: 114276389546552024}
+  - component: {fileID: 114221001114141428}
   m_Layer: 0
   m_Name: DataVisualizer
   m_TagString: Untagged
@@ -56,8 +57,22 @@ MonoBehaviour:
     type: 2}
   LineRendererPrefab: {fileID: 1309130290864490, guid: 4d0ed538d0831b544a69d23a70adaa4e,
     type: 2}
+  elevationOfLinesAboveFloor: 0.25
   RoomHeatNodePrefab: {fileID: 1640818147253742, guid: 2c9a41585f10da2439d5f9e54d9a8494,
     type: 2}
+  elevationOfRoomHeatNodesAboveFloor: 0.25
+--- !u!114 &114221001114141428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1924076063626268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca945c5c24f6df4cbae6937675c143a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrawCameraGizmos: 1
 --- !u!114 &114276389546552024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,7 +87,10 @@ MonoBehaviour:
   DrawnSwipePrefab: {fileID: 1282844259927318, guid: 63927eff945ca9141858ae16230bfd78,
     type: 2}
   Heatmap2DForSwipes: 1
+  swipeColor: {r: 1, g: 0.7324931, b: 0.015686274, a: 1}
   DrawnTouchPrefab: {fileID: 1560115458069464, guid: dddfba6296688584b87335d11bb47b6c,
     type: 2}
   Heatmap2DForTouches: 1
+  touchColor: {r: 0, g: 1, b: 0.9906864, a: 1}
   Heatmap2DForDrags: 1
+  dragColor: {r: 1, g: 0.015686274, b: 0.72339267, a: 1}

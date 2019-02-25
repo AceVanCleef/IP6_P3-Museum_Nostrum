@@ -7,7 +7,7 @@ public class DrawnSwipeScript : MonoBehaviour {
     private LineRenderer lineRenderer;
 
     public Color InitColor = Color.red;
-    public float StrokeWidth = 0.1f;
+    public float StrokeWidth = 0.05f;
 
 
     private SwipeData screenPosInfo;
@@ -27,7 +27,7 @@ public class DrawnSwipeScript : MonoBehaviour {
         positions[1] = Camera.main.ScreenToWorldPoint(new Vector3(data.EndPosition.x, data.EndPosition.y, zOffset));
         lineRenderer.positionCount = 2;
         lineRenderer.material.color = InitColor;
-        SetWidth(StrokeWidth, StrokeWidth * 0.25f);
+        SetWidth(StrokeWidth, StrokeWidth * 0.1f);
         lineRenderer.SetPositions(positions);
 
         screenPosInfo = data;

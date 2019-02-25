@@ -3,7 +3,23 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// handles user input visualisation such as drag and drop, swipes and touches.
+/// </summary>
+[RequireComponent(typeof(DataVisualizerManager))]
 public class GUIDataVisualizer : MonoBehaviour {
+
+    private static GUIDataVisualizer instance = null;
+    /// <summary>
+    /// grants access to GUIDataVisualizer
+    /// </summary>
+    public static GUIDataVisualizer Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     private Transform uiInteractionHolder;
 
@@ -13,6 +29,8 @@ public class GUIDataVisualizer : MonoBehaviour {
     private static int swipeCounter = 0;
     [SerializeField]
     private bool Heatmap2DForSwipes = true;
+    [SerializeField]
+    private Color swipeColor = Color.yellow;
     #endregion SwipeDrawFields
 
     #region TouchDrawFields
@@ -21,6 +39,8 @@ public class GUIDataVisualizer : MonoBehaviour {
     private static int touchCounter = 0;
     [SerializeField]
     private bool Heatmap2DForTouches = true;
+    [SerializeField]
+    private Color touchColor = Color.cyan;
     #endregion TouchDrawFields
 
     #region DragFields
@@ -28,8 +48,22 @@ public class GUIDataVisualizer : MonoBehaviour {
     private static int dragCounter = 0;
     [SerializeField]
     private bool Heatmap2DForDrags = true;
+    [SerializeField]
+    private Color dragColor = Color.magenta;
     #endregion DragFields
 
+    private void Awake()
+    {
+        //ensure singleton.
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start () {
         uiInteractionHolder = new GameObject("UIInteractionHolder").transform;
@@ -43,22 +77,26 @@ public class GUIDataVisualizer : MonoBehaviour {
         /*
         TestDrawSwipes();
         TestDrawnTouches();
-        TestDrawnDrags();
-        */
+        TestDrawnDrags();*/
+        
     }
 
     #region DrawDrag
 
-    public void DrawApproximatedDrag(Vector2 from, Vector2 to)
+    /// <summary>
+    /// draws a drag and drop gesture.
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
+    public void DrawDrag(Vector2 from, Vector2 to)
     {
-        Color color = Color.yellow;
         dragCounter++;
         Transform composite = new GameObject("Drag " + dragCounter).transform;
         composite.parent = dragHolder;
 
         GameObject start = Instantiate(DrawnTouchPrefab, composite);
         start.name = "Start";
-        start.GetComponent<DrawnTouchScript>().DrawTouch(from, color);
+        start.GetComponent<DrawnTouchScript>().DrawTouch(from, dragColor);
         start.GetComponent<DrawnTouchScript>().HasToReposition = Heatmap2DForDrags;
 
         GameObject line = Instantiate(DrawnSwipePrefab, composite);
@@ -68,12 +106,13 @@ public class GUIDataVisualizer : MonoBehaviour {
             Direction = SwipeDirection.Down,
             StartPosition = new Vector2(from.x, from.y),
             EndPosition = new Vector2(to.x, to.y)
-        }, color);
+        }, dragColor);
         line.GetComponent<DrawnSwipeScript>().HasToReposition = Heatmap2DForDrags;
 
         GameObject end = Instantiate(DrawnTouchPrefab, composite);
         end.name = "End";
-        end.GetComponent<DrawnTouchScript>().DrawTouch(to, color);
+        end.GetComponent<DrawnTouchScript>().DrawTouch(to, dragColor);
+        end.GetComponent<DrawnTouchScript>().SetRadiusTo(0.1f);
         end.GetComponent<DrawnTouchScript>().HasToReposition = Heatmap2DForDrags;
     }
 
@@ -85,7 +124,7 @@ public class GUIDataVisualizer : MonoBehaviour {
             float y1 = Random.Range(150f, 270f);
             float x2 = Random.Range(175f, 295f);
             float y2 = Random.Range(175f, 295f);
-            DrawApproximatedDrag(new Vector2(x1, y1), new Vector2(x2, y2));
+            DrawDrag(new Vector2(x1, y1), new Vector2(x2, y2));
         }
     }
 
@@ -126,12 +165,17 @@ public class GUIDataVisualizer : MonoBehaviour {
 
     #region Touches
 
+    /// <summary>
+    /// draws a touch gesture.
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
     public GameObject DrawTouch(Vector2 pos)
     {
         touchCounter++;
         GameObject go = Instantiate(DrawnTouchPrefab, touchHolder);
         go.name = "Touch " + touchHolder;
-        GameObject touch = go.GetComponent<DrawnTouchScript>().DrawTouch(pos);
+        GameObject touch = go.GetComponent<DrawnTouchScript>().DrawTouch(pos, touchColor);
         go.GetComponent<DrawnTouchScript>().HasToReposition = Heatmap2DForTouches;
         return touch;
     }
@@ -167,12 +211,16 @@ public class GUIDataVisualizer : MonoBehaviour {
 
     #region Swipes
 
+    /// <summary>
+    /// draws a swipe gesture.
+    /// </summary>
+    /// <param name="data"></param>
     public void DrawSwipe(SwipeData data)
     {
         swipeCounter++;
         GameObject go = Instantiate(DrawnSwipePrefab, swipeHolder);
         go.name = "Swipe " + swipeCounter;
-        go.GetComponent<DrawnSwipeScript>().DrawSwipe(data);
+        go.GetComponent<DrawnSwipeScript>().DrawSwipe(data, swipeColor);
         go.GetComponent<DrawnSwipeScript>().HasToReposition = Heatmap2DForSwipes;
     }
 
@@ -217,7 +265,7 @@ public class GUIDataVisualizer : MonoBehaviour {
 
 
 [CustomEditor(typeof(GUIDataVisualizer))]
-public class ObjectBuilderEditor : Editor
+public class GUIDataVisualizerCustomInspector : Editor
 {
     public override void OnInspectorGUI()
     {

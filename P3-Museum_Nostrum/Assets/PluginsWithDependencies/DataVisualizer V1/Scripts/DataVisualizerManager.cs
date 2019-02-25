@@ -1,24 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// handels data visualisation of player behavior.
+/// </summary>
+[RequireComponent(typeof(GUIDataVisualizer))]
 public class DataVisualizerManager : MonoBehaviour {
 
-    /* Require:
-     * - player position or info, in which room he currently is.
-     * - all ViewDirectionHeatmaps (how often a direction per room is looked at).
-     * - all RoomHeatNodes (how often a room has been visited).
-     * - current DirectionState; the direction the player is looking at.
-     *
-     */
 
     private static DataVisualizerManager instance;
+    /// <summary>
+    /// grants access to this DataVisualizerManager.
+    /// </summary>
     public static DataVisualizerManager Instance
     {
         get
         {
             return instance;
+        }
+    }
+
+    private static GUIDataVisualizer guiDV;
+    /// <summary>
+    /// grants access to user input visualisation tools.
+    /// </summary>
+    public static GUIDataVisualizer GUI
+    {
+        get
+        {
+            return guiDV;
         }
     }
 
@@ -54,9 +67,15 @@ public class DataVisualizerManager : MonoBehaviour {
 
     void Awake()
     {
+        //ensure singleton.
         if (instance == null)
         {
             instance = this;
+            guiDV = GetComponent<GUIDataVisualizer>();
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -271,4 +290,27 @@ public class DataVisualizerManager : MonoBehaviour {
         GetCurrentRoomFrequenceyNode().PlayerEnteredRoom();
     }
     #endregion RoomHeatNodeAPI
+
+    // ---------------------------- Custom Inspector Functionality -----------------------
+    public void ToggleVisibilityInCamera()
+    {
+        Camera.main.cullingMask ^= 1 << LayerMask.NameToLayer("DataVisualization");
+    }
+
+}
+
+[CustomEditor(typeof(DataVisualizerManager))]
+public class DataVisualizerManagerCustomInspector : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        DataVisualizerManager dvm = (DataVisualizerManager)target;
+        if (GUILayout.Button("Hide/Show DataVisualisation from player"))
+        {
+            dvm.ToggleVisibilityInCamera();
+        }
+        
+    }
 }
