@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class Deselector : AbstractInteractiveGameObject
 {
 
-    private DataLogger dataLogger;
     protected new virtual void Start()
     {
         base.Start();
@@ -21,27 +20,30 @@ public class Deselector : AbstractInteractiveGameObject
                 ". User will be unable to deselect interactive GameObjects if touching this part of this room." +
                 " Ensure each wall and ceiling contain a box collider and each floor a mesh collider.");
         }
-
-        //get DataLogger
-        GameObject go = GameObject.Find("DataLogger");
-        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
 
     #region UserInput
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        //prevent default behavior in super class.
     }
 
 
     public override void OnEndDrag(PointerEventData eventData)
     {
-
+        //prevent default behavior in super class.
     }
+
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Hit Deselector.");
-        dataLogger.Log("deselect", eventData.position.ToString(), null, null, null, null);
+        if (DataLogger.Instance)
+        {
+            //draw a touch on GUI.
+            DataLogger.Instance.Log("touch", "On Deselector", eventData.position.ToString());
+            //Inform game logic to deselect.
+            DataLogger.Instance.Log("deselect", eventData.position.ToString());
+        }
         Deselect();
     }
     #endregion UserInput

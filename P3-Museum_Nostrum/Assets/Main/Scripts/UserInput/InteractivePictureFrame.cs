@@ -23,9 +23,6 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     private Renderer pictureRenderer;
 
-    private DataLogger dataLogger;
-
-
     protected new virtual void Start()
     {
         base.Start();
@@ -36,9 +33,6 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
         pictureRenderer = GetComponent<Renderer>();
 
-        //get DataLogger
-        GameObject go = GameObject.Find("DataLogger");
-        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
 
 
@@ -58,7 +52,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         v3 = Camera.main.ScreenToWorldPoint(v3);
         offset = hitGameObject.transform.position - v3;
 
-        dataLogger.Log("dragBeginFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), null);
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("dragBeginFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), transform.parent.position.ToString());
 
         ActivateUISlotHighlightning();
     }
@@ -70,8 +65,6 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
             v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData) );
             v3 = Camera.main.ScreenToWorldPoint(v3);
             hitGameObject.transform.position = v3 + offset;
-
-            //dataLogger.Log("dragOnFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString());
         }  
     }
 
@@ -83,24 +76,18 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         GameObject uiSlot = GetFirstUIElementWith("DraggableUI");
         GameObject[] pictureCanvases = FindBothOverlappingPictureCanvases(eventData.position);
 
-        Debug.Log("Caught uiSlot? " + (uiSlot != null));
-        Debug.Log("Caught both pictureCanvas? " + (pictureCanvases != null));
-        Debug.Log("Amt. of UIslots found: " + GetAllUIElementsWith("DraggableUI").Count);
-
         if (uiSlot != null)
         {
-            Debug.Log("ui slot: " + uiSlot.name);
             AttachPictureToUISlot(uiSlot);
-            
         }
         else if (CanPlayerDropPictureOnCanvasDirectly && pictureCanvases != null)
         {
             SwapTexturesOf(pictureCanvases[0], pictureCanvases[1]);
-            
         }
         else
         {
-            dataLogger.Log("dragEndFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), null);
+            if(DataLogger.Instance)
+                DataLogger.Instance.Log("dragEndFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString());
         }
 
         //reset position.
@@ -181,7 +168,8 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
             transform.parent.gameObject.GetComponentInChildren<PictureFrameHighlighter>().Off();
             selectionHighlighter.On();
 
-            dataLogger.Log("selectFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), null);
+            //Todo
+            //dataLogger.Log("selectFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), null);
         }
         //receiving a texture
         else if ( HasPlayerSelectedAnObject() )
@@ -213,7 +201,15 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     {
         RawImage ri = uiSlot.GetComponent<RawImage>();
         
-        dataLogger.Log("frameToSlotDrag", uiSlot.transform.parent.transform.parent.name, gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, ri.mainTexture.name);
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("frameToSlotDrag", 
+                uiSlot.transform.parent.transform.parent.name, 
+                gameObject.transform.root.name, 
+                gameObject.transform.parent.name, 
+                pictureRenderer.material.mainTexture.name, 
+                ri.mainTexture.name, 
+                uiSlot.transform.parent.transform.parent.position.ToString(),
+                transform.parent.position.ToString());
         
         //Swap
         Texture cachedTexture = ri.texture;
@@ -237,11 +233,12 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
         if(otherCanvas.name == "16:9 Background")
         {
-            dataLogger.Log("frameToFrame", gameObject.transform.root.name, otherCanvas.transform.parent.name, gameObject.transform.parent.name, thisRenderer.material.ToString(), otherRenderer.material.ToString());
+            //todo: does this make sense?
+            DataLogger.Instance.Log("frameToFrame", gameObject.transform.root.name, otherCanvas.transform.parent.name, gameObject.transform.parent.name, thisRenderer.material.ToString(), otherRenderer.material.ToString());
         }
         else
         {
-            dataLogger.Log("picToFrameClick", otherCanvas.transform.name, gameObject.transform.root.name, gameObject.transform.parent.name,  thisRenderer.material.ToString(), otherRenderer.material.ToString());
+            DataLogger.Instance.Log("picToFrameClick", otherCanvas.transform.name, gameObject.transform.root.name, gameObject.transform.parent.name,  thisRenderer.material.ToString(), otherRenderer.material.ToString());
         }
         
        
@@ -262,9 +259,11 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     {
         RawImage ri = GetSelectedGameObject().GetComponent<RawImage>();
         Renderer renderer = GetComponent<Renderer>();
-        dataLogger.Log("slotToFrameClick", gameObject.transform.root.name, gameObject.transform.parent.name,
+
+        //Todo:
+        /*dataLogger.Log("slotToFrameClick", gameObject.transform.root.name, gameObject.transform.parent.name,
             renderer.material.ToString(), 
-            ri.texture.name, null);
+            ri.texture.name, null);*/
 
         //swap
         Texture cachedTexture = renderer.material.mainTexture;
@@ -280,6 +279,16 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     {
         GameObject selectedGO = GetSelectedGameObject();
         SwapTexturesOf(gameObject, selectedGO);
+
+        //Todo: does this make sense? from pictureframe vs. from interactive picture.
+        /*if (DataLogger.Instance)
+            DataLogger.Instance.Log("frameToFrameClick", 
+                gameObject.transform.root.name, 
+                selectedGO.transform.parent.name, 
+                gameObject.transform.parent.name, 
+                gameObject.GetComponent<Renderer>().material.ToString(), 
+                selectedGO.GetComponent<Renderer>().material.ToString());*/
+
 
         Renderer otherRenderer = selectedGO.GetComponent<Renderer>();
         if (selectedGO.tag == "Picture" && otherRenderer.material.mainTexture == null)

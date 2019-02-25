@@ -9,6 +9,11 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class AbstractInteractiveGUIElement : HighlightingObject, IInteractiveGUIElement
 {
+    /// <summary>
+    /// the position on screen where the drag has been started.
+    /// </summary>
+    protected Vector2 DragStartPosOnScreen;
+
     protected new virtual void Start()
     {
         base.Start();
@@ -22,6 +27,9 @@ public class AbstractInteractiveGUIElement : HighlightingObject, IInteractiveGUI
         Deselect(); //guarantees expected user behavior of "either select/deselect" or "drag n drop".
         InputManager.Instance.BlockSwipeAction();
         DeactivateDoorHighlightning();
+
+        //required for DataLogger.
+        DragStartPosOnScreen = eventData.position;
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -30,12 +38,11 @@ public class AbstractInteractiveGUIElement : HighlightingObject, IInteractiveGUI
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("drag n drop", DragStartPosOnScreen.ToString(), eventData.position.ToString());
+
         ActivateDoorHighlightning();
         InputManager.Instance.UnlockSwipeAction();
-    }
-
-    public virtual void OnDrop(PointerEventData eventData)
-    {
     }
 
     public virtual void OnPointerClick(PointerEventData eventData)

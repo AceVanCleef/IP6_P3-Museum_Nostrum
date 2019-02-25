@@ -16,6 +16,11 @@ public class AbstractInteractiveGameObject : HighlightingObject, IInteractiveGam
     /// </summary>
     protected static GameObject hitGameObject;
 
+    /// <summary>
+    /// the position on screen where the drag has been started.
+    /// </summary>
+    protected Vector2 DragStartPosOnScreen;
+
     protected new virtual void Start()
     {
         base.Start();
@@ -30,6 +35,9 @@ public class AbstractInteractiveGameObject : HighlightingObject, IInteractiveGam
         InputManager.Instance.BlockSwipeAction();
         DeactivateDoorHighlightning();
         ActivatePictureFrameHighlightning();
+
+        //required for DataLogger.
+        DragStartPosOnScreen = eventData.position;
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -38,6 +46,9 @@ public class AbstractInteractiveGameObject : HighlightingObject, IInteractiveGam
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("drag n drop", DragStartPosOnScreen.ToString(), eventData.position.ToString());
+
         InputManager.Instance.UnlockSwipeAction();
     }
 

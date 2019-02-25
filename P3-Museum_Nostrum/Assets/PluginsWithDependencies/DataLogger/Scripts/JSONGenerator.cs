@@ -13,10 +13,19 @@ public class JSONGenerator : MonoBehaviour
     public string value3;
     public string value4;
     public string value5;
+    public string value6;
+    public string value7;
 
     private List<string> listString = new List<string>();
 
-    public static JSONGenerator instance = null;
+    private static JSONGenerator instance = null;
+    public static JSONGenerator Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     void Awake()
     {
