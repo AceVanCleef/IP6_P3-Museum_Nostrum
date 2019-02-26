@@ -34,10 +34,6 @@ public sealed class InputManager : MonoBehaviour {
 
             InitializeButtonCallbacks();
         }
-
-        //get DataLogger
-        GameObject go = GameObject.Find("DataLogger");
-        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
     #endregion SingletonSetup
 
@@ -48,8 +44,6 @@ public sealed class InputManager : MonoBehaviour {
     private float UnlockDuration = 0.1f;
 
     private PlayerRotator playerRotator;
-
-    private DataLogger dataLogger;
 
     #region EventSystemSetup
     void AddPhysicsRaycaster()
@@ -92,8 +86,8 @@ public sealed class InputManager : MonoBehaviour {
                 CameraViewDirection.Instance.GetCurrentState().TransitionRight();
                 CameraViewDirection.Instance.GetCurrentState().PrintState();
 
-                dataLogger.Log("turnSwipeLeft", CameraViewDirection.Instance.GetCurrentState().ToString(), null, null, null, null);
-                //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+                if (DataLogger.Instance)
+                    DataLogger.Instance.Log("turnSwipeLeft", CameraViewDirection.Instance.GetCurrentState().GetDirectionIdentifier().ToString());
             }
             else if (data.Direction == SwipeDirection.Right)
             {
@@ -101,11 +95,10 @@ public sealed class InputManager : MonoBehaviour {
                 CameraViewDirection.Instance.GetCurrentState().TransitionLeft();
                 CameraViewDirection.Instance.GetCurrentState().PrintState();
 
-                dataLogger.Log("turnSwipeRight", CameraViewDirection.Instance.GetCurrentState().ToString(), null, null, null, null);
-                //if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+                if (DataLogger.Instance)
+                    DataLogger.Instance.Log("turnSwipeRight", CameraViewDirection.Instance.GetCurrentState().GetDirectionIdentifier().ToString());
             }
         }
-        Debug.Log("handling swipes. Direction: " + data.Direction);
     }
 
     #endregion SwipeCallbacks
@@ -122,27 +115,37 @@ public sealed class InputManager : MonoBehaviour {
 
     private void OnLeftButtonClick()
     {
+        //draw a touch on GUI.
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("touch", "On LeftButton", Input.mousePosition.ToString());
+
         if (!playerRotator.IsMoving() && !blockSwipeAction)
         {
             playerRotator.Rotate(PlayerRotator.RotationDirection.Left);
             CameraViewDirection.Instance.GetCurrentState().TransitionLeft();
             CameraViewDirection.Instance.GetCurrentState().PrintState();
 
-            dataLogger.Log("turnButtonLeft", CameraViewDirection.Instance.GetCurrentState().ToString(), null, null, null, null);
-            if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+            if (DataLogger.Instance)
+                DataLogger.Instance.Log("turnButtonLeft", CameraViewDirection.Instance.GetCurrentState().GetDirectionIdentifier().ToString());
         }
     }
 
     private void OnRightButtonClick()
     {
+        if (DataLogger.Instance)
+        {
+            //draw a touch on GUI.
+            DataLogger.Instance.Log("touch", "On RightButton", Input.mousePosition.ToString());
+        }
+
         if (!playerRotator.IsMoving() && !blockSwipeAction)
         {
             playerRotator.Rotate(PlayerRotator.RotationDirection.Right);
             CameraViewDirection.Instance.GetCurrentState().TransitionRight();
             CameraViewDirection.Instance.GetCurrentState().PrintState();
 
-            dataLogger.Log("turnButtonRight", CameraViewDirection.Instance.GetCurrentState().ToString(), null, null, null, null);
-            if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
+            if (DataLogger.Instance)
+                DataLogger.Instance.Log("turnButtonRight", CameraViewDirection.Instance.GetCurrentState().GetDirectionIdentifier().ToString());
         }
     }
 

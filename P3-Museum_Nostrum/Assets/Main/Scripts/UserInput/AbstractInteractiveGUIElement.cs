@@ -28,8 +28,6 @@ public class AbstractInteractiveGUIElement : HighlightingObject, IInteractiveGUI
         InputManager.Instance.BlockSwipeAction();
         DeactivateDoorHighlightning();
 
-        //required for DataLogger.
-        DragStartPosOnScreen = eventData.position;
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -38,9 +36,6 @@ public class AbstractInteractiveGUIElement : HighlightingObject, IInteractiveGUI
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        if (DataLogger.Instance)
-            DataLogger.Instance.Log("drag n drop", DragStartPosOnScreen.ToString(), eventData.position.ToString());
-
         ActivateDoorHighlightning();
         InputManager.Instance.UnlockSwipeAction();
     }

@@ -53,7 +53,12 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         offset = hitGameObject.transform.position - v3;
 
         if (DataLogger.Instance)
-            DataLogger.Instance.Log("dragBeginFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), transform.parent.position.ToString());
+            DataLogger.Instance.Log("dragBeginFrame", 
+                transform.root.name,                        //room name
+                transform.parent.name,                      //name of the picture frame
+                pictureRenderer.material.mainTexture.name,  //which texture?
+                eventData.position.ToString(),              //UI touch position
+                transform.parent.position.ToString());      //picture frame's position relative to the room's position.
 
         ActivateUISlotHighlightning();
     }
@@ -82,12 +87,33 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         }
         else if (CanPlayerDropPictureOnCanvasDirectly && pictureCanvases != null)
         {
+            //log a swap between two picture frames.
+            if (DataLogger.Instance)
+            {
+                Renderer thisRenderer = pictureCanvases[0].GetComponent<Renderer>();
+                Renderer otherRenderer = pictureCanvases[1].GetComponent<Renderer>();
+
+                DataLogger.Instance.Log("frameToFrameDrag", 
+                    transform.root.name,                            //name of current room.
+                    pictureCanvases[0].transform.parent.name,       //name of 1st picture frame
+                    pictureCanvases[1].transform.parent.name,       //name of 2nd picture frame
+                    thisRenderer.material.ToString(),               //name of 1st texture involved
+                    otherRenderer.material.ToString(),              //name of 2nd texture involved
+                    pictureCanvases[0].transform.parent.position.ToString(),    //position of 1st picture frame relative to its room.
+                    pictureCanvases[1].transform.parent.position.ToString());   //position of 2nd picture frame relative to its room.
+            }
+            
             SwapTexturesOf(pictureCanvases[0], pictureCanvases[1]);
         }
         else
         {
             if(DataLogger.Instance)
-                DataLogger.Instance.Log("dragEndFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString());
+                DataLogger.Instance.Log("dragEndFrame", 
+                    transform.root.name,                        //name of current room
+                    transform.parent.name,                      //name of picture frame
+                    pictureRenderer.material.mainTexture.name,  //texture name of picture frame
+                    eventData.position.ToString(),              //end position of drag motion.
+                    transform.parent.position.ToString());      //position of picture frame relative to its room.
         }
 
         //reset position.
@@ -103,6 +129,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     private float CalculateDistance(GameObject hitGO)
     {
         return CameraViewDirection.Instance.GetCurrentState().HandleDragDistanceCalculation(hitGO.transform.position, Camera.main.transform.position);
+        //Debugging:
         //return hitGO.transform.position.z - Camera.main.transform.position.z;
     }
 
@@ -157,7 +184,13 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        if( HasTexture() && !HasPlayerSelectedAnObject() )
+        if (DataLogger.Instance)
+        {
+            //draw a touch on GUI.
+            DataLogger.Instance.Log("touch", "On InteractivePictureFrame", eventData.position.ToString());
+        }
+
+        if ( HasTexture() && !HasPlayerSelectedAnObject() )
         {
             IHighlighter selectionHighlighter = transform.parent.gameObject.GetComponentInChildren<PictureFrameSelectedHighlighter>();
             Select(selectionHighlighter, gameObject);
@@ -168,8 +201,13 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
             transform.parent.gameObject.GetComponentInChildren<PictureFrameHighlighter>().Off();
             selectionHighlighter.On();
 
-            //Todo
-            //dataLogger.Log("selectFrame", gameObject.transform.root.name, gameObject.transform.parent.name, pictureRenderer.material.mainTexture.name, eventData.position.ToString(), null);
+            if (DataLogger.Instance)
+                DataLogger.Instance.Log("selectFrame", 
+                    transform.root.name,                        //room name
+                    transform.parent.name,                      //frame name
+                    pictureRenderer.material.mainTexture.name,  //which texture
+                    eventData.position.ToString(),              //UI touch position
+                    transform.parent.position.ToString());      //frame position relative to its room.
         }
         //receiving a texture
         else if ( HasPlayerSelectedAnObject() )
@@ -202,14 +240,14 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         RawImage ri = uiSlot.GetComponent<RawImage>();
         
         if (DataLogger.Instance)
-            DataLogger.Instance.Log("frameToSlotDrag", 
-                uiSlot.transform.parent.transform.parent.name, 
-                gameObject.transform.root.name, 
-                gameObject.transform.parent.name, 
-                pictureRenderer.material.mainTexture.name, 
-                ri.mainTexture.name, 
-                uiSlot.transform.parent.transform.parent.position.ToString(),
-                transform.parent.position.ToString());
+            DataLogger.Instance.Log("frameToSlotDrag",          
+                uiSlot.transform.parent.transform.parent.name,  //name of target UISlot
+                transform.root.name,                            //name of the room which is parent of this frame
+                transform.parent.name,                          //name of this frame
+                pictureRenderer.material.mainTexture.name,      //name of textures used by this frame.
+                ri.mainTexture.name,                            //name of texture used by UISlot
+                uiSlot.transform.parent.transform.parent.position.ToString(),   //position of UIslot relative to Inventory GO (parent).
+                transform.parent.position.ToString());          //position of this frame.
         
         //Swap
         Texture cachedTexture = ri.texture;
@@ -221,33 +259,24 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
             ri.color = Color.white;
         }
 
-        
     }
 
+    /// <summary>
+    /// swaps textures between two gameObjects.
+    /// </summary>
+    /// <param name="thisCanvas"></param>
+    /// <param name="otherCanvas"></param>
     private void SwapTexturesOf(GameObject thisCanvas, GameObject otherCanvas)
     {
         Debug.Log("Executing SwapTexturesOf()");
         Renderer thisRenderer = thisCanvas.GetComponent<Renderer>();
         Renderer otherRenderer = otherCanvas.GetComponent<Renderer>();
-        Debug.Log("ohterCanves" + otherCanvas.name);
-
-        if(otherCanvas.name == "16:9 Background")
-        {
-            //todo: does this make sense?
-            DataLogger.Instance.Log("frameToFrame", gameObject.transform.root.name, otherCanvas.transform.parent.name, gameObject.transform.parent.name, thisRenderer.material.ToString(), otherRenderer.material.ToString());
-        }
-        else
-        {
-            DataLogger.Instance.Log("picToFrameClick", otherCanvas.transform.name, gameObject.transform.root.name, gameObject.transform.parent.name,  thisRenderer.material.ToString(), otherRenderer.material.ToString());
-        }
-        
+        Debug.Log("ohterCanves" + otherCanvas.name);      
        
         //swap
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = thisRenderer.material.mainTexture;
-        thisRenderer.material.mainTexture = cachedTexture;
-
-        
+        thisRenderer.material.mainTexture = cachedTexture; 
     }
 
     private bool HasTexture()
@@ -260,10 +289,15 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         RawImage ri = GetSelectedGameObject().GetComponent<RawImage>();
         Renderer renderer = GetComponent<Renderer>();
 
-        //Todo:
-        /*dataLogger.Log("slotToFrameClick", gameObject.transform.root.name, gameObject.transform.parent.name,
-            renderer.material.ToString(), 
-            ri.texture.name, null);*/
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("slotToFrameClick", 
+                gameObject.transform.root.name,             //name of current room.
+                transform.parent.name,                      //name of receiving picture frame
+                ri.transform.parent.transform.parent.name,  //name of UISlot delivering a texture
+                renderer.material.ToString(),               //texture name of this picture frame
+                ri.texture.name,                            //texture name of UISlot's texture.
+                transform.parent.position.ToString(),       //position of picture frame
+                ri.transform.parent.transform.parent.position.ToString());  //position of UISlot
 
         //swap
         Texture cachedTexture = renderer.material.mainTexture;
@@ -277,17 +311,39 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     private void ReceiveTextureFromSelectedGameObject()
     {
+        //selectedGO delivers the texture needed for a texture swap.
         GameObject selectedGO = GetSelectedGameObject();
         SwapTexturesOf(gameObject, selectedGO);
+        
+        //log select/deselect
+        if (DataLogger.Instance)
+        {
+            //log receiving from other picture frame.
+            if (selectedGO.tag == "PictureCanvas")
+            {
+                DataLogger.Instance.Log("frameToFrameClick",
+                    gameObject.transform.root.name,                 //name of current room.
+                    selectedGO.transform.parent.name,               //name of texture delivering GO
+                    gameObject.transform.parent.name,               //name of texture receiving GO
+                    gameObject.GetComponent<Renderer>().material.ToString(),    //texture of receiving GO
+                    selectedGO.GetComponent<Renderer>().material.ToString(),    //texture of delivering GO
+                    gameObject.transform.parent.position.ToString(),    //position of receiving GO
+                    selectedGO.transform.parent.position.ToString());   //position of delivering GO
+            }
+            ////log receiving from interactive picture.
+            else if (selectedGO.tag == "Picture")
+            {
+                DataLogger.Instance.Log("picToFrameClick", 
+                    selectedGO.transform.name,              //name of interactive picture
+                    gameObject.transform.root.name,         //name of current room.
+                    gameObject.transform.parent.name,       //name of picture frame, recieving the texture
+                    gameObject.GetComponent<Renderer>().material.ToString(),    //texture of receiving GO
+                    selectedGO.GetComponent<Renderer>().material.ToString(),    //texture of delivering GO
+                    selectedGO.transform.position.ToString(),   //position of delivering picture.
+                    transform.parent.position.ToString());      //position of receiving picture frame.
+            }
 
-        //Todo: does this make sense? from pictureframe vs. from interactive picture.
-        /*if (DataLogger.Instance)
-            DataLogger.Instance.Log("frameToFrameClick", 
-                gameObject.transform.root.name, 
-                selectedGO.transform.parent.name, 
-                gameObject.transform.parent.name, 
-                gameObject.GetComponent<Renderer>().material.ToString(), 
-                selectedGO.GetComponent<Renderer>().material.ToString());*/
+        }
 
 
         Renderer otherRenderer = selectedGO.GetComponent<Renderer>();

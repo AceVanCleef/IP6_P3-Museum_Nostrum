@@ -39,6 +39,9 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
+        //required for DataLogger.
+        DragStartPosOnScreen = eventData.position;
+
         if (HasTexture())
         {
             //Block swipes
@@ -60,7 +63,6 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
         if (HasTexture())
         {
             transform.position = Input.mousePosition;
-            // dataLogger.Log("dragOnSlot", gameObject.transform.parent.transform.parent.name, ri.texture.name, eventData.position.ToString(), null);
         }
     }
 
@@ -76,7 +78,12 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             }
             else
             {
-                dataLogger.Log("dragEndSlot", gameObject.transform.parent.transform.parent.name, ri.texture.name, eventData.position.ToString(), null, null);
+                if (DataLogger.Instance)
+                    DataLogger.Instance.Log("dragEndSlot", 
+                        transform.parent.transform.parent.name,         //name of UISlot
+                        ri.texture.name,                                //texture name of UISLot
+                        eventData.position.ToString(),                  //end position of drag motion.
+                        transform.parent.transform.parent.ToString());  //position of UISlot
             }
             
             //reset position.
@@ -89,13 +96,21 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             //Reenable swipes
             base.OnEndDrag(eventData);
         }
+
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("drag n drop", DragStartPosOnScreen.ToString(), eventData.position.ToString());
     }
 
 
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("CLICKING ON UI SLOT.");
+        if (DataLogger.Instance)
+        {
+            //draw a touch on GUI.
+            DataLogger.Instance.Log("touch", "On InteractiveUISlot", eventData.position.ToString());
+        }
+
         if (HasTexture() && !HasPlayerSelectedAnObject())
         {
             GameObject highlighterCarryingGUIElement = transform.parent.transform.parent.gameObject;
@@ -103,7 +118,12 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             DeactivateDoorHighlightning();
             ActivatePictureFrameHighlightning();
 
-            dataLogger.Log("selectSlot", gameObject.transform.parent.transform.parent.name, ri.texture.name, eventData.position.ToString(), null, null);
+            if (DataLogger.Instance)
+                DataLogger.Instance.Log("selectSlot", 
+                    transform.parent.transform.parent.name,                 //(unique) name of UISlot
+                    ri.texture.name,                                        //which texture?
+                    eventData.position.ToString(),                          //UI touch position
+                    transform.parent.transform.parent.position.ToString()); //positoin of UISlot in GUI, relative to its parent.
         }
         else if (HasPlayerSelectedAnObject() && !HasPlayerSelectedGUIElement())
         {
@@ -111,8 +131,6 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             ActivateDoorHighlightning();
             DeactivatePictureFrameHighlightning();
             DeactivateUISlotHighlightning();
-
-            
         }
 
     }
@@ -122,7 +140,16 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
     private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
         Renderer otherRenderer = pictureCanvas.GetComponent<Renderer>();
-        dataLogger.Log("slotToFrameDrag", pictureCanvas.transform.root.name, pictureCanvas.transform.parent.name, gameObject.transform.parent.transform.parent.name, ri.texture.name, otherRenderer.material.name);
+
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("slotToFrameDrag", 
+                pictureCanvas.transform.root.name,              //name of current room
+                pictureCanvas.transform.parent.name,            //name of picture frame
+                transform.parent.transform.parent.name,         //name of UISlot
+                ri.texture.name,                                //texture name of UISlot
+                otherRenderer.material.name,                    //texture name of picture frame
+                pictureCanvas.transform.parent.position.ToString(),     //position of picture frame
+                transform.parent.transform.parent.position.ToString()); //position of UISlot
         
         //swap
         Texture cachedTexture = otherRenderer.material.mainTexture;
@@ -142,16 +169,42 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
         GameObject selectedGO = GetSelectedGameObject();
         Renderer otherRenderer = selectedGO.GetComponent<Renderer>();
         ri.color = Color.white;
-        dataLogger.Log("toSlotClick", gameObject.transform.parent.transform.parent.name, ri.mainTexture.name, otherRenderer.material.name, null, null);
+
+        //logging select/deselect
+        if (DataLogger.Instance)
+        {
+            if (selectedGO.tag == "PictureCanvas")
+            {
+                DataLogger.Instance.Log("frameToSlotClick", 
+                    selectedGO.transform.root.name,             //name of current room
+                    selectedGO.transform.parent.name,           //name of picture frame
+                    transform.parent.transform.parent.name,     //name of UISlot
+                    ri.mainTexture.name,                        //texture name of UISlot
+                    otherRenderer.material.name,                //texture name of picture frame
+                    selectedGO.transform.parent.position.ToString(),        //position of picture frame
+                    transform.parent.transform.parent.position.ToString()); //position of UISlot.
+
+            }
+            else if (selectedGO.tag == "Picture")
+            {
+                DataLogger.Instance.Log("picToSlotClick",
+                    selectedGO.transform.name,                  //name of picture
+                    transform.parent.transform.parent.name,     //name of UISlot
+                    ri.mainTexture.name,                        //texture name of UISlot
+                    otherRenderer.material.name,                //texture name of picture
+                    selectedGO.transform.position.ToString(),               //position of picture frame
+                    transform.parent.transform.parent.position.ToString()); //position of UISlot.
+            }
+        }
+
+        //swap textures
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = ri.texture;
         ri.texture = cachedTexture;
 
-       
 
         if (selectedGO.tag == "Picture" && otherRenderer.material.mainTexture == null)
         {
-            
             Destroy(selectedGO);
         }
         Deselect();

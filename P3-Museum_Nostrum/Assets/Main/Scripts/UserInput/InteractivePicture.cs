@@ -63,9 +63,11 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         ActivateUISlotHighlightning();
 
         if (DataLogger.Instance)
-        {
-            DataLogger.Instance.Log("dragBeginPic", gameObject.name, pictureRenderer.material.ToString(), eventData.position.ToString(), gameObject.transform.position.ToString());
-        }
+            DataLogger.Instance.Log("dragBeginPic", 
+                gameObject.name,                            //which picture?
+                pictureRenderer.material.ToString(),        //which texture?
+                eventData.position.ToString(),              //UI touch position
+                transform.position.ToString());             //picture's position in 3D world space (since Picture_holder is at (0,0,0)).
     }
 
     public override void OnDrag(PointerEventData eventData)
@@ -96,9 +98,10 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         {
             if (DataLogger.Instance)
                 DataLogger.Instance.Log("dragEndPic", 
-                    gameObject.transform.name, 
-                    pictureRenderer.material.mainTexture.ToString(), 
-                    eventData.position.ToString());
+                    transform.name,                                     //name of picture
+                    pictureRenderer.material.mainTexture.ToString(),    //texture name of picture
+                    eventData.position.ToString(),                      //end position of drag motion
+                    transform.position.ToString());                     //position of picture.
             
             //if not hit, reset position => User gets feedback about what a picture can interact with.
             transform.position = startPosition;
@@ -167,11 +170,16 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         ActivateUISlotHighlightning();
 
         if (DataLogger.Instance)
-            DataLogger.Instance.Log("selectPic", 
-                gameObject.name, 
-                pictureRenderer.material.mainTexture.ToString(), 
-                eventData.position.ToString(), 
+        {
+            //draw a touch on GUI.
+            DataLogger.Instance.Log("touch", "On InteractivePicture", eventData.position.ToString());
+            //Inform game logic to selectPic.
+            DataLogger.Instance.Log("selectPic",
+                gameObject.name,
+                pictureRenderer.material.mainTexture.ToString(),
+                eventData.position.ToString(),
                 transform.position.ToString());
+        }
     }
 
     #endregion SingleTap
@@ -189,11 +197,12 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
             ri.color = Color.white;
 
             if (DataLogger.Instance)
-                DataLogger.Instance.Log("picToSlotDrag", 
-                    uiSlot.transform.parent.transform.parent.name, 
-                    gameObject.transform.name, 
-                    pictureRenderer.material.mainTexture.ToString(), 
-                    gameObject.transform.position.ToString());
+                DataLogger.Instance.Log("picToSlotDrag",            //includes destroying gameObject
+                    uiSlot.transform.parent.transform.parent.name,  //name of UISlot
+                    transform.name,                                 //picture's name
+                    pictureRenderer.material.mainTexture.ToString(), //texture of this picture gameObject
+                    transform.position.ToString(),                  //picture's position in 3D world space.
+                    uiSlot.transform.parent.transform.parent.position.ToString());  //UISlot's position in UI relative to its parent.
 
             Destroy(gameObject);
         }
@@ -210,13 +219,13 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
             pictureRenderer.material.mainTexture = cachedTexture;
 
             if (DataLogger.Instance)
-                DataLogger.Instance.Log("picToSlotDragSwap", 
-                    uiSlot.transform.parent.transform.parent.name, 
-                    ri.texture.name, 
-                    gameObject.transform.name, 
-                    pictureRenderer.material.mainTexture.ToString(), 
-                    gameObject.transform.position.ToString(), 
-                    uiSlot.transform.parent.transform.parent.position.ToString());
+                DataLogger.Instance.Log("picToSlotDragSwap",            //places picture gameObject back to startPosition
+                    uiSlot.transform.parent.transform.parent.name,      //name of UISlot
+                    transform.name,                                     //picture's name
+                    ri.texture.name,                                    //texture's name of UISlot
+                    pictureRenderer.material.mainTexture.ToString(),    //texture's name of picture gameObject
+                    transform.position.ToString(),                      //picture's position
+                    uiSlot.transform.parent.transform.parent.position.ToString());  //UISlot's position relative to its parent.
         }
     }
 
@@ -231,11 +240,13 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
 
         if (DataLogger.Instance)
             DataLogger.Instance.Log("picToFrameDrag", 
-                pictureCanvas.transform.root.name, 
-                pictureCanvas.transform.parent.name, 
-                otherRenderer.material.mainTexture.ToString(), 
-                gameObject.transform.name, 
-                pictureRenderer.material.ToString());
+                pictureCanvas.transform.root.name,              //room name
+                pictureCanvas.transform.parent.name,            //target frame's name
+                otherRenderer.material.mainTexture.ToString(),  //texture of frame
+                transform.name,                                 //name of picture
+                pictureRenderer.material.ToString(),            //texture of picture
+                pictureCanvas.transform.parent.position.ToString(), //position of target frame relative to its room.
+                transform.position.ToString());                 //picture's position in 3D world space.
 
         if (pictureRenderer.material.mainTexture == null)
         {

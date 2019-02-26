@@ -35,8 +35,6 @@ public class IngameOptionsMenu : MonoBehaviour
     Toggle interiorToggle;
     Toggle wayfindingToggle;
 
-    private DataLogger dataLogger;
-
     void Awake()
     {
         //default values
@@ -56,10 +54,6 @@ public class IngameOptionsMenu : MonoBehaviour
             interiorFurnishingActive = AppData.TestFactorSettings.interiorFurnishingVisible;
             signPostingActive = AppData.TestFactorSettings.signPostsVisible;
         }
-
-        //get DataLogger
-        GameObject go = GameObject.Find("DataLogger");
-        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
 
     }
     void Start()
@@ -133,8 +127,11 @@ public class IngameOptionsMenu : MonoBehaviour
         }
         else
         {
-            dataLogger.Log("endGame", null, null, null, null, null);
-            dataLogger.PrintDataList();
+            if (DataLogger.Instance)
+            {
+                DataLogger.Instance.Log("endGame", "Thank you for playing ;-)");
+                DataLogger.Instance.PrintDataList();
+            }
             LoadScene("StartMenu");
         }
     }
@@ -184,7 +181,8 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void SetAudioBreadcrumsAudability()
     {
-        dataLogger.Log("setAudioBreadcrumsAudability", audioBreadcrumbsActive.ToString(), null, null, null, null);
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("setAudioBreadcrumsAudability", audioBreadcrumbsActive.ToString());
         for (int i = 0; i < musicSources.Length; i++)
         {
             {
@@ -202,7 +200,8 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void SetLights()
     {
-        dataLogger.Log("setLights", lightsActive.ToString(), null, null, null, null);
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("setLights", lightsActive.ToString());
         for (int i = 0; i < lights.Length; i++)
         {
             {
@@ -220,7 +219,8 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void SetInteriorVisbility()
     {
-        dataLogger.Log("setInteriorVisbility", interiorFurnishingActive.ToString(), null, null, null, null);
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("setInteriorVisbility", interiorFurnishingActive.ToString());
         for (int i = 0; i < interiorFurnishingHolders.Length; i++)
         {
             {
@@ -238,7 +238,8 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void SetWayfindingVisibility()
     {
-        dataLogger.Log("setWayfindingVisibility", signPostingActive.ToString(), null, null, null, null);
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("setWayfindingVisibility", signPostingActive.ToString());
         for (int i = 0; i < signPostingHolders.Length; i++)
         {
             {
@@ -256,7 +257,8 @@ public class IngameOptionsMenu : MonoBehaviour
 
     public void setMusicVolume()
     {
-        dataLogger.Log("setMusicVolume", musicVolume.ToString(), null, null, null, null);
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("setMusicVolume", musicVolume.ToString());
         for (int i = 0; i < musicSources.Length; i++)
         {
             {
@@ -274,7 +276,8 @@ public class IngameOptionsMenu : MonoBehaviour
 
     public void setSoundVolume()
     {
-        dataLogger.Log("setSoundVolume", soundVolume.ToString(), null, null, null, null);
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("setSoundVolume", soundVolume.ToString());
         soundSources = GameObject.FindGameObjectsWithTag("Sound");
         for (int i = 0; i < soundSources.Length; i++)
         {
@@ -286,7 +289,6 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("OnDisable in IngameOptionsManager");
         if (AppData.Instance)
         {
             //store audio settings.
@@ -299,7 +301,5 @@ public class IngameOptionsMenu : MonoBehaviour
             AppData.TestFactorSettings.interiorFurnishingVisible = interiorFurnishingActive;
             AppData.TestFactorSettings.signPostsVisible = signPostingActive;
         }
-        Debug.Log(AppData.AudioSettings.masterVolume + " - " + AppData.AudioSettings.musicVolume + " - " + AppData.AudioSettings.soundVolume);
-        Debug.Log(AppData.TestFactorSettings.audioBreadcrumsAudible + " - " + AppData.TestFactorSettings.lightsShining + " - " + AppData.TestFactorSettings.interiorFurnishingVisible + " - " + AppData.TestFactorSettings.signPostsVisible);
     }
 }

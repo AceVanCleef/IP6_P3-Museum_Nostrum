@@ -38,7 +38,6 @@ public class DoorScript : AbstractInteractiveGameObject
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        //if (DataVisualizerManager.Instance) DataVisualizerManager.GUI.DrawTouch(eventData.position);
         if (DataLogger.Instance) DataLogger.Instance.Log("touch", "On Door", eventData.position.ToString() );
         StartCoroutine(StartDoorTransition());
     }
@@ -53,11 +52,6 @@ public class DoorScript : AbstractInteractiveGameObject
         player.transform.position = targetPositionInfo.GetWorldPosition();
         targetPositionInfo.UpdatePlayerCameraRendering();
         
-        /*
-        if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.PlayerEnteredNewRoom();
-        if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.AfterViewDirectionChange();
-        if (DataVisualizerManager.Instance != null) DataVisualizerManager.Instance.TraceLineBetween(previousPos, player.transform.position);
-        */
 
         if (DataLogger.Instance)
         {

@@ -8,15 +8,9 @@ public class MainCameraConfigurator : MonoBehaviour, ITagEnsurance
     GameObject masterSlider;
     Slider slider;
 
-    private DataLogger dataLogger;
-
     void Start()
     {
         InitializeTag();
-
-        //get DataLogger
-        GameObject go = GameObject.Find("DataLogger");
-        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
 
     public void InitializeTag()
@@ -34,7 +28,8 @@ public class MainCameraConfigurator : MonoBehaviour, ITagEnsurance
         if (masterSlider)
         {
             slider = masterSlider.GetComponent<Slider>();
-            dataLogger.Log("setMasterVolume", slider.value.ToString(), null, null, null, null);
+            if (DataLogger.Instance)
+                DataLogger.Instance.Log("setMasterVolume", slider.value.ToString());
             AudioListener.volume = slider.value;
         }
     }

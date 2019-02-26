@@ -140,6 +140,10 @@ public abstract class HighlightingObject : MonoBehaviour {
         ActivateDoorHighlightning();
     }
 
+    /// <summary>
+    /// returns the selected gameObject.
+    /// </summary>
+    /// <returns></returns>
     protected GameObject GetSelectedGameObject()
     {
         return selectedGO;
