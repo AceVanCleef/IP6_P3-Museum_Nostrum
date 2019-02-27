@@ -349,6 +349,9 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         Renderer otherRenderer = selectedGO.GetComponent<Renderer>();
         if (selectedGO.tag == "Picture" && otherRenderer.material.mainTexture == null)
         {
+            if (WinConditionManager.Instance)
+                WinConditionManager.Instance.RegisterPickupOf(selectedGO.GetComponent<InteractivePicture>());
+
             Destroy(selectedGO);
         }
         Deselect();

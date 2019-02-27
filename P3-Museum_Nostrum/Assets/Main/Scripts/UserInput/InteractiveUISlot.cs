@@ -12,9 +12,7 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
 
     private static readonly Vector2 InitialSize = new Vector2(160f, 160f);
     private static readonly Vector2 HoverSize = new Vector2(200f, 200f);
-    //private static readonly Vector2 squareHoverSize = new Vector2(300f, 150f);
 
-    private DataLogger dataLogger;
 
     protected new virtual void Start()
     {
@@ -22,10 +20,6 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
 
         InitializeTag();
         ri = GetComponent<RawImage>();
-
-        //get DataLogger
-        GameObject go = GameObject.Find("DataLogger");
-        dataLogger = (DataLogger)go.GetComponent(typeof(DataLogger));
     }
 
     public void InitializeTag()
@@ -54,7 +48,12 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
 
             ActivatePictureFrameHighlightning();
 
-            dataLogger.Log("dragBeginSlot", gameObject.transform.parent.transform.parent.name, ri.texture.name, eventData.position.ToString(), null, null);
+            if (DataLogger.Instance)
+                DataLogger.Instance.Log("dragBeginSlot", 
+                    transform.parent.transform.parent.name,         //name of UISlot
+                    ri.texture.name,                                //texture name of UISlot
+                    eventData.position.ToString(),                  //start position of drag gesture
+                    transform.parent.transform.parent.position.ToString()); //position of UISlot
         }
     }
 
@@ -159,7 +158,7 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
         if (ri.texture == null) ri.color = Color.black;
     }
 
-    private bool HasTexture()
+    public bool HasTexture()
     {
         return ri.texture != null;
     }
@@ -205,6 +204,9 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
 
         if (selectedGO.tag == "Picture" && otherRenderer.material.mainTexture == null)
         {
+            if (WinConditionManager.Instance)
+                WinConditionManager.Instance.RegisterPickupOf(selectedGO.GetComponent<InteractivePicture>());
+
             Destroy(selectedGO);
         }
         Deselect();

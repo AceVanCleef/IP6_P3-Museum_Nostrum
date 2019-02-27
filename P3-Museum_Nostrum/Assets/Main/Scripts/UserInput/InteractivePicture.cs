@@ -191,8 +191,11 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
     private void AttachPictureToUISlot(GameObject uiSlot)
     {
         RawImage ri = uiSlot.GetComponent<RawImage>();
+
+        //checks whether a uni- or bi-directional exchange of textures has happened.
         if (ri.texture == null)
         {
+            //unidirectional exchange
             ri.texture = pictureRenderer.material.mainTexture;
             ri.color = Color.white;
 
@@ -204,17 +207,23 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
                     transform.position.ToString(),                  //picture's position in 3D world space.
                     uiSlot.transform.parent.transform.parent.position.ToString());  //UISlot's position in UI relative to its parent.
 
+            if (WinConditionManager.Instance)
+                WinConditionManager.Instance.RegisterPickupOf(GetComponent<InteractivePicture>());
+
             Destroy(gameObject);
         }
         else
         {
+            //bidirectional exchange
+
             //reset position.
             transform.position = startPosition;
 
+            //turn UISlot from black to white.
             ri.color = Color.white;
 
-             //Swap
-             Texture cachedTexture = ri.texture;
+            //Swap textures
+            Texture cachedTexture = ri.texture;
             ri.texture = pictureRenderer.material.mainTexture;
             pictureRenderer.material.mainTexture = cachedTexture;
 
@@ -248,12 +257,18 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
                 pictureCanvas.transform.parent.position.ToString(), //position of target frame relative to its room.
                 transform.position.ToString());                 //picture's position in 3D world space.
 
+        //checks whether a uni- or bi-directional exchange of textures has happened.
         if (pictureRenderer.material.mainTexture == null)
         {
+            //unidirectional exchange
+            if (WinConditionManager.Instance)
+                WinConditionManager.Instance.RegisterPickupOf(GetComponent<InteractivePicture>());
+
             Destroy(gameObject);
         }
         else
         {
+            //bidirectoinal exchange
             transform.position = startPosition;
         }
     }
