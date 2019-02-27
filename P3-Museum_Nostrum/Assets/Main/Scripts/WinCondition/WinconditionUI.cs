@@ -13,13 +13,14 @@ public class WinconditionUI : MonoBehaviour {
     private TextMeshProUGUI currentCountTxt;
     private TextMeshProUGUI totalCountTxt;
 
+    void Awake()
+    {
+        InitWinConditionGUI();
+    }
+
     // Use this for initialization
     void Start () {
-		if (WinConditionManager.Instance)
-        {
-            InitWinConditionGUI();
-        }
-        else
+		if (!WinConditionManager.Instance)
         {
             gameObject.SetActive(false);
             Debug.Log("Missing WinConditionManager instance.");
@@ -52,6 +53,7 @@ public class WinconditionUI : MonoBehaviour {
     /// <param name="c"></param>
     public void SetTotalCountTo(int c)
     {
+        Debug.Log(totalCountTxt);
         totalCountTxt.text = c.ToString();
     }
 

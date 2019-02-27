@@ -61,14 +61,19 @@ public class WinConditionManager : MonoBehaviour {
 
         //Setup UI values.
         winUI = UnityEngine.Object.FindObjectOfType<WinconditionUI>();
-        winUI.SetTotalCountTo(initialPictureCount);
-        winUI.SetCurrentCountTo(pictureCount);
+        if (winUI)
+        {
+            winUI.SetTotalCountTo(initialPictureCount);
+            winUI.SetCurrentCountTo(pictureCount);
+        }
+
 
 
         //in case no pictures are placed in level (e.g. during level creation process)
         if (initialPictureCount < 1)
         {
-            winUI.gameObject.SetActive(false);
+            if (winUI)
+                winUI.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }
@@ -78,9 +83,12 @@ public class WinConditionManager : MonoBehaviour {
         if (IsWon())
         {
             //update UI.
-            winUI.HideWinGuidanceMsg();
-            winUI.ShowWonMsg();
-
+            if (winUI)
+            {
+                winUI.HideWinGuidanceMsg();
+                winUI.ShowWonMsg();
+            }
+            
             //execute cleanup
             CleanUp();
         }
@@ -96,7 +104,7 @@ public class WinConditionManager : MonoBehaviour {
 
     private IEnumerator CleanUpAfter(float seconds)
     {
-        //Write collected data to JSON
+        //Write collected data to JSON file.
         if (DataLogger.Instance)
         {
             DataLogger.Instance.Log("endGame", "Win condition is met.", "Thank you for playing ;-)");
@@ -117,12 +125,14 @@ public class WinConditionManager : MonoBehaviour {
     public bool RegisterPickupOf(InteractivePicture picture)
     {
         ++pictureCount;
-        winUI.SetCurrentCountTo(pictureCount);
+        if (winUI)
+            winUI.SetCurrentCountTo(pictureCount);
+
         if (AreAllPicturesFound())
         {
             //inform player how to finish the game.
-            Debug.Log("All pictures found: " + pictureCount + " / " + initialPictureCount);
-            winUI.ShowWinGuidanceMsg();
+            if (winUI)
+                winUI.ShowWinGuidanceMsg();
         }
         return allPictures.Remove(picture);
     }
@@ -145,7 +155,6 @@ public class WinConditionManager : MonoBehaviour {
         {
             ++i;
         }
-        Debug.Log("i: " + i + " slots count: " + allUISlots.Count + " all empty? " + (i == allUISlots.Count));
         return i == allUISlots.Count;
     }
 }
