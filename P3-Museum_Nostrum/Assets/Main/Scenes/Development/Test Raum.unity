@@ -1900,6 +1900,23 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1480471003749610, guid: 8e9748c9e235b8d4989634bd92cc38e4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877275085071232, guid: 8e9748c9e235b8d4989634bd92cc38e4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019227917660882, guid: 8e9748c9e235b8d4989634bd92cc38e4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224635525541875400, guid: 8e9748c9e235b8d4989634bd92cc38e4,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e9748c9e235b8d4989634bd92cc38e4, type: 2}
   m_IsPrefabAsset: 0
