@@ -14,10 +14,15 @@ public class IngameOptionsMenu : MonoBehaviour
     GameObject[] interiorFurnishingHolders;
     GameObject[] signPostingHolders;
 
+    GameObject compass;
+    GameObject mapOfGameLevel;
+
     private bool audioBreadcrumbsActive = true;
     private bool lightsActive = true;
     private bool interiorFurnishingActive = true;
     private bool signPostingActive = true;
+    private bool compassActive = true;
+    private bool mapActive = true;
 
     private float masterVolume;
     private float musicVolume;
@@ -26,6 +31,28 @@ public class IngameOptionsMenu : MonoBehaviour
 
     private GameObject[] soundSources;
 
+    [Header("Child GameObject called 'Options'")]
+    public GameObject optionsGO;
+
+    [Space(10)]
+
+    //GameObject references from Inspector
+    [Header("Volume Sliders")]
+    public GameObject masterVolumeSliderGO;
+    public GameObject musicSliderGO;
+    public GameObject soundSliderGO;
+
+    [Space(10)]
+
+    [Header("Test Factor Toggles")]
+    public GameObject audioToggleGO;
+    public GameObject lightsToggleGO;
+    public GameObject interiorToggleGO;
+    public GameObject signPostingsToggleGO;
+    public GameObject compassToggleGO;
+    public GameObject mapToggleGO;
+
+    //script references
     Slider masterVolumeSlider;
     Slider musicSlider;
     Slider soundSlider;
@@ -33,7 +60,9 @@ public class IngameOptionsMenu : MonoBehaviour
     Toggle audioToggle;
     Toggle lightsToggle;
     Toggle interiorToggle;
-    Toggle wayfindingToggle;
+    Toggle signPostingsToggle;
+    Toggle compassToggle;
+    Toggle mapToggle;
 
     void Awake()
     {
@@ -53,37 +82,33 @@ public class IngameOptionsMenu : MonoBehaviour
             lightsActive = AppData.TestFactorSettings.lightsShining;
             interiorFurnishingActive = AppData.TestFactorSettings.interiorFurnishingVisible;
             signPostingActive = AppData.TestFactorSettings.signPostsVisible;
+            compassActive = AppData.TestFactorSettings.compassAvailable;
+            mapActive = AppData.TestFactorSettings.mapAvailable;
         }
 
     }
     void Start()
     {
-        musicSources = GameObject.FindGameObjectsWithTag("BackgroundMusic");
-        lights = GameObject.FindGameObjectsWithTag("Lights");
+        FindObjectsInCurrentScene();    //Must come first.
+        InitGameObjectValues();         //Must come second.
+        InitGUIElements();              //Must come third.
+        RegisterToggleEventHandlers();  //Must come fourth.
+    }
+
+    #region Initialization
+
+    private void FindObjectsInCurrentScene()
+    {
+        musicSources        = GameObject.FindGameObjectsWithTag("BackgroundMusic");
+        lights              = GameObject.FindGameObjectsWithTag("Lights");
         interiorFurnishingHolders = GameObject.FindGameObjectsWithTag("InteriorHolder");
-        signPostingHolders = GameObject.FindGameObjectsWithTag("WayfindingHolder");
-        soundSources = GameObject.FindGameObjectsWithTag("Sound");
+        signPostingHolders  = GameObject.FindGameObjectsWithTag("WayfindingHolder");
+        soundSources        = GameObject.FindGameObjectsWithTag("Sound");
+        CompassScript cs    = UnityEngine.Object.FindObjectOfType<CompassScript>();
+        MovePointMap mpm    = UnityEngine.Object.FindObjectOfType<MovePointMap>();
 
-        Slider[] sliders = GetComponentsInChildren<Slider>();
-        Debug.Log(sliders.Length);
-        for (int i = 0; i < sliders.Length; ++i)
-        {
-            if (sliders[i].name == "MasterSlider") masterVolumeSlider = sliders[i];
-            if (sliders[i].name == "MusicSlider") musicSlider = sliders[i];
-            if (sliders[i].name == "SoundSlider") soundSlider = sliders[i];
-        }
-
-        Toggle[] toggles = GetComponentsInChildren<Toggle>();
-        for (int i = 0; i < toggles.Length; ++i)
-        {
-            if (toggles[i].name == "Audio") audioToggle = toggles[i];
-            if (toggles[i].name == "Light") lightsToggle = toggles[i];
-            if (toggles[i].name == "Interior") interiorToggle = toggles[i];
-            if (toggles[i].name == "WayFinding") wayfindingToggle = toggles[i];
-        }
-
-        InitGameObjectValues(); //Must come first.
-        InitGUIElements();      //Must come second.
+        if (cs)             compass = cs.gameObject;
+        if (mpm)            mapOfGameLevel = mpm.gameObject;
     }
 
     private void InitGameObjectValues()
@@ -97,25 +122,74 @@ public class IngameOptionsMenu : MonoBehaviour
         SetAudioBreadcrumsAudability();
         SetLights();
         SetWayfindingVisibility();
+        SetCompassVisibility();
+        SetMapVisibility();
     }
 
     private void InitGUIElements()
     {
-        if (AppData.Instance)
-        {
-            masterVolumeSlider.value = AppData.AudioSettings.masterVolume;
-            musicSlider.value = AppData.AudioSettings.musicVolume;
-            soundSlider.value = AppData.AudioSettings.soundVolume;
+        //retrieve UI elements
+        masterVolumeSlider  = masterVolumeSliderGO.GetComponent<Slider>();
+        musicSlider         = musicSliderGO.GetComponent<Slider>();
+        soundSlider         = soundSliderGO.GetComponent<Slider>();
 
-            audioToggle.isOn = AppData.TestFactorSettings.audioBreadcrumsAudible;
-            lightsToggle.isOn = AppData.TestFactorSettings.lightsShining;
-            interiorToggle.isOn = AppData.TestFactorSettings.interiorFurnishingVisible;
-            wayfindingToggle.isOn = AppData.TestFactorSettings.signPostsVisible;
-        }
-        
+        audioToggle         = audioToggleGO.GetComponent<Toggle>();
+        lightsToggle        = lightsToggleGO.GetComponent<Toggle>();
+        interiorToggle      = interiorToggleGO.GetComponent<Toggle>();
+        signPostingsToggle    = signPostingsToggleGO.GetComponent<Toggle>();
+        compassToggle       = compassToggleGO.GetComponent<Toggle>();
+        mapToggle           = mapToggleGO.GetComponent<Toggle>();
+
+        //set values
+        masterVolumeSlider.value = masterVolume;
+        musicSlider.value = musicVolume;
+        soundSlider.value = soundVolume;
+
+        //Note: setting a value into isOn property will trigger a value change event.
+        //      Therefore, event handlers have to be registered afterwards.
+        //      Otherwise, state and UI representation will be out of sync.
+        //Read more: https://forum.unity.com/threads/change-the-value-of-a-toggle-without-triggering-onvaluechanged.275056/
+
+        audioToggle.onValueChanged.RemoveAllListeners();
+        lightsToggle.onValueChanged.RemoveAllListeners();
+        interiorToggle.onValueChanged.RemoveAllListeners();
+        signPostingsToggle.onValueChanged.RemoveAllListeners();
+        compassToggle.onValueChanged.RemoveAllListeners();
+        mapToggle.onValueChanged.RemoveAllListeners();
+
+
+        audioToggle.isOn = audioBreadcrumbsActive;
+        lightsToggle.isOn = lightsActive;
+        interiorToggle.isOn = interiorFurnishingActive;
+        signPostingsToggle.isOn = signPostingActive;
+        compassToggle.isOn = compassActive;
+        mapToggle.isOn = mapActive;
+
         //Options panel is expected to be active when scene is being loaded.
-        GameObject.Find("Options").SetActive(false);
+        optionsGO.SetActive(false);
     }
+
+    private void RegisterToggleEventHandlers()
+    {
+        //Must be done via code after toggle.isOn values are set!
+        //Read more: https://forum.unity.com/threads/change-the-value-of-a-toggle-without-triggering-onvaluechanged.275056/
+
+        audioToggle.onValueChanged.AddListener(delegate { toggleAudio(); });
+
+        lightsToggle.onValueChanged.AddListener(delegate { toggleLights(); });
+
+        interiorToggle.onValueChanged.AddListener(delegate { toggleInterior(); });
+
+        signPostingsToggle.onValueChanged.AddListener(delegate { toggleWayfinding(); });
+
+        compassToggle.onValueChanged.AddListener(delegate { toggleCompassVisibility(); });
+
+        mapToggle.onValueChanged.AddListener( delegate { toggleMapVisibility(); });
+    }
+
+    #endregion Initialization
+
+
 
     public void closeScene()
     {
@@ -172,11 +246,14 @@ public class IngameOptionsMenu : MonoBehaviour
     }
     #endregion LoadingScenes
 
+
+    #region TestFactorCallbacks
+
     public void toggleAudio()
     {
         //toggle audio
-        SetAudioBreadcrumsAudability();
         audioBreadcrumbsActive = !audioBreadcrumbsActive;
+        SetAudioBreadcrumsAudability();
     }
 
     private void SetAudioBreadcrumsAudability()
@@ -194,8 +271,8 @@ public class IngameOptionsMenu : MonoBehaviour
     public void toggleLights()
     {
         //toggle lights
-        SetLights();
         lightsActive = !lightsActive;
+        SetLights();
     }
 
     private void SetLights()
@@ -213,8 +290,8 @@ public class IngameOptionsMenu : MonoBehaviour
     public void toggleInterior()
     {
         //toggle interior objects
-        SetInteriorVisbility();
         interiorFurnishingActive = !interiorFurnishingActive;
+        SetInteriorVisbility();
     }
 
     private void SetInteriorVisbility()
@@ -232,8 +309,8 @@ public class IngameOptionsMenu : MonoBehaviour
     public void toggleWayfinding()
     {
         //toggle wayfinding
-        SetWayfindingVisibility();
         signPostingActive = !signPostingActive;
+        SetWayfindingVisibility();
     }
 
     private void SetWayfindingVisibility()
@@ -247,6 +324,41 @@ public class IngameOptionsMenu : MonoBehaviour
             }
         }
     }
+
+    public void toggleCompassVisibility()
+    {
+        compassActive = !compassActive;
+        SetCompassVisibility();
+    }
+
+    public void SetCompassVisibility()
+    {
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("setCompassVisibility", compassActive.ToString());
+        if (compass)
+            compass.SetActive(compassActive);
+        Debug.Log("Set compass to " + compassActive);
+    }
+
+    public void toggleMapVisibility()
+    {
+        mapActive = !mapActive;
+        SetMapVisibility();
+        Debug.Log("options: mapactive after toggle = " + mapActive);
+    }
+
+    public void SetMapVisibility()
+    {
+        if (DataLogger.Instance)
+            DataLogger.Instance.Log("setMapVisibility", mapActive.ToString());
+        if (mapOfGameLevel)
+            mapOfGameLevel.SetActive(mapActive);
+        Debug.Log("Set map to " + mapActive);
+    }
+
+    #endregion TestFactorCallbacks
+
+    #region AudioCallBacks
 
     public void setMusicVolumeValue()
     {
@@ -287,6 +399,8 @@ public class IngameOptionsMenu : MonoBehaviour
         }
     }
 
+    #endregion AudioCallBacks
+
     private void OnDisable()
     {
         if (AppData.Instance)
@@ -295,11 +409,18 @@ public class IngameOptionsMenu : MonoBehaviour
             AppData.AudioSettings.masterVolume = masterVolume;
             AppData.AudioSettings.musicVolume = musicVolume;
             AppData.AudioSettings.soundVolume = soundVolume;
+
             //store test factor settings.
             AppData.TestFactorSettings.audioBreadcrumsAudible = audioBreadcrumbsActive;
             AppData.TestFactorSettings.lightsShining = lightsActive;
             AppData.TestFactorSettings.interiorFurnishingVisible = interiorFurnishingActive;
             AppData.TestFactorSettings.signPostsVisible = signPostingActive;
+            AppData.TestFactorSettings.compassAvailable = compassActive;
+            AppData.TestFactorSettings.mapAvailable = mapActive;
+
+            Debug.Log("options: mapactive at ondisable = " + mapActive);
+
+            Debug.Log("OnDisable: " + AppData.Instance.PrintValues());
         }
     }
 }

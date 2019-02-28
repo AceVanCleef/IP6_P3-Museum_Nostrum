@@ -53,7 +53,6 @@ public class WinconditionUI : MonoBehaviour {
     /// <param name="c"></param>
     public void SetTotalCountTo(int c)
     {
-        Debug.Log(totalCountTxt);
         totalCountTxt.text = c.ToString();
     }
 

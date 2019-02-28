@@ -16,7 +16,7 @@ public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
         base.Start();
 
         InitializeUIDetectionTools();
-        Debug.Log("AbstractUIDetectingGameObject started");
+        //Debug.Log("AbstractUIDetectingGameObject started");
 
     }
 

@@ -23,7 +23,7 @@ public class AbstractSilhouetteHighlighter : MonoBehaviour, IHighlighter {
         //Set Outline mode to SilhouetteOnly.
         if (outlineScript.OutlineMode != Outline.Mode.SilhouetteOnly)
         {
-            Debug.LogWarning("Outline mode 'SilhouetteOnly' expected. Settings have been automatically adjusted.");
+            //Debug.LogWarning("Outline mode 'SilhouetteOnly' expected. Settings have been automatically adjusted.");
             outlineScript.OutlineMode = Outline.Mode.SilhouetteOnly;
         }
 

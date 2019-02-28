@@ -208,3 +208,13 @@ private void Toggle() {
 ```
 - Source [Setting to Show Camera Cone Always?
 ](https://answers.unity.com/questions/1159913/setting-to-show-camera-cone-always.html)
+
+## Setting a Toggle.isOn value
+In order to prevent errors, you have to do it in the following order:
+```
+        audioToggle.onValueChanged.RemoveAllListeners();
+        audioToggle.isOn = audioBreadcrumbsActive;
+        audioToggle.onValueChanged.AddListener(delegate { toggleAudio(); });
+```
+Otherwise, isOn will trigger an ChangedValue event and thus forcibly trigger the logic of any registered event handler function.
+- [Change the Value of a Toggle without triggering OnValueChanged?](https://forum.unity.com/threads/change-the-value-of-a-toggle-without-triggering-onvaluechanged.275056/)

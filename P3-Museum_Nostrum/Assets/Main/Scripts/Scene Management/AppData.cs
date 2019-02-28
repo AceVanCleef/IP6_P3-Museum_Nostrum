@@ -24,6 +24,13 @@ public class AppData : MonoBehaviour {
         public static float masterVolume;
         public static float musicVolume;
         public static float soundVolume;
+
+        internal static string PrintValues()
+        {
+            return "MasterVolume: " + masterVolume + ". MusicVolume: " + 
+                musicVolume + ". SoundVolume: " + 
+                soundVolume + ".";
+        }
     }
 
     //initializes values when game launches.
@@ -55,6 +62,24 @@ public class AppData : MonoBehaviour {
         /// stores whether sign posts meant for pathfinding and orientation are visible to the player.
         /// </summary>
         public static bool signPostsVisible;
+        /// <summary>
+        /// stores whether compass meant for pathfinding and orientation is visible to the player.
+        /// </summary>
+        public static bool compassAvailable;
+        /// <summary>
+        /// stores whether a level map meant for pathfinding and orientation is visible to the player.
+        /// </summary>
+        public static bool mapAvailable;
+
+        internal static string PrintValues()
+        {
+            return " Audio on? " + audioBreadcrumsAudible +
+                ". Lights on? " + lightsShining +
+                ". Furnishing visible? " + interiorFurnishingVisible +
+                ". Sign postings visible? " + signPostsVisible +
+                ". Compass visible? " + compassAvailable +
+                ". Ingame Map visible? " + mapAvailable;
+        }
     }
 
     //initializes values when game launches.
@@ -64,11 +89,14 @@ public class AppData : MonoBehaviour {
         TestFactorSettings.lightsShining                = true;
         TestFactorSettings.interiorFurnishingVisible    = true;
         TestFactorSettings.signPostsVisible             = true;
+        TestFactorSettings.compassAvailable             = true;
+        TestFactorSettings.mapAvailable                 = true;
     }
 
     // Use this for initialization
     void Awake()
     {
+        Debug.Log("launching appdata obj");
         if (instance == null)
         {
             instance = this;
@@ -80,6 +108,11 @@ public class AppData : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+    }
+
+    public string PrintValues()
+    {
+        return AudioSettings.PrintValues() + " - " + TestFactorSettings.PrintValues();
     }
 
 }

@@ -27,7 +27,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     {
         base.Start();
 
-        Debug.Log("InteractivePictureFrame started");
+        //Debug.Log("InteractivePictureFrame started");
         startPosition = transform.position;
         //Your other initialization code...
 

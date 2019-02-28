@@ -107,8 +107,10 @@ public sealed class InputManager : MonoBehaviour {
     private void InitializeButtonCallbacks()
     {
         //setup left and right buttons
-        GameObject.Find("LeftButton").GetComponent<Button>().onClick.AddListener(OnLeftButtonClick);
-        GameObject.Find("RightButton").GetComponent<Button>().onClick.AddListener(OnRightButtonClick);
+        GameObject lbGO = GameObject.Find("LeftButton");
+        if (lbGO) lbGO.GetComponent<Button>().onClick.AddListener(OnLeftButtonClick);
+        GameObject rbGO = GameObject.Find("RightButton");
+        if (rbGO) rbGO.GetComponent<Button>().onClick.AddListener(OnRightButtonClick);
         //Other callbacks...
 
     }
