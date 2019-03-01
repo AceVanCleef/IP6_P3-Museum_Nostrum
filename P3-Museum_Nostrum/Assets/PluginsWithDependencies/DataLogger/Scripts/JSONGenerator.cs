@@ -53,17 +53,14 @@ public class JSONGenerator : MonoBehaviour
     {
         string path = null;
         string mainObject;
-        #if UNITY_EDITOR
-        
-        path = "Assets/PluginsWithDependencies/DataLogger/DataLoggerFiles/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
-        Debug.Log("pfad" + path);
+
+        //path = "Assets/PluginsWithDependencies/DataLogger/DataLoggerFiles/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
+
         mainObject = "{\"prototypVersion\" : \"Prototyp3\", \"level\" : \"" + SceneManager.GetActiveScene().name + "\", \"entries\" :[" + System.Environment.NewLine;
 
-#endif
-#if UNITY_STANDALONE
         string persistentDataPath = Application.persistentDataPath;
-      //  path = persistentDataPath + "/DataLoggerFiles/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
-#endif
+        path = persistentDataPath + "/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
+
 
         using (FileStream fs = new FileStream(path, FileMode.Create))
         {
