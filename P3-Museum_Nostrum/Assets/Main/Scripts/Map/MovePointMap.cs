@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class MovePointMap : MonoBehaviour
 {
     Dictionary<string, float[]> dictionary = new Dictionary<string, float[]>();
-    private RectTransform rect;
+    private RectTransform playerPointerRect;
+    private PlayerPointerScript pps;
 
-    public Image mapPoint;
+    public GameObject PlayerPointer;
 
     private bool isMapOpen = false;
 
@@ -69,13 +70,15 @@ public class MovePointMap : MonoBehaviour
         dictionary.Add("Cellar Room E", new float[] { 442f, 311f});
         
         //initialises the RectTransfrom of the point, which indicates the position on the map
-        rect = mapPoint.GetComponent<RectTransform>();
+        playerPointerRect = PlayerPointer.GetComponent<RectTransform>();
+        //cache a reference to player pointer script, responsible for enabling7disabling 
+        //the player representation on the map.
+        pps = PlayerPointer.GetComponent<PlayerPointerScript>();
     }
     
     //inverts the alpha channel of the map point.map point can not be disabled like the map itself, because it needs to moved, eventhough its not visible.
     public void toggleMap()
     {
-        var tempColor = mapPoint.color;
         if (!isMapOpen)
         {
             if (DataLogger.Instance)
@@ -84,7 +87,7 @@ public class MovePointMap : MonoBehaviour
                 DataLogger.Instance.Log("touch", "On MapToggleIcon", Input.mousePosition.ToString());
                 DataLogger.Instance.Log("openMap", Input.mousePosition.ToString());
             }
-            tempColor.a = 100f;
+            pps.ChangeVisibilityTo(100f);
         }
         else
         {
@@ -95,9 +98,8 @@ public class MovePointMap : MonoBehaviour
                 DataLogger.Instance.Log("closeMap", Input.mousePosition.ToString());
 
             }
-            tempColor.a = 0f;
+            pps.ChangeVisibilityTo(0f);
         }
-        mapPoint.color = tempColor;
         isMapOpen = !isMapOpen;
     }
 
@@ -113,7 +115,7 @@ public class MovePointMap : MonoBehaviour
             pos.z = 0f;
 
             //sets the new position
-            rect.anchoredPosition = pos;
+            playerPointerRect.anchoredPosition = pos;
         }
     }
 }

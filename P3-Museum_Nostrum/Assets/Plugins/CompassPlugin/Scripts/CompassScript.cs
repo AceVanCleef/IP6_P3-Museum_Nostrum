@@ -29,7 +29,7 @@ public class CompassScript : MonoBehaviour {
         //Get the source of the rotation, namely the player GameObject.
         playerTransform = Camera.main.GetComponent<Transform>();
 
-        //Find RectTransform of image named "Direction needle"...
+        //Find RectTransform of image that indicates view direction of the player...
         RectTransform[] rectTransforms = GetComponentsInChildren<RectTransform>();
         int i = 0;
         while (i < rectTransforms.Length && rectTransforms[i].name != "Background")

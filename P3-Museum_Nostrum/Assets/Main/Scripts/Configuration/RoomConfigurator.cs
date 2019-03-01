@@ -59,6 +59,7 @@ public class RoomConfigurator : MonoBehaviour, ITagEnsurance {
         if (Application.isPlaying)
         {
             // code executed in play mode
+
         }
         else
         {
@@ -200,6 +201,13 @@ public class RoomConfigurator : MonoBehaviour, ITagEnsurance {
     void Start()
     {
         InitializeTag();
+
+        //adjust camera rendering range if player starts in this room.
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (Vector3.Distance(transform.position, player.transform.position) < 0.01f)
+        {
+            AdjustRenderingRangeOfPlayerCamera();
+        }
     }
 
     public void InitializeTag()
