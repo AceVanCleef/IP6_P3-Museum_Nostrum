@@ -71,7 +71,7 @@ public class DoorScript : AbstractInteractiveGameObject
 
         //moves the point on the map
         if (movePointMap)
-            movePointMap.movePointMap(TargetCameraPositionNode.transform.root.gameObject.name);
+            movePointMap.moveMapPointer(TargetCameraPositionNode.transform.root.gameObject.name);
     }
 
 

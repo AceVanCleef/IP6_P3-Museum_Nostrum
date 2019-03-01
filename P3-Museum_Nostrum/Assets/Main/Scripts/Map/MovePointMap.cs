@@ -15,7 +15,7 @@ public class MovePointMap : MonoBehaviour
 
     void Start()
     {
-        //coordindates uf each room on the ground view
+        //coordindates of each room on the ground view
         //the name of each room is used as key
         dictionary.Add("Entrance Hall", new float[] { 200f, 223f});
         dictionary.Add("Corridor EntranceHall_Museumsshop", new float[] { 275f, 237f});
@@ -104,14 +104,14 @@ public class MovePointMap : MonoBehaviour
     }
 
 
-    public void movePointMap(string parentName)
+    public void moveMapPointer(string roomName)
     {
-        if (dictionary.ContainsKey(parentName))
+        if (dictionary.ContainsKey(roomName))
         {
             //gets the coordinates from the dictionary
             Vector3 pos;
-            pos.x = dictionary[parentName][0];
-            pos.y = dictionary[parentName][1];
+            pos.x = dictionary[roomName][0];
+            pos.y = dictionary[roomName][1];
             pos.z = 0f;
 
             //sets the new position
