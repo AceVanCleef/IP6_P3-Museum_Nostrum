@@ -49,11 +49,11 @@ public class MovePointMap : MonoBehaviour
         dictionary.Add("Alongside Wing R1", new float[] { 27f, 313f});
         dictionary.Add("Alongside Wing R2", new float[] { 27f, 335f});
         dictionary.Add("Alongside Wing R3", new float[] { 27f, 358f});
-        dictionary.Add("Room 1", new float[] { 116f, 312f});
-        dictionary.Add("Room 2", new float[] { 139f, 312f});
-        dictionary.Add("Room 3", new float[] { 139f, 335f});
-        dictionary.Add("Room 4", new float[] { 161f, 335f});
-        dictionary.Add("Room 5", new float[] { 161f, 312f});
+        dictionary.Add("Room 1", new float[] { 127f, 312f});
+        dictionary.Add("Room 2", new float[] { 139f, 335f});
+        dictionary.Add("Room 3", new float[] { 115f, 335f});
+        dictionary.Add("Room 4", new float[] { 115f, 357f});
+        dictionary.Add("Room 5", new float[] { 139f, 357f});
         dictionary.Add("Corridor RoomX_LeftGallery", new float[] { 69f, 283f});
         dictionary.Add("Room_X", new float[] { 69f, 241f});
         dictionary.Add("WC - Left", new float[] { 28f, 246f});

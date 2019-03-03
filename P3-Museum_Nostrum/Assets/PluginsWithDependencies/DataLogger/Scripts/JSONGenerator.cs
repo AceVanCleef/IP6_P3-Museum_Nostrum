@@ -61,7 +61,7 @@ public class JSONGenerator : MonoBehaviour
         string persistentDataPath = Application.persistentDataPath;
         path = persistentDataPath + "/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
 
-
+        Debug.Log("Pfad:" + path);
         using (FileStream fs = new FileStream(path, FileMode.Create))
         {
 
@@ -78,6 +78,7 @@ public class JSONGenerator : MonoBehaviour
             }
 
         }
+        Debug.Log("End:" + path);
 #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
 #endif
