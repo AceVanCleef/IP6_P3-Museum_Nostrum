@@ -35,6 +35,8 @@ public class WinConditionManager : MonoBehaviour {
 
     private WinconditionUI winUI;
 
+    bool isCleanedUp = false;
+
     void Awake()
     {
         //ensure singleton.
@@ -88,9 +90,13 @@ public class WinConditionManager : MonoBehaviour {
                 winUI.HideWinGuidanceMsg();
                 winUI.ShowWonMsg();
             }
-            
+
             //execute cleanup
-            CleanUp();
+            if (!isCleanedUp)
+            {
+                CleanUp();
+                isCleanedUp = true;
+            }
         }
     }
 
