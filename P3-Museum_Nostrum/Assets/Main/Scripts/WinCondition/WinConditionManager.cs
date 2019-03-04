@@ -137,8 +137,8 @@ public class WinConditionManager : MonoBehaviour {
         if (AreAllPicturesFound())
         {
             //inform player how to finish the game.
-            if (winUI)
-                winUI.ShowWinGuidanceMsg();
+           /* if (winUI)
+                winUI.ShowWinGuidanceMsg();*/
         }
         return allPictures.Remove(picture);
     }
@@ -146,7 +146,7 @@ public class WinConditionManager : MonoBehaviour {
 
     private bool IsWon()
     {
-        return AreAllPicturesFound() && AreAllUISlotsEmpty();
+        return AreAllPicturesFound() /*&& AreAllUISlotsEmpty()*/;
     }
 
     private bool AreAllPicturesFound()
