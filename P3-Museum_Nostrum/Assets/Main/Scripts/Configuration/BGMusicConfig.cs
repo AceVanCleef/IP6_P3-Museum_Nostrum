@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BGMusicConfig : MonoBehaviour, ITagEnsurance {
 
-    void Start()
+    void Awake()
     {
         InitializeTag();
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteriorDecorHolderConfig : MonoBehaviour, ITagEnsurance {
 
-    void Start()
+    void Awake()
     {
         InitializeTag();
     }

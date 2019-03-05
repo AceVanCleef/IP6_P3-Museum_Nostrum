@@ -8,7 +8,7 @@ public class MainCameraConfigurator : MonoBehaviour, ITagEnsurance
     GameObject masterSlider;
     Slider slider;
 
-    void Start()
+    void Awake()
     {
         InitializeTag();
     }

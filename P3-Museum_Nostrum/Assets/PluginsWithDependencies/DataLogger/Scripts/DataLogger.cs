@@ -44,7 +44,7 @@ public class DataLogger : MonoBehaviour {
     //Initializes the game for each level.
     public void Log(string actionName, string value1, string value2 = null, string value3 = null, string value4 = null, string value5 = null, string value6 = null, string value7 = null)
     {
-        Debug.Log(Time.time + "_Action" + actionName + "_value1" + value1 + "_value2" + value2 + "_value3" + value3 + "_value4" + value4 + "_value5" + value5 + "_value6" + value6 + "_value7" + value7);
+        //Debug.Log(Time.time + "_Action" + actionName + "_value1" + value1 + "_value2" + value2 + "_value3" + value3 + "_value4" + value4 + "_value5" + value5 + "_value6" + value6 + "_value7" + value7);
         dataList.Add(new KeyValuePair<float, Action>(Time.time, new Action()
         {
             ActionName = actionName,

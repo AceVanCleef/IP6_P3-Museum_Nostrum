@@ -21,6 +21,18 @@ public class PlayerPointerScript : MonoBehaviour {
     public bool invertRotationDirection = true;
     private float invertValue;  //either 1f or -1f.
 
+    void Awake()
+    {
+        InitializeTag();
+    }
+
+    public void InitializeTag()
+    {
+        if (gameObject.tag != "PlayerPointer")
+        {
+            gameObject.tag = "PlayerPointer";
+        }
+    }
 
     // Use this for initialization
     void Start () {

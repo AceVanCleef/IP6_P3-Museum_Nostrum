@@ -56,7 +56,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
             DataLogger.Instance.Log("dragBeginFrame", 
                 transform.root.name,                        //room name
                 transform.parent.name,                      //name of the picture frame
-                pictureRenderer.material.mainTexture.name,  //which texture?
+                ((pictureRenderer.material.mainTexture) ? pictureRenderer.material.mainTexture.name: ""),  //which texture?
                 eventData.position.ToString(),              //UI touch position
                 transform.parent.position.ToString());      //picture frame's position relative to the room's position.
 
@@ -111,7 +111,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
                 DataLogger.Instance.Log("dragEndFrame", 
                     transform.root.name,                        //name of current room
                     transform.parent.name,                      //name of picture frame
-                    pictureRenderer.material.mainTexture.name,  //texture name of picture frame
+                    ((pictureRenderer.material.mainTexture) ? pictureRenderer.material.mainTexture.name : ""),  //texture name of picture frame
                     eventData.position.ToString(),              //end position of drag motion.
                     transform.parent.position.ToString());      //position of picture frame relative to its room.
         }

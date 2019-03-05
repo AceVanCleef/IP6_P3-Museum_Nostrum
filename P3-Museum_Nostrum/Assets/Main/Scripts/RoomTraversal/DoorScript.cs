@@ -31,7 +31,7 @@ public class DoorScript : AbstractInteractiveGameObject
         InitializeWalkAnimation();
 
         //initialisations for map
-        GameObject mapPoint = GameObject.Find("MapWrapper");
+        GameObject mapPoint = GameObject.FindWithTag("PlayerPointer");
         if (mapPoint)
            movePointMap = (MovePointMap)mapPoint.GetComponent(typeof(MovePointMap));
     }

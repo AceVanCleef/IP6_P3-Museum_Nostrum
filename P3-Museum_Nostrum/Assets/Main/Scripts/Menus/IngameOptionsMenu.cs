@@ -105,7 +105,7 @@ public class IngameOptionsMenu : MonoBehaviour
         signPostingHolders  = GameObject.FindGameObjectsWithTag("WayfindingHolder");
         soundSources        = GameObject.FindGameObjectsWithTag("Sound");
         CompassScript cs    = UnityEngine.Object.FindObjectOfType<CompassScript>();
-        MovePointMap mpm    = UnityEngine.Object.FindObjectOfType<MovePointMap>();
+        Map mpm    = UnityEngine.Object.FindObjectOfType<Map>();
 
         if (cs)             compass = cs.gameObject;
         if (mpm)            mapOfGameLevel = mpm.gameObject;

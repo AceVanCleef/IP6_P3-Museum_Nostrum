@@ -15,6 +15,8 @@ TagManager:
   - Room
   - InteriorHolder
   - WayfindingHolder
+  - PlayerPointer
+  - Map
   layers:
   - Default
   - TransparentFX

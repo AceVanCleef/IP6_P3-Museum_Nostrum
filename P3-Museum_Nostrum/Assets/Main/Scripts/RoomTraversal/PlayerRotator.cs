@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerRotator : MonoBehaviour {
 
-    public float turnTime = 0.3f;		// turn time
+    public float turnTime = 0.6f;		// turn time
     public float moveSpeed = 0.5f;		// unit move speed
 
     private float invMoveTime;			// inverse movement time
