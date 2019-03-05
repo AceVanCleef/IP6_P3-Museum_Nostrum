@@ -17,7 +17,7 @@ public class MovePointMap : MonoBehaviour
     {
         //coordindates of each room on the ground view
         //the name of each room is used as key
-        dictionary.Add("Entrance Hall", new float[] { 200f, 223f});
+        /*dictionary.Add("Entrance Hall", new float[] { 200f, 223f});
         dictionary.Add("Corridor EntranceHall_Museumsshop", new float[] { 275f, 237f});
         dictionary.Add("Museumshop", new float[] { 332f, 237f});
         dictionary.Add("Corridor Museumsshop_RightGallery", new float[] { 331f, 281f});
@@ -67,8 +67,27 @@ public class MovePointMap : MonoBehaviour
         dictionary.Add("Cellar Room D", new float[] { 482f, 311f});
         dictionary.Add("Cellar Room DE4", new float[] { 482f, 267f});
         dictionary.Add("Cellar Room DE3", new float[] { 442f, 354f});
-        dictionary.Add("Cellar Room E", new float[] { 442f, 311f});
-        
+        dictionary.Add("Cellar Room E", new float[] { 442f, 311f});*/
+
+        dictionary.Add("Entrance Hall", new float[] { 240f, 320f });
+        dictionary.Add("Corridor EntranceHall_Museumsshop", new float[] { 321f, 287f });
+        dictionary.Add("Museumshop", new float[] { 376f, 283f });
+        dictionary.Add("Right Gallery Room", new float[] { 377f, 375f });
+        dictionary.Add("Special_Exhibition", new float[] { 377f, 468f });
+        dictionary.Add("Corridor SpecialExhibition_Cafeteria", new float[] { 321f, 457f });
+        dictionary.Add("Corridor Museumsshop_RightGallery", new float[] { 377f, 324f });
+        dictionary.Add("Corridor RightGallery_SpecialExhibition", new float[] { 377f, 426f });
+        dictionary.Add("Cafeteria", new float[] { 240f, 423f });
+        dictionary.Add("WC_Cafeteria", new float[] { 244f, 501f });
+        dictionary.Add("Broom Cupboard", new float[] { 91f, 290f });
+        dictionary.Add("Garden", new float[] { 154f, 473f });
+        dictionary.Add("Left Gallery Room", new float[] { 142f, 396f });
+        dictionary.Add("Room_X", new float[] { 154f, 315f });
+        dictionary.Add("WC - Left", new float[] { 91f, 330f });
+        dictionary.Add("Cellar Room 1", new float[] { 378f, 240f });
+        dictionary.Add("Cellar Room 2", new float[] { 359f, 201f });
+        dictionary.Add("Cellar Room 3", new float[] { 397f, 201f });
+
         //initialises the RectTransfrom of the point, which indicates the position on the map
         playerPointerRect = PlayerPointer.GetComponent<RectTransform>();
         //cache a reference to player pointer script, responsible for enabling7disabling 
