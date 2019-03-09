@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
+public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
+{
 
     private float dist;
     private Vector3 offset;
@@ -35,6 +36,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         //Your other initialization code...
 
         pictureRenderer = GetComponent<Renderer>();
+
     }
 
     public void InitializeTag()
@@ -58,12 +60,12 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         dist = CalculateDistance(hitGameObject);
         v3 = new Vector3(eventData.position.x, eventData.position.y, dist);
         v3 = Camera.main.ScreenToWorldPoint(v3);
-        offset = hitGameObject.transform.position - v3; 
+        offset = hitGameObject.transform.position - v3;
 
         ActivateUISlotHighlightning();
 
         if (DataLogger.Instance)
-            DataLogger.Instance.Log("dragBeginPic", 
+            DataLogger.Instance.Log("dragBeginPic",
                 gameObject.name,                            //which picture?
                 pictureRenderer.material.ToString(),        //which texture?
                 eventData.position.ToString(),              //UI touch position
@@ -72,22 +74,28 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
 
     public override void OnDrag(PointerEventData eventData)
     {
-        v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData) );
+        v3 = new Vector3(eventData.position.x, eventData.position.y, GetHoverDistanceFromCamera(eventData));
         v3 = Camera.main.ScreenToWorldPoint(v3);
         hitGameObject.transform.position = v3 + offset;
     }
 
 
-    
+
     public override void OnEndDrag(PointerEventData eventData)
     {
         //Detect UISlot
         GameObject uiSlot = GetFirstUIElementWith("DraggableUI");
         GameObject pictureCanvas = FindPictureCanvas(eventData.position);
 
+        OnEndDragNext(eventData, uiSlot);
+    }
+
+    public void OnEndDragNext(PointerEventData eventData, GameObject uiSlot)
+    {
+
+        GameObject pictureCanvas = FindPictureCanvas(eventData.position);
         if (uiSlot != null)
         {
-            Debug.Log("ui slot: " + uiSlot.name);
             AttachPictureToUISlot(uiSlot);
         }
         else if (CanPlayerDropPictureOnCanvasDirectly && pictureCanvas != null)
@@ -96,18 +104,11 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         }
         else
         {
-            if (DataLogger.Instance)
-                DataLogger.Instance.Log("dragEndPic", 
-                    transform.name,                                     //name of picture
-                    pictureRenderer.material.mainTexture.ToString(),    //texture name of picture
-                    eventData.position.ToString(),                      //end position of drag motion
-                    transform.position.ToString());                     //position of picture.
-            
             //if not hit, reset position => User gets feedback about what a picture can interact with.
             transform.position = startPosition;
         }
-        //toggle highlightnings.
-        Deselect();
+
+        DeactivateUISlotHighlightning();
 
         //Reenable swipes
         base.OnEndDrag(eventData);
@@ -164,7 +165,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Select( GetComponentInChildren<PictureSelectedHighlighter>(), gameObject );
+        Select(GetComponentInChildren<PictureSelectedHighlighter>(), gameObject);
         DeactivateDoorHighlightning();
         ActivatePictureFrameHighlightning();
         ActivateUISlotHighlightning();
@@ -195,6 +196,9 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         //checks whether a uni- or bi-directional exchange of textures has happened.
         if (ri.texture == null)
         {
+            if (!pictureRenderer)
+                pictureRenderer = GetComponent<Renderer>();
+
             //unidirectional exchange
             ri.texture = pictureRenderer.material.mainTexture;
             ri.color = Color.white;
@@ -238,17 +242,18 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance {
         }
     }
 
-    private void AttachPictureToPictureCanvas(GameObject pictureCanvas)
+    public void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
+        
         Renderer otherRenderer = pictureCanvas.GetComponent<Renderer>();
-
+        
         //swap
         Texture cachedTexture = otherRenderer.material.mainTexture;
         otherRenderer.material.mainTexture = pictureRenderer.material.mainTexture;
         pictureRenderer.material.mainTexture = cachedTexture;
 
         if (DataLogger.Instance)
-            DataLogger.Instance.Log("picToFrameDrag", 
+            DataLogger.Instance.Log("picToFrameDrag",
                 pictureCanvas.transform.root.name,              //room name
                 pictureCanvas.transform.parent.name,            //target frame's name
                 otherRenderer.material.mainTexture.ToString(),  //texture of frame

@@ -115,7 +115,7 @@ public sealed class InputManager : MonoBehaviour {
 
     }
 
-    private void OnLeftButtonClick()
+    public void OnLeftButtonClick()
     {
         //draw a touch on GUI.
         if (DataLogger.Instance)
@@ -132,7 +132,7 @@ public sealed class InputManager : MonoBehaviour {
         }
     }
 
-    private void OnRightButtonClick()
+    public void OnRightButtonClick()
     {
         if (DataLogger.Instance)
         {
