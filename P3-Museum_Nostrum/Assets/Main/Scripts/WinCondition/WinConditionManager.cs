@@ -120,7 +120,8 @@ public class WinConditionManager : MonoBehaviour {
         yield return new WaitForSeconds(seconds);
 
         //load start scene.
-        GetComponent<SceneLoader>().LoadScene();
+        if (!ReplayManager.Instance)
+            GetComponent<SceneLoader>().LoadScene();
     }
 
     /// <summary>

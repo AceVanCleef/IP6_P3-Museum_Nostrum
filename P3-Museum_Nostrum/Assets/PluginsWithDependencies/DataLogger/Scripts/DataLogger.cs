@@ -18,6 +18,8 @@ public class DataLogger : MonoBehaviour {
 
     private JSONGenerator jSonGenerator;
 
+
+    //Todo: log device resolution, which is necessary for GUIDataVisualizer to draw gestures correctly.
     void Awake()
     {
         //Check if instance already exists
@@ -38,7 +40,9 @@ public class DataLogger : MonoBehaviour {
         //get DataLogger
         GameObject go = GameObject.Find("JSONGenerator");
         jSonGenerator = (JSONGenerator)go.GetComponent(typeof(JSONGenerator));
+     
         
+
     }
 
     //Initializes the game for each level.

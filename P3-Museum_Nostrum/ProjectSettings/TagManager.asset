@@ -17,6 +17,7 @@ TagManager:
   - WayfindingHolder
   - PlayerPointer
   - Map
+  - DoorHighlightningShaders
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - 
   - PostProcessing
   - DataVisualization
-  - 
+  - DoorHighlightningShaders
   - 
   - 
   - 

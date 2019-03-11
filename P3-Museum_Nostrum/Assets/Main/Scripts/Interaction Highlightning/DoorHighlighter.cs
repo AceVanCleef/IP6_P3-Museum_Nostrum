@@ -8,5 +8,7 @@ public class DoorHighlighter : AbstractOutlineHighlighter
     {
         base.Start();
         On();
+
+        gameObject.layer = LayerMask.NameToLayer("DoorHighlightningShaders");
     }
 }

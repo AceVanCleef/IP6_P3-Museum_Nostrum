@@ -112,9 +112,14 @@ public class DataVisualizerManager : MonoBehaviour {
     /// <returns></returns>
     private GameObject GetCurrentRoom()
     {
-        return allRooms.Find(room => Vector3.Distance(player.transform.position, room.transform.position) < 0.001f);
+        return allRooms.Find(room => Vector3.Distance(player.transform.position, room.transform.position) < 0.1f);
+        //Note: if you get null pointer exceptionts due to the distance comparison, you might want to adjust 
+        //      the comparison value (of 0.1f).
+        //Note 2: This might be the case when the values logged by DataLogger are rounded.
+        //Note 3: This might be the case when you log vectore values using .ToString(). E.g. transform.position.ToString();
     }
 
+    //todo: remove redundant code:
     #region GUIHeatmap
 
     private GUIDataVisualizer gdv;
@@ -270,7 +275,7 @@ public class DataVisualizerManager : MonoBehaviour {
     }
 
 
-    //used in door script
+    //used in ReplayManager (or DoorScript)
     /// <summary>
     /// updates the DataVisualizer regarding the player's current position.
     /// </summary>

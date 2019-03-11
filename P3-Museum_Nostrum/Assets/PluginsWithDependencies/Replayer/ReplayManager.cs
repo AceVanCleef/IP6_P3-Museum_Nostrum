@@ -9,7 +9,15 @@ using TMPro;
 
 public class ReplayManager : MonoBehaviour
 {
-    public static ReplayManager instance = null;
+    private static ReplayManager instance = null;
+
+    public static ReplayManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     private JSONParser jsonParser;
 
@@ -34,6 +42,7 @@ public class ReplayManager : MonoBehaviour
 
     private PointerEventData ped;
 
+    public GameObject welcomeMessageUI;
     public GameObject messageUI;
     public TextMeshProUGUI messageText;
 
@@ -77,7 +86,7 @@ public class ReplayManager : MonoBehaviour
 
         inputManager = (InputManager)player.GetComponent(typeof(InputManager));
 
-
+        welcomeMessageUI.SetActive(false);
 
         foreach (var item in jsonParser.listActions)
         {
@@ -96,6 +105,9 @@ public class ReplayManager : MonoBehaviour
                 Vector2 touchtPosition = new Vector2(float.Parse(sArray[0]), float.Parse(sArray[1]));
 
                 Debug.Log("touch_Position: " + touchtPosition.ToString());
+
+                if (DataVisualizerManager.Instance)
+                    DataVisualizerManager.GUI.DrawTouch(touchtPosition);
             }
 
             if (item.action == "SwipeDetected")
@@ -130,8 +142,8 @@ public class ReplayManager : MonoBehaviour
                     EndPosition = endPosition
                 };
 
-                if (GUIDataVisualizer.Instance)
-                    GUIDataVisualizer.Instance.DrawSwipe(swipeData);
+                if (DataVisualizerManager.Instance)
+                    DataVisualizerManager.GUI.DrawSwipe(swipeData);
             }
 
             if (item.action == "drag n drop")
@@ -149,25 +161,55 @@ public class ReplayManager : MonoBehaviour
                 Vector2 endPosition = new Vector2(float.Parse(sArray[0]), float.Parse(sArray[1]));
 
                 Debug.Log("drag n drop_startPosition: " + startPosition.ToString() + " endPosition: " + endPosition.ToString());
+
+                if (DataVisualizerManager.Instance)
+                    DataVisualizerManager.GUI.DrawDrag(startPosition, endPosition);
             }
 
 
             if (item.action == "goToRoom")
             {
+                //get targetPosition from value
                 string v3Data = item.value2;
                 v3Data = v3Data.Substring(1, v3Data.Length - 2).Replace(',', ';');
                 string[] sArray = v3Data.Split(';');
-                player.transform.position = new Vector3(float.Parse(sArray[0]), float.Parse(sArray[1]), float.Parse(sArray[2]));
+                Vector3 targetPosition = new Vector3(float.Parse(sArray[0]), float.Parse(sArray[1]), float.Parse(sArray[2]));
+
+                
+                //get startPosition from value
+                string v2Data = item.value3;
+                v2Data = v2Data.Substring(1, v2Data.Length - 2).Replace(',', ';');
+                sArray = v2Data.Split(';');
+                Vector3 startPosition = new Vector3(float.Parse(sArray[0]), float.Parse(sArray[1]), float.Parse(sArray[2]));
+
+                //set player to targetPosition
+                player.transform.position = targetPosition;
+
+
+                if (DataVisualizerManager.Instance)
+                {
+                    DataVisualizerManager.Instance.TraceLineBetween(startPosition, targetPosition);
+                    DataVisualizerManager.Instance.PlayerEnteredNewRoom();
+                    DataVisualizerManager.Instance.AfterViewDirectionChange();
+                }
             }
 
             if (item.action == "turnSwipeRight" || item.action == "turnButtonLeft")
             {
                 inputManager.OnLeftButtonClick();
+                if (DataVisualizerManager.Instance)
+                {
+                    DataVisualizerManager.Instance.AfterViewDirectionChange();
+                }
             }
 
             if (item.action == "turnSwipeLeft" || item.action == "turnButtonRight")
             {
                 inputManager.OnRightButtonClick();
+                if (DataVisualizerManager.Instance)
+                {
+                    DataVisualizerManager.Instance.AfterViewDirectionChange();
+                }
             }
 
 
@@ -359,7 +401,6 @@ public class ReplayManager : MonoBehaviour
                 GameObject itemImage = border.transform.Find("ItemImage (Raw)").gameObject;
 
                 Debug.Log("frameToSlotDrag");
-                // yield return new WaitForSeconds(timeTillNextAction * 5);
                 interactivePictureFrameScript.OnEndDragNext(ped, itemImage, null, startFrame.transform.position);
             }
 

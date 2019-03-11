@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 33231507169501520}
   - component: {fileID: 23898357271228052}
   - component: {fileID: 65487595214049430}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Highlighter-Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
