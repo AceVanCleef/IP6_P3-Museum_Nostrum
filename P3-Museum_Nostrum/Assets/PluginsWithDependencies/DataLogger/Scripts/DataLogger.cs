@@ -44,11 +44,19 @@ public class DataLogger : MonoBehaviour {
         
 
     }
-
-    //Initializes the game for each level.
+    /// <summary>
+    /// creates a new log entry
+    /// </summary>
+    /// <param name="actionName"></param>
+    /// <param name="value1"></param>
+    /// <param name="value2"></param>
+    /// <param name="value3"></param>
+    /// <param name="value4"></param>
+    /// <param name="value5"></param>
+    /// <param name="value6"></param>
+    /// <param name="value7"></param>
     public void Log(string actionName, string value1, string value2 = null, string value3 = null, string value4 = null, string value5 = null, string value6 = null, string value7 = null)
     {
-        //Debug.Log(Time.time + "_Action" + actionName + "_value1" + value1 + "_value2" + value2 + "_value3" + value3 + "_value4" + value4 + "_value5" + value5 + "_value6" + value6 + "_value7" + value7);
         dataList.Add(new KeyValuePair<float, Action>(Time.time, new Action()
         {
             ActionName = actionName,
@@ -62,12 +70,14 @@ public class DataLogger : MonoBehaviour {
         }));
     }
 
+    /// <summary>
+    /// creates list in JSONGenerator with all entries from dataList and starts creation of JSON File in JSONGenerator.
+    /// </summary>
     public void PrintDataList()
     {
         string json = null;
         foreach (var item in dataList)
         {
-             Debug.Log("DataList//" + item.Value.ActionName + "//" + item.Key + "//" + item.Value.Data1 + "//" + item.Value.Data2 + "//" + item.Value.Data3 + "//" + item.Value.Data4);
             jSonGenerator.timeStamp = item.Key;
             jSonGenerator.action = item.Value.ActionName;
             jSonGenerator.value1 = item.Value.Data1;
@@ -85,6 +95,9 @@ public class DataLogger : MonoBehaviour {
         jSonGenerator.SaveItemInfo();
     }
 
+    /// <summary>
+    /// struct for one entry in the list dataList
+    /// </summary>
     public struct Action
     {
         public string ActionName;

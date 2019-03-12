@@ -6,7 +6,9 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 
-
+/// <summary>
+/// lets you replay a whole gameplay with all interactions and optionaly with visualizations. receives all actions from a JSON file.
+/// </summary>
 public class ReplayManager : MonoBehaviour
 {
     private static ReplayManager instance = null;
@@ -29,28 +31,22 @@ public class ReplayManager : MonoBehaviour
 
     [Range(0.0f, 5.0f)]
     public float messageDuration = 1f;
-
-
-
+    
     //enable to realtime mode
     public bool useDeltaTime = false;
 
-
+    //objects needed for replay
     private GameObject player;
-
     private InputManager inputManager;
-
     private PointerEventData ped;
 
+    //ui elements needed for replay
     public GameObject welcomeMessageUI;
     public GameObject messageUI;
     public TextMeshProUGUI messageText;
-
     public Button openMapButton;
     public Button closeMapButton;
-
-
-
+    
     void Awake()
     {
         //Check if instance already exists
@@ -67,35 +63,35 @@ public class ReplayManager : MonoBehaviour
 
         //Sets this to not be destroyed when reloading sceneas
         DontDestroyOnLoad(gameObject);
-
-
-
     }
 
     IEnumerator Start()
     {
+        //gets list from JSONParser. list is created from JSON file.
         JSONParser jsonParser = transform.parent.GetComponentInChildren<JSONParser>();
 
-        //get Player for movement
+        //needed for movement
         player = GameObject.Find("Player");
+        inputManager = (InputManager)player.GetComponent(typeof(InputManager));
 
         //get EventSystem for eventData
         GameObject go = GameObject.Find("EventSystem");
         EventSystem eventSystem = go.GetComponent<EventSystem>();
         ped = new PointerEventData(eventSystem);
-
-        inputManager = (InputManager)player.GetComponent(typeof(InputManager));
-
+        
+        //deactivate welcomeMessage. is not needed for replay
         welcomeMessageUI.SetActive(false);
 
         foreach (var item in jsonParser.listActions)
         {
+            //sets time to wait. depending if you are using realtime(useDeltaTime = true) between to actions or a constant time intervall (useDeltaTime = false)
             timeToWait = breakTime;
             if (useDeltaTime)
             {
                 timeToWait = item.timeStamp - tempDeltaTime;
             }
 
+            //draws point where a touch was registered
             if (item.action == "touch")
             {
                 string v2Data = item.value2;
@@ -103,18 +99,15 @@ public class ReplayManager : MonoBehaviour
                 string[] sArray = v2Data.Split(';');
 
                 Vector2 touchtPosition = new Vector2(float.Parse(sArray[0]), float.Parse(sArray[1]));
-
-                Debug.Log("touch_Position: " + touchtPosition.ToString());
-
+                
+                
                 if (DataVisualizerManager.Instance)
                     DataVisualizerManager.GUI.DrawTouch(touchtPosition);
             }
 
+            //draws point where a swipe was registered
             if (item.action == "SwipeDetected")
             {
-
-                Debug.Log("swipeDraw");
-
                 var direction = SwipeDirection.Down;
                 if (item.value3 == "Down") { direction = SwipeDirection.Down; }
                 else if (item.value3 == "Up") { direction = SwipeDirection.Up; }
@@ -132,8 +125,6 @@ public class ReplayManager : MonoBehaviour
                 sArray = v2Data.Split(';');
 
                 Vector2 endPosition = new Vector2(float.Parse(sArray[0]), float.Parse(sArray[1]));
-
-                Debug.Log("swipe_startPosition: " + startPosition.ToString() + " endPosition: " + endPosition.ToString() + " direction: " + direction.ToString());
 
                 SwipeData swipeData = new SwipeData()
                 {
@@ -159,8 +150,6 @@ public class ReplayManager : MonoBehaviour
                 sArray = v2Data.Split(';');
 
                 Vector2 endPosition = new Vector2(float.Parse(sArray[0]), float.Parse(sArray[1]));
-
-                Debug.Log("drag n drop_startPosition: " + startPosition.ToString() + " endPosition: " + endPosition.ToString());
 
                 if (DataVisualizerManager.Instance)
                     DataVisualizerManager.GUI.DrawDrag(startPosition, endPosition);

@@ -44,43 +44,50 @@ public class JSONGenerator : MonoBehaviour
      
     }
 
+    /// <summary>
+    /// adds one entry to listString
+    /// </summary>
+    /// <param name="json">one entry</param>
     public void jsonToList(string json)
     {
         listString.Add(json);
     }
 
+    /// <summary>
+    /// creates JSON file at specific dataPath
+    /// </summary>
     public void SaveItemInfo()
     {
         string path = null;
         string mainObject;
 
-        //path = "Assets/PluginsWithDependencies/DataLogger/DataLoggerFiles/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
-
+        //first line in JSON file. general information about the content
         mainObject = "{\"prototypVersion\" : \"Prototyp3\", \"level\" : \"" + SceneManager.GetActiveScene().name + "\", \"entries\" :[" + System.Environment.NewLine;
 
         string persistentDataPath = Application.persistentDataPath;
+
+        //path for creation of JSON files in editor mode uf unity 
+        //path = "Assets/PluginsWithDependencies/DataLogger/DataLoggerFiles/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
+
+        //path for creation of JSON files on android or iOS tablets
         path = persistentDataPath + "/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
 
-        Debug.Log("Pfad:" + path);
         using (FileStream fs = new FileStream(path, FileMode.Create))
         {
 
             using (StreamWriter writer = new StreamWriter(fs))
             {
-
                 writer.Write(mainObject);
                 foreach (var item in listString)
                 {
-                    Debug.Log("JSONGene" + item);
                     writer.Write(item + "," + System.Environment.NewLine);
                 }
                 writer.Write("]" + "}");
             }
 
         }
-        Debug.Log("End:" + path);
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
-#endif
+        #endif
     }
 }

@@ -70,6 +70,7 @@ public class IngameOptionsMenu : MonoBehaviour
         masterVolume = 1;
         musicVolume = 1;
         soundVolume = 1;
+
         //Get values from other scenes set by player.
         if (AppData.Instance)
         {
@@ -116,8 +117,8 @@ public class IngameOptionsMenu : MonoBehaviour
         MainCameraConfigurator mCC = Camera.main.GetComponent<MainCameraConfigurator>(); //replaced Gameobject.Find("Main Camera"), da fehleranfällig.
 
         mCC.setMasterVolume();
-        setMusicVolume();
-        setSoundVolume();
+        SetMusicVolume();
+        SetSoundVolume();
         SetInteriorVisbility();
         SetAudioBreadcrumsAudability();
         SetLights();
@@ -210,6 +211,7 @@ public class IngameOptionsMenu : MonoBehaviour
         }
     }
 
+
     public void startGame()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -270,7 +272,6 @@ public class IngameOptionsMenu : MonoBehaviour
 
     public void toggleLights()
     {
-        //toggle lights
         lightsActive = !lightsActive;
         SetLights();
     }
@@ -308,7 +309,6 @@ public class IngameOptionsMenu : MonoBehaviour
 
     public void toggleWayfinding()
     {
-        //toggle wayfinding
         signPostingActive = !signPostingActive;
         SetWayfindingVisibility();
     }
@@ -337,14 +337,12 @@ public class IngameOptionsMenu : MonoBehaviour
             DataLogger.Instance.Log("setCompassVisibility", compassActive.ToString());
         if (compass)
             compass.SetActive(compassActive);
-        Debug.Log("Set compass to " + compassActive);
     }
 
     public void toggleMapVisibility()
     {
         mapActive = !mapActive;
         SetMapVisibility();
-        Debug.Log("options: mapactive after toggle = " + mapActive);
     }
 
     public void SetMapVisibility()
@@ -353,21 +351,20 @@ public class IngameOptionsMenu : MonoBehaviour
             DataLogger.Instance.Log("setMapVisibility", mapActive.ToString());
         if (mapOfGameLevel)
             mapOfGameLevel.SetActive(mapActive);
-        Debug.Log("Set map to " + mapActive);
     }
 
     #endregion TestFactorCallbacks
 
     #region AudioCallBacks
 
-    public void setMusicVolumeValue()
+    public void SetMusicVolumeValue()
     {
         musicVolume = musicSlider.value;
 
-        setMusicVolume();
+        SetMusicVolume();
     }
 
-    public void setMusicVolume()
+    public void SetMusicVolume()
     {
         if (DataLogger.Instance)
             DataLogger.Instance.Log("setMusicVolume", musicVolume.ToString());
@@ -380,13 +377,13 @@ public class IngameOptionsMenu : MonoBehaviour
 
 
     }
-    public void setSoundVolumeValue()
+    public void SetSoundVolumeValue()
     {
         soundVolume = soundSlider.value;
-        setSoundVolume();
+        SetSoundVolume();
     }
 
-    public void setSoundVolume()
+    public void SetSoundVolume()
     {
         if (DataLogger.Instance)
             DataLogger.Instance.Log("setSoundVolume", soundVolume.ToString());
@@ -417,10 +414,6 @@ public class IngameOptionsMenu : MonoBehaviour
             AppData.TestFactorSettings.signPostsVisible = signPostingActive;
             AppData.TestFactorSettings.compassAvailable = compassActive;
             AppData.TestFactorSettings.mapAvailable = mapActive;
-
-            Debug.Log("options: mapactive at ondisable = " + mapActive);
-
-            Debug.Log("OnDisable: " + AppData.Instance.PrintValues());
         }
     }
 }
