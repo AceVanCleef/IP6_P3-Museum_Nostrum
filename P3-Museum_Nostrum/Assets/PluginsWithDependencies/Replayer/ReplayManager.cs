@@ -91,6 +91,8 @@ public class ReplayManager : MonoBehaviour
                 timeToWait = item.timeStamp - tempDeltaTime;
             }
 
+            Debug.Log("Executing: " + item.action + " Stamp: " + item.timeStamp);
+
             //draws point where a touch was registered
             if (item.action == "touch")
             {

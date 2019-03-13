@@ -224,7 +224,6 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         //receiving a texture
         else if (HasPlayerSelectedAnObject())
         {
-            Debug.Log("inReceiving");
             if (HasPlayerSelectedGUIElement())
             {
                 ReceiveTextureSelectedFromGUIElement();
@@ -281,7 +280,6 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     /// <param name="otherCanvas"></param>
     private void SwapTexturesOf(GameObject thisCanvas, GameObject otherCanvas)
     {
-        Debug.Log("Executing SwapTexturesOf()");
         Renderer thisRenderer = thisCanvas.GetComponent<Renderer>();
         Renderer otherRenderer = otherCanvas.GetComponent<Renderer>();
         Debug.Log("ohterCanves" + otherCanvas.name);
