@@ -19,6 +19,9 @@ public class JSONParser : MonoBehaviour
         readString();
     }
 
+    /// <summary>
+    /// reads the JSON file line by line and creates for each line a JSON action
+    /// </summary>
     void readString()
     {
         StreamReader reader = new StreamReader(path);
@@ -50,7 +53,6 @@ public class JSONParser : MonoBehaviour
             }
 
         }
-        Debug.Log("JSONFinish");
         reader.Close();
     }
 }
