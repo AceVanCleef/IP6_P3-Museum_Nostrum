@@ -43,8 +43,6 @@ public class TestFactorManager : MonoBehaviour
     {
         audioSources = GameObject.FindGameObjectsWithTag("BackgroundMusic");
         lights = GameObject.FindGameObjectsWithTag("Lights");
-        //interiorObjects = GameObject.FindGameObjectsWithTag("interiorObjects");
-        //wayfinding = GameObject.FindGameObjectsWithTag("wayfinding");
     }
 
     //is executed when button "apply" in the inspector is clicked
@@ -65,24 +63,5 @@ public class TestFactorManager : MonoBehaviour
                 lights[i].SetActive(lightsActive);
             }
         }
-
-/*  Todo: null pointers if no object with required tag exists in scene.
-  
-        //toggle interior objects
-        /*for (int i = 0; i < interiorObjects.Length; i++)
-        {
-            {
-                interiorObjects[i].SetActive(interiorObjectsActive);
-            }
-        }
-
-        //toggle wayfinding
-        for (int i = 0; i < wayfinding.Length; i++)
-        {
-            {
-                wayfinding[i].SetActive(wayfindingActive);
-            }
-        }*/
-
     }
 }

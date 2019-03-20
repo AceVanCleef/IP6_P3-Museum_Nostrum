@@ -120,7 +120,7 @@ public class IngameOptionsMenu : MonoBehaviour
         SetMusicVolume();
         SetSoundVolume();
         SetInteriorVisbility();
-        SetAudioBreadcrumsAudability();
+        SetAudioBreadcrumbsAudability();
         SetLights();
         SetWayfindingVisibility();
         SetCompassVisibility();
@@ -255,13 +255,13 @@ public class IngameOptionsMenu : MonoBehaviour
     {
         //toggle audio
         audioBreadcrumbsActive = !audioBreadcrumbsActive;
-        SetAudioBreadcrumsAudability();
+        SetAudioBreadcrumbsAudability();
     }
 
-    private void SetAudioBreadcrumsAudability()
+    private void SetAudioBreadcrumbsAudability()
     {
         if (DataLogger.Instance)
-            DataLogger.Instance.Log("setAudioBreadcrumsAudability", audioBreadcrumbsActive.ToString());
+            DataLogger.Instance.Log("setAudioBreadcrumbsAudability", audioBreadcrumbsActive.ToString());
         for (int i = 0; i < musicSources.Length; i++)
         {
             {

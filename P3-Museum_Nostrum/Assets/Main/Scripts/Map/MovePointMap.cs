@@ -13,13 +13,12 @@ public class MovePointMap : MonoBehaviour
     public GameObject PlayerPointer;
 
     private bool isMapOpen = false;
-
-
-
+    
     //coordindates of each room on the ground view
     //the name of each room is used as key
     void OnEnable()
     {
+        //setes coordinates depending on which level has been loaded
         if (SceneManager.GetActiveScene().name == "Museum Nostrum LVL 01")
         {
             dictionary.Add("Entrance Hall", new float[] { 200f, 223f });

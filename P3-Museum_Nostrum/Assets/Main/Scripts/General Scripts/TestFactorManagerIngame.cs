@@ -26,8 +26,6 @@ public class TestFactorManagerIngame : MonoBehaviour
     {
         audioSources = GameObject.FindGameObjectsWithTag("BackgroundMusic");
         lights = GameObject.FindGameObjectsWithTag("Lights");
-        //interiorObjects = GameObject.FindGameObjectsWithTag("interiorObjects");
-        //wayfinding = GameObject.FindGameObjectsWithTag("wayfinding");
     }
 
     public void toggleAudio()
@@ -52,7 +50,6 @@ public class TestFactorManagerIngame : MonoBehaviour
             }
         }
         lightsActive = !lightsActive;
-        Debug.Log("toggleLIgth" + lightsActive);
     }
 
     public void toggleInterior()
@@ -65,12 +62,9 @@ public class TestFactorManagerIngame : MonoBehaviour
             }
         }
         lightsActive = !lightsActive;
-        Debug.Log("toggleLIgth" + lightsActive);
     }
 
-
-
-
+    
     //is executed when button "apply" in the inspector is clicked
     public void Apply()
     {
@@ -90,25 +84,6 @@ public class TestFactorManagerIngame : MonoBehaviour
                 lights[i].SetActive(lightsActive);
             }
         }
-
-        /*  Todo: null pointers if no object with required tag exists in scene.
-
-                //toggle interior objects
-                /*for (int i = 0; i < interiorObjects.Length; i++)
-                {
-                    {
-                        interiorObjects[i].SetActive(interiorObjectsActive);
-                    }
-                }
-
-                //toggle wayfinding
-                for (int i = 0; i < wayfinding.Length; i++)
-                {
-                    {
-                        wayfinding[i].SetActive(wayfindingActive);
-                    }
-                }*/
-
     }
 
 }

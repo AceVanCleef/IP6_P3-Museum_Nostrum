@@ -82,6 +82,7 @@ public class ReplayManager : MonoBehaviour
         //deactivate welcomeMessage. is not needed for replay
         welcomeMessageUI.SetActive(false);
 
+        //executes every action in the JSON file. 
         foreach (var item in jsonParser.listActions)
         {
             //sets time to wait. depending if you are using realtime(useDeltaTime = true) between to actions or a constant time intervall (useDeltaTime = false)
@@ -107,7 +108,7 @@ public class ReplayManager : MonoBehaviour
                     DataVisualizerManager.GUI.DrawTouch(touchtPosition);
             }
 
-            //draws point where a swipe was registered
+            //draws a line where a swipe was registered
             if (item.action == "SwipeDetected")
             {
                 var direction = SwipeDirection.Down;
@@ -139,6 +140,7 @@ public class ReplayManager : MonoBehaviour
                     DataVisualizerManager.GUI.DrawSwipe(swipeData);
             }
 
+            //draws a line where a drag n drop was registered
             if (item.action == "drag n drop")
             {
                 string v2Data = item.value1;
@@ -203,7 +205,7 @@ public class ReplayManager : MonoBehaviour
                 }
             }
 
-
+            //OnPointerClick method in interactivePictureFrame is called
             if (item.action == "selectFrame" || item.action == "slotToFrameClick")
             {
                 GameObject frame;
@@ -222,6 +224,7 @@ public class ReplayManager : MonoBehaviour
                 onPointerClickFrame(room, frame);
             }
 
+            //OnPointerClick method in interactivePictureFrame is called
             if (item.action == "frameToFrameClick")
             {
 
@@ -231,6 +234,7 @@ public class ReplayManager : MonoBehaviour
                 onPointerClickFrame(room, frame);
             }
 
+            //OnPointerClick method in interactivePictureFrame is called
             if (item.action == "picToFrameClick")
             {
                 GameObject frame;
@@ -250,7 +254,7 @@ public class ReplayManager : MonoBehaviour
             }
 
 
-
+            //OnPointerClick method in interactivePicture is called
             if (item.action == "selectPic")
             {
                 Debug.Log("selectPic name:" + item.value1);
@@ -259,6 +263,7 @@ public class ReplayManager : MonoBehaviour
                 interactivePictureScript.OnPointerClick(ped);
             }
 
+            //OnPointerClick method in interactiveSlot is called
             if (item.action == "selectSlot")
             {
                 Debug.Log("selectSlot name:" + item.value1);
@@ -267,6 +272,7 @@ public class ReplayManager : MonoBehaviour
                 onPointerClickSlot(uiSlot);
             }
 
+            //OnPointerClick method in interactiveSlot is called
             if (item.action == "frameToSlotClick")
             {
 
@@ -274,7 +280,8 @@ public class ReplayManager : MonoBehaviour
 
                 onPointerClickSlot(uiSlot);
             }
-
+            
+            //OnPointerClick method in interactiveSlot is called
             if (item.action == "picToSlotClick")
             {
 
@@ -287,6 +294,7 @@ public class ReplayManager : MonoBehaviour
                 tempDeltaTime = item.timeStamp;
             }
 
+            //OnEndDrag method in interactivePicture is called
             if (item.action == "picToFrameDrag")
             {
 
@@ -311,6 +319,7 @@ public class ReplayManager : MonoBehaviour
                 interactivePictureScript.AttachPictureToPictureCanvas(background);
             }
 
+            //OnEndDrag method in interactivePictureFrame is called
             if (item.action == "frameToFrameDrag")
             {
 
@@ -337,6 +346,7 @@ public class ReplayManager : MonoBehaviour
                 interactivePictureFrameScript.OnEndDragNext(ped, null, pictureCanvases, startFrame.transform.position);
             }
 
+            //OnEndDrag method in interactiveSlot is called
             if (item.action == "slotToFrameDrag")
             {
                 GameObject uiSlot = GameObject.Find(item.value3);
@@ -366,12 +376,11 @@ public class ReplayManager : MonoBehaviour
 
             }
 
-
-
+            //OnEndDrag method in interactivePictureFrame is called
             if (item.action == "frameToSlotDrag")
             {
                 GameObject startFrame;
-                if (item.value2 == "16_9 Frame_(Default)" || item.value1 == "16_9 Frame_(Tutorial)")
+                if (item.value2 == "16_9 Frame_(Default)" || item.value2 == "16_9 Frame_(Tutorial)")
                 {
                     startFrame = GameObject.Find(item.value2);
                 }
@@ -395,6 +404,7 @@ public class ReplayManager : MonoBehaviour
                 interactivePictureFrameScript.OnEndDragNext(ped, itemImage, null, startFrame.transform.position);
             }
 
+            //OnEndDrag method in interactiveSlot is called
             if (item.action == "picToSlotDrag" || item.action == "picToSlotDragSwap")
             {
                 Debug.Log("start Pic to SLot");
@@ -407,13 +417,10 @@ public class ReplayManager : MonoBehaviour
                 GameObject itemImage = null;
                 itemImage = border.transform.Find("ItemImage (Raw)").gameObject;
 
-
-
                 interactivePictureScript.OnEndDragNext(ped, itemImage);
             }
 
-
-
+            //OnPointerClick method in Deselector is called
             if (item.action == "deselect")
             {
 
@@ -423,57 +430,47 @@ public class ReplayManager : MonoBehaviour
 
                 deselector.OnPointerClick(ped);
             }
-
-
+            
             if (item.action == "openMap")
             {
                 openMapButton.onClick.Invoke();
             }
-
-
+            
             if (item.action == "closeMap")
             {
                 closeMapButton.onClick.Invoke();
             }
 
-            if (item.action == "audio")
+            if (item.action == "setAudioBreadcrumbsAudability")
             {
-
-                Debug.Log("Time till next Interaction:" + messageDuration);
                 StartCoroutine(showReplayerMessage("audio turned on: " + item.value1));
             }
 
             if (item.action == "setLights")
             {
-                Debug.Log("Time till next Interaction:" + messageDuration);
                 StartCoroutine(showReplayerMessage("lights turned on: " + item.value1));
             }
 
             if (item.action == "setInteriorVisibility")
             {
-                Debug.Log("Time till next Interaction:" + messageDuration);
                 StartCoroutine(showReplayerMessage("interior turned on: " + item.value1));
             }
 
             if (item.action == "setWayfindingVisibility")
             {
-                Debug.Log("Time till next Interaction:" + messageDuration);
                 StartCoroutine(showReplayerMessage("wayfinding turned on: " + item.value1));
             }
 
             if (item.action == "setCompassVisibility")
             {
-                Debug.Log("Time till next Interaction:" + messageDuration);
                 StartCoroutine(showReplayerMessage("compass turned on: " + item.value1));
             }
 
             if (item.action == "setMapVisibility")
             {
-                Debug.Log("Time till next Interaction:" + messageDuration);
                 StartCoroutine(showReplayerMessage("map turned on: " + item.value1));
             }
-
-
+            
             if (item.action == "endGame")
             {
                 StartCoroutine(showReplayerMessage("end of replayer"));
@@ -484,21 +481,15 @@ public class ReplayManager : MonoBehaviour
             yield return new WaitForSeconds(timeToWait);
             tempDeltaTime = item.timeStamp;
         }
-        yield return new WaitForSeconds(1);
     }
 
     void onPointerClickFrame(GameObject room, GameObject frame)
     {
-        //benötigt keine ped.position für frame to frame when clicked
-
         GameObject background = frame.transform.Find("16:9 Background").gameObject;
         InteractivePictureFrame interactivePictureFrameScript = (InteractivePictureFrame)background.GetComponentInChildren(typeof(InteractivePictureFrame));
-
-
+        
         interactivePictureFrameScript.OnPointerClick(ped);
     }
-
-
 
     void onPointerClickSlot(GameObject uiSlot)
     {
@@ -506,12 +497,17 @@ public class ReplayManager : MonoBehaviour
         GameObject itemImage = border.transform.Find("ItemImage (Raw)").gameObject;
         InteractiveUISlot interactivePictureFrameScript = (InteractiveUISlot)itemImage.GetComponentInChildren(typeof(InteractiveUISlot));
 
-
         interactivePictureFrameScript.OnPointerClick(ped);
     }
 
+    /// <summary>
+    /// shows short message with the information if a certain factor was toggled on or off
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     private IEnumerator showReplayerMessage(string message)
     {
+        Debug.Log("Time till next Interaction:" + messageDuration);
         messageUI.SetActive(true);
         messageText.text = message;
         yield return new WaitForSeconds(messageDuration);

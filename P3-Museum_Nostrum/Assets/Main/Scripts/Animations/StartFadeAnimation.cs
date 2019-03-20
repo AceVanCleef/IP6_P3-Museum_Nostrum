@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class StartFadeAnimation : MonoBehaviour {
 
-    private Animator anim1;
+    private Animator animationFade;
 
     void Start()
     {
-        anim1 = gameObject.GetComponent<Animator>();
+        animationFade = gameObject.GetComponent<Animator>();
     }
     
     public void startAnimation()
     {
         //Starts Animation
-        anim1.Play("FadeAnimation");
+        animationFade.Play("FadeAnimation");
     }
 }
