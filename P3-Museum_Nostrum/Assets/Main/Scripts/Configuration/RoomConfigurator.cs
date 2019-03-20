@@ -204,7 +204,7 @@ public class RoomConfigurator : MonoBehaviour, ITagEnsurance {
 
         //adjust camera rendering range if player starts in this room.
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (Vector3.Distance(transform.position, 
+        if (player && Vector3.Distance(transform.position, 
             player.transform.position) < 0.01f)
         {
             AdjustRenderingRangeOfPlayerCamera();
