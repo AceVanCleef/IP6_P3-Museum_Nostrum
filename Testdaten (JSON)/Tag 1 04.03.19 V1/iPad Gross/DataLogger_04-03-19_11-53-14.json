@@ -1,0 +1,18 @@
+{"prototypVersion" : "Prototyp3", "level" : "Museum Nostrum LVL 01", "entries" :[
+{"timeStamp":27.819650650024415,"action":"setMasterVolume","value1":"1","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":27.819650650024415,"action":"setMusicVolume","value1":"1","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":27.819650650024415,"action":"setSoundVolume","value1":"1","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":27.819650650024415,"action":"setInteriorVisbility","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":27.819650650024415,"action":"setAudioBreadcrumsAudability","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":27.819650650024415,"action":"setLights","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":27.819650650024415,"action":"setWayfindingVisibility","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":27.819650650024415,"action":"setCompassVisibility","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":27.819650650024415,"action":"setMapVisibility","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":32.929805755615237,"action":"touch","value1":"On Door","value2":"(1342.0, 832.0)","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":33.830108642578128,"action":"touch","value1":"On MapToggleIcon","value2":"(165.0, 1989.0, 0.0)","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":33.830108642578128,"action":"openMap","value1":"(165.0, 1989.0, 0.0)","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":34.59685516357422,"action":"touch","value1":"On OpenedMap","value2":"(168.0, 2003.0, 0.0)","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":34.59685516357422,"action":"closeMap","value1":"(168.0, 2003.0, 0.0)","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":35.84678649902344,"action":"goToRoom","value1":"Corridor EntranceHall_Cafeteria","value2":"(0.0, 0.0, 44.2)","value3":"(0.0, 0.0, 0.0)","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":39.61393356323242,"action":"endGame","value1":"Thank you for playing ;-)","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+]}

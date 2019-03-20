@@ -1,0 +1,14 @@
+{"prototypVersion" : "Prototyp3", "level" : "Test DataLogger", "entries" :[
+{"timeStamp":0.0,"action":"setMasterVolume","value1":"1","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":0.0,"action":"setMusicVolume","value1":"1","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":0.0,"action":"setSoundVolume","value1":"1","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":0.0,"action":"setInteriorVisbility","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":0.0,"action":"setAudioBreadcrumsAudability","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":0.0,"action":"setLights","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":0.0,"action":"setWayfindingVisibility","value1":"True","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":0.42260506749153139,"action":"touch","value1":"On LeftButton","value2":"(37.0, 33.0, 0.0)","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":0.42260506749153139,"action":"turnButtonLeft","value1":"West","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":1.355844497680664,"action":"touch","value1":"On Door","value2":"(270.0, 113.0)","value3":"","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":4.29120397567749,"action":"goToRoom","value1":"Corridor EntranceHall_RoomX","value2":"(-18.6, 0.0, 3.0)","value3":"(0.0, 0.0, 0.0)","value4":"","value5":"","value6":"","value7":""},
+{"timeStamp":10.822278022766114,"action":"endGame","value1":"Thank you for playing ;-)","value2":"","value3":"","value4":"","value5":"","value6":"","value7":""},
+]}
