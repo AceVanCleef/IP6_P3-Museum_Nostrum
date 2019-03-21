@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// checks whether the game has been won.
+/// </summary>
 [RequireComponent(typeof(SceneLoader))]
 public class WinConditionManager : MonoBehaviour {
 
@@ -128,7 +131,7 @@ public class WinConditionManager : MonoBehaviour {
     /// updates the WinConditionManager.
     /// </summary>
     /// <param name="picture"></param>
-    /// <returns></returns>
+    /// <returns>the picture that has been found.</returns>
     public bool RegisterPickupOf(InteractivePicture picture)
     {
         ++pictureCount;

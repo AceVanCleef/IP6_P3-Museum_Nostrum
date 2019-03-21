@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// allows adjustment of a room's length, width and height dimensions.
+/// </summary>
 [ExecuteInEditMode]
 public class RoomConfigurator : MonoBehaviour, ITagEnsurance {
    
@@ -77,7 +80,7 @@ public class RoomConfigurator : MonoBehaviour, ITagEnsurance {
     /// allows to drag the room GameObject around in the scene view.
     /// 
     /// Warning: This has to be handled in one single method. Otherwise, when moving the parent  
-    /// within the scene view, the position of walls or ceiling might not be refreshed.
+    /// within the scene view, the position of walls or ceiling might not be updated.
     /// </summary>
     private void UpdatePositions()
     {
@@ -182,8 +185,11 @@ public class RoomConfigurator : MonoBehaviour, ITagEnsurance {
 
 
     #region dynamicCameraRenderingRange
-    //reduces the amount of highlightning shaders seen by the player which aren't within his actual line of sight (in the same room as he is).
+    //cynamically adjusting how far the player can see so that he only sees highlightning shaders in his near vicinity.
 
+    /// <summary>
+    /// cynamically adjusting how far the player can see according to this room's dimensions.
+    /// </summary>
     public void AdjustRenderingRangeOfPlayerCamera()
     {
         //calculating the room diagonal using pythagoras.

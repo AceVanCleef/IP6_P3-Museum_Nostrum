@@ -1,18 +1,23 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+/// recognizes swipe gestures.
+/// </summary>
 public class SwipeDetector : MonoBehaviour
 {
     private Vector2 fingerDownPosition;
     private Vector2 fingerUpPosition;
 
     [SerializeField]
-    private bool detectSwipeOnlyAfterRelease = true;
-    //private bool detectSwipeOnlyAfterRelease = false; //original value.
+    private bool detectSwipeOnlyAfterRelease = true; //original value: false
 
     [SerializeField]
     private float minDistanceForSwipe = 50f;
 
+    /// <summary>
+    /// executes all registered delegates when a swipe is detected.
+    /// </summary>
     public static event Action<SwipeData> OnSwipe = delegate { };
 
     private void Update()
@@ -94,6 +99,9 @@ public class SwipeDetector : MonoBehaviour
 
 }
 
+/// <summary>
+/// stores all information about a detected swipe.
+/// </summary>
 public struct SwipeData
 {
     public Vector2 StartPosition;
@@ -101,6 +109,9 @@ public struct SwipeData
     public SwipeDirection Direction;
 }
 
+/// <summary>
+/// enumerates all possible swipe directions.
+/// </summary>
 public enum SwipeDirection
 {
     Up,

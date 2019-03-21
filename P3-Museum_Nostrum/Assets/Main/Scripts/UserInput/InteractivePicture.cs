@@ -5,9 +5,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// handles user input on this interactive picture.
+/// </summary>
 public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
 {
-
+    //required for dragging the interactive picture.
     private float dist;
     private Vector3 offset;
     private Vector3 v3;
@@ -21,7 +24,6 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
     /// </summary>
     Vector3 startPosition;
 
-    //Todo: move this variable to a game settings script.
     [SerializeField]
     private bool CanPlayerDropPictureOnCanvasDirectly = true;
 
@@ -85,11 +87,16 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
     {
         //Detect UISlot
         GameObject uiSlot = GetFirstUIElementWith("DraggableUI");
-        GameObject pictureCanvas = FindPictureCanvas(eventData.position);
 
         OnEndDragNext(eventData, uiSlot);
     }
 
+    /// <summary>
+    /// OnEndDrag callback.
+    /// </summary>
+    /// <remarks>requiered by and interfacing with ReplayManager.</remarks>
+    /// <param name="eventData">required OnEndDrag event data</param>
+    /// <param name="uiSlot">the hit UISlot GameObject</param>
     public void OnEndDragNext(PointerEventData eventData, GameObject uiSlot)
     {
 
@@ -141,7 +148,11 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
     #endregion DragAndDrop
 
 
-
+    /// <summary>
+    /// returns the first found PictureCanvas at screen pos.
+    /// </summary>
+    /// <param name="pos">Screen position</param>
+    /// <returns></returns>
     public static GameObject FindPictureCanvas(Vector2 pos)
     {
         Ray ray = Camera.main.ScreenPointToRay(pos);
@@ -156,6 +167,11 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
         return null;
     }
 
+    /// <summary>
+    /// returns the hit GameObject.
+    /// </summary>
+    /// <param name="eventData"></param>
+    /// <returns></returns>
     public override GameObject GetHitGameObject(PointerEventData eventData)
     {
         return gameObject;
@@ -242,6 +258,10 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
         }
     }
 
+    /// <summary>
+    /// transfers the texture of this interactive picture to the target pictureCanvas.
+    /// </summary>
+    /// <param name="pictureCanvas">target picture canvas</param>
     public void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
         

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Todo: check whether this class is still necessary. In case the game has to support different photo dimensions, it will.
 public class PictureResolutionHandler : MonoBehaviour {
 
     //todo: Implement interface (and abstract class) in case image frame and UISlots get resizing too.

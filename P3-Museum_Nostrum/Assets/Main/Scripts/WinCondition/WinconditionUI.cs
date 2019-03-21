@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
+/// <summary>
+/// visualizes the current count of found pictures on the GUI.
+/// </summary>
 public class WinconditionUI : MonoBehaviour {
 
     [SerializeField] private GameObject CurrentCountGO;

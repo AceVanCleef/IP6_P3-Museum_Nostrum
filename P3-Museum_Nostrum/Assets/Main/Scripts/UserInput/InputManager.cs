@@ -4,10 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// handles custom user inputs not supported by Unity EventSystem and player rotation callbacks.
+/// </summary>
 public sealed class InputManager : MonoBehaviour {
 
     #region SingletonSetup
     private static InputManager inputManager;
+    /// <summary>
+    /// returns singleton instance of InputManager.
+    /// </summary>
     public static InputManager Instance
     {
         get
@@ -46,6 +52,9 @@ public sealed class InputManager : MonoBehaviour {
     private PlayerRotator playerRotator;
 
     #region EventSystemSetup
+    /// <summary>
+    /// enables raycasting against 3D GameObjects.
+    /// </summary>
     void AddPhysicsRaycaster()
     {
         PhysicsRaycaster physicsRaycaster = GameObject.FindObjectOfType<PhysicsRaycaster>();
@@ -57,11 +66,17 @@ public sealed class InputManager : MonoBehaviour {
     #endregion EventSystemSetup
 
     #region BlockSwipeGesture
+    /// <summary>
+    /// locks player rotation.
+    /// </summary>
     public void BlockSwipeAction()
     {
         blockSwipeAction = true;
     }
 
+    /// <summary>
+    /// unlocks player rotation.
+    /// </summary>
     public void UnlockSwipeAction()
     {
         StartCoroutine(UnlockSwipeActionAfter(UnlockDuration));
@@ -76,9 +91,13 @@ public sealed class InputManager : MonoBehaviour {
 
 
     #region SwipeCallbacks
+    /// <summary>
+    /// executes a player rotation depending on Swipe direction.
+    /// </summary>
+    /// <param name="data">required swipe direction info</param>
     private void HandleSwipe(SwipeData data)
     {
-        if (!playerRotator.IsMoving() && !blockSwipeAction)
+        if (!playerRotator.IsRotating() && !blockSwipeAction)
         {
             if (data.Direction == SwipeDirection.Left)
             {
@@ -115,13 +134,16 @@ public sealed class InputManager : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// executes a left rotation of the player.
+    /// </summary>
     public void OnLeftButtonClick()
     {
         //draw a touch on GUI.
         if (DataLogger.Instance)
             DataLogger.Instance.Log("touch", "On LeftButton", Input.mousePosition.ToString());
 
-        if (!playerRotator.IsMoving() && !blockSwipeAction)
+        if (!playerRotator.IsRotating() && !blockSwipeAction)
         {
             playerRotator.Rotate(PlayerRotator.RotationDirection.Left);
             CameraViewDirection.Instance.GetCurrentState().TransitionLeft();
@@ -132,6 +154,9 @@ public sealed class InputManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// executes a right rotation of the player.
+    /// </summary>
     public void OnRightButtonClick()
     {
         if (DataLogger.Instance)
@@ -140,7 +165,7 @@ public sealed class InputManager : MonoBehaviour {
             DataLogger.Instance.Log("touch", "On RightButton", Input.mousePosition.ToString());
         }
 
-        if (!playerRotator.IsMoving() && !blockSwipeAction)
+        if (!playerRotator.IsRotating() && !blockSwipeAction)
         {
             playerRotator.Rotate(PlayerRotator.RotationDirection.Right);
             CameraViewDirection.Instance.GetCurrentState().TransitionRight();

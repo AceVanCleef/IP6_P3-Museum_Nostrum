@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// allows configuration of the door's dimensions.
+/// </summary>
 [ExecuteInEditMode]
 public class DoorConfigurator : MonoBehaviour {
 
@@ -19,7 +22,7 @@ public class DoorConfigurator : MonoBehaviour {
     [Tooltip("Define how wide the door is in relation to its height. Most common ratio: 2,4878.")]
     private float height2WidthRatio = 2.5f;
 
-    [SerializeField]
+    [SerializeField][Tooltip("Double the width of the door? Used when a double door texture is applied to this GO.")]
     private bool isDoubleDoor = false;
 
     private float doorWidth;

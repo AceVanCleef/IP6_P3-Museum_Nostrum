@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// handles user input on this interactive picture frame.
+/// </summary>
 public class InteractivePictureFrame : AbstractUIDetectingGameObject
 {
-
+    //required by drag gesture handling.
     private float dist;
     private Vector3 offset;
     private Vector3 v3;
@@ -17,7 +20,6 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
 
     Vector3 startPosition;
 
-    //Todo: move this variable to a game settings script.
     [SerializeField]
     private bool CanPlayerDropPictureOnCanvasDirectly = true;
 
@@ -84,7 +86,14 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         OnEndDragNext(eventData, uiSlot, pictureCanvases, startPosition);
     }
 
-
+    /// <summary>
+    /// OnEndDrag callback.
+    /// </summary>
+    /// <remarks>requiered by and interfacing with ReplayManager.</remarks>
+    /// <param name="eventData"></param>
+    /// <param name="uiSlot"></param>
+    /// <param name="pictureCanvases"></param>
+    /// <param name="startPos"></param>
     public void OnEndDragNext(PointerEventData eventData, GameObject uiSlot, GameObject[] pictureCanvases, Vector3 startPos)
     {
 
@@ -187,6 +196,12 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         return null;
     }
 
+
+    /// <summary>
+    /// returns the hit GameObject.
+    /// </summary>
+    /// <param name="eventData"></param>
+    /// <returns></returns>
     public override GameObject GetHitGameObject(PointerEventData eventData)
     {
         return gameObject;

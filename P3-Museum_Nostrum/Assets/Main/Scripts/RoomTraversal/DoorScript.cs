@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// handles player room-to-room movement.
+/// </summary>
 public class DoorScript : AbstractInteractiveGameObject
 {
 
-    [Tooltip("To allocate the camera target position when clickin onto a door, drag the target room's CameraPositionNode into this variable.")]
+    [Tooltip("Define to which room the player will be walking by selecting a room and drag/drop its CameraPositionNode into this field.")]
     public GameObject TargetCameraPositionNode;
     private CameraPositionInfo targetPositionInfo;
 
@@ -36,12 +39,16 @@ public class DoorScript : AbstractInteractiveGameObject
            movePointMap = (MovePointMap)mapPoint.GetComponent(typeof(MovePointMap));
     }
 
+    //Unity click/touch gesture callback.
     public override void OnPointerClick(PointerEventData eventData)
     {
         if (DataLogger.Instance) DataLogger.Instance.Log("touch", "On Door", eventData.position.ToString() );
         StartCoroutine(StartDoorTransition());
     }
 
+    /// <summary>
+    /// teleports the player to his destination behind the door.
+    /// </summary>
     public void WarpToNextRoom()
     {
         GetComponent<AudioSource>().Play();
@@ -59,6 +66,9 @@ public class DoorScript : AbstractInteractiveGameObject
         }
     }
 
+    /// <summary>
+    /// plays walk animation and teleports the player to his destination afterwards.
+    /// </summary>
     public IEnumerator StartDoorTransition()
     {
         //play animations

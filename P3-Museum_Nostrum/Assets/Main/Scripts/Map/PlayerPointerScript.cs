@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// manages the PlayerPointer used by the mini map.
+/// </summary>
 public class PlayerPointerScript : MonoBehaviour {
 
     /// <summary>

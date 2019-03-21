@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// manages the mini map.
+/// </summary>
+/// <remarks>Note that in the current version the room coordinates have to be defined by hand for each level.</remarks>
 public class MovePointMap : MonoBehaviour
 {
     Dictionary<string, float[]> dictionary = new Dictionary<string, float[]>();
@@ -18,7 +22,7 @@ public class MovePointMap : MonoBehaviour
     //the name of each room is used as key
     void OnEnable()
     {
-        //setes coordinates depending on which level has been loaded
+        //sets coordinates depending on which level has been loaded
         if (SceneManager.GetActiveScene().name == "Museum Nostrum LVL 01")
         {
             dictionary.Add("Entrance Hall", new float[] { 200f, 223f });
@@ -106,10 +110,11 @@ public class MovePointMap : MonoBehaviour
         }
     }
 
-    
-   
 
     //inverts the alpha channel of the map point.map point can not be disabled like the map itself, because it needs to moved, eventhough its not visible.
+    /// <summary>
+    /// toggles the visibility of the mini map.
+    /// </summary>
     public void toggleMap()
     {
         if (!isMapOpen)
@@ -136,7 +141,10 @@ public class MovePointMap : MonoBehaviour
         isMapOpen = !isMapOpen;
     }
 
-
+    /// <summary>
+    /// moves the player pointer towards the room defined by roomName.
+    /// </summary>
+    /// <param name="roomName">name of the room the player is currently moving towards.</param>
     public void moveMapPointer(string roomName)
     {
         if (dictionary.ContainsKey(roomName))
