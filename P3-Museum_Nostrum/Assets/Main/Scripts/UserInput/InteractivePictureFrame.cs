@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
-/// handles user input on this interactive picture frame.
+/// handles user input for and texture swapping of this interactive picture frame.
 /// </summary>
 public class InteractivePictureFrame : AbstractUIDetectingGameObject
 {
@@ -174,7 +174,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
     /// returns the first two detected GameObject tagged "PictureCanvas".
     /// </summary>
     /// <param name="pos"></param>
-    /// <returns></returns>
+    /// <returns>the first two detected GameObjects</returns>
     public static GameObject[] FindBothOverlappingPictureCanvases(Vector2 pos)
     {
         GameObject[] pictureCanvases = new GameObject[2];
@@ -241,7 +241,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         {
             if (HasPlayerSelectedGUIElement())
             {
-                ReceiveTextureSelectedFromGUIElement();
+                ReceiveTextureFromSelectedGUIElement();
                 ActivateDoorHighlightning();
                 DeactivatePictureFrameHighlightning();
 
@@ -310,7 +310,7 @@ public class InteractivePictureFrame : AbstractUIDetectingGameObject
         return pictureRenderer.material.mainTexture != null;
     }
 
-    private void ReceiveTextureSelectedFromGUIElement()
+    private void ReceiveTextureFromSelectedGUIElement()
     {
         RawImage ri = GetSelectedGameObject().GetComponent<RawImage>();
         Renderer renderer = GetComponent<Renderer>();

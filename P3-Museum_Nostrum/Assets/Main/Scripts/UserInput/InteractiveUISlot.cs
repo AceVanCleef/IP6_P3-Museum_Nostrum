@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// handles user input for and texture swapping of this InteractiveUISlot.
+/// </summary>
 public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
 {
 
     Vector3 startPosition;
     RawImage ri;
 
+    //the dimensions of this UISlot.
     private static readonly Vector2 InitialSize = new Vector2(160f, 160f);
     private static readonly Vector2 HoverSize = new Vector2(200f, 200f);
 
@@ -77,6 +81,13 @@ public class InteractiveUISlot : AbstractInteractiveGUIElement, ITagEnsurance
             DataLogger.Instance.Log("drag n drop", DragStartPosOnScreen.ToString(), eventData.position.ToString());
     }
 
+    /// <summary>
+    /// OnEndDrag callback.
+    /// </summary>
+    /// <remarks>requiered by and interfacing with ReplayManager.</remarks>
+    /// <param name="pictureCanvas"></param>
+    /// <param name="eventData"></param>
+    /// <param name="startPos"></param>
     public void OnEndDragNext(GameObject pictureCanvas, PointerEventData eventData, Vector3 startPos)
     {
 

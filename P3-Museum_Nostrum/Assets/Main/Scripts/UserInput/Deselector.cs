@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// deselects currently selected GameObject.
+/// </summary>
 public class Deselector : AbstractInteractiveGameObject
 {
 
