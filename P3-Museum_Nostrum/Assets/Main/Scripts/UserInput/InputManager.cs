@@ -55,6 +55,11 @@ public sealed class InputManager : MonoBehaviour {
     /// <summary>
     /// enables raycasting against 3D GameObjects.
     /// </summary>
+    /// <remarks>
+    /// attaches a PhysicsRaycaster to the main camera. This allows raycasting 
+    /// against 3D GameObjects utilizing Unity's EventSystem. Without this, 
+    /// only GUI elements can be raycasted using the EventSystem.
+    /// </remarks>
     void AddPhysicsRaycaster()
     {
         PhysicsRaycaster physicsRaycaster = GameObject.FindObjectOfType<PhysicsRaycaster>();

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// stores in which direction the player is looking towards and offers view direction dependend algorithms.
+/// </summary>
 public sealed class CameraViewDirection {
 
     //eager initialization of singleton.
@@ -17,7 +20,7 @@ public sealed class CameraViewDirection {
 
     private CameraViewDirection()
     {
-        //prevents multiple instance.
+        //prevents multiple instances.
     }
 
     //---------------------------- StateMachine -------------------------------
@@ -141,6 +144,9 @@ public sealed class CameraViewDirection {
     }
 }
 
+/// <summary>
+/// enumerates all valid directions a player can look towards.
+/// </summary>
 public enum Direction
 {
     North,

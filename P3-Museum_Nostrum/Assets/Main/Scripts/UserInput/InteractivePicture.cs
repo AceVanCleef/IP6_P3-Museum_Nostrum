@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
-/// handles user input on this interactive picture.
+/// handles user input for and texture swapping of this InteractivePicture.
 /// </summary>
 public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
 {
@@ -261,7 +261,8 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
     /// <summary>
     /// transfers the texture of this interactive picture to the target pictureCanvas.
     /// </summary>
-    /// <param name="pictureCanvas">target picture canvas</param>
+    /// <remarks>also called by ReplayerManager.</remarks>
+    /// <param name="pictureCanvas">target picture canvas (the background of the picture frame holding an InteractivePictureFrame script).s</param>
     public void AttachPictureToPictureCanvas(GameObject pictureCanvas)
     {
         

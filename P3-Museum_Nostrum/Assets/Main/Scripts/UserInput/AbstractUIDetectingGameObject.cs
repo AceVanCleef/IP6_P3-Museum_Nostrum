@@ -4,9 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
+/// <summary>
+/// enables a GameObject to detect GUI elements.
+/// </summary>
+/// <remarks>3D GameObjects require access to the canvas' GraphicRaycaster in order to detect GUI elements.</remarks>
 public class AbstractUIDetectingGameObject : AbstractInteractiveGameObject
 {
-
+    //the required components to raycast GUI elements.
     private static GraphicRaycaster m_Raycaster;
     private static PointerEventData m_PointerEventData;
     private static EventSystem m_EventSystem;
