@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114939546108606022}
   m_Layer: 0
   m_Name: Replayer
-  m_TagString: Untagged
+  m_TagString: Replayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listActions: []
-  path: 
+  path: C:\Users\Adrian\Desktop\DataLogger_22-03-19_05-40-56.json
 --- !u!114 &114939546108606022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,12 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ecea6e73d7fcb4fa654a4ba7e5ffd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakTime: 0.75
+  breakTime: 0.35
   tempDeltaTime: 0
   messageDuration: 1
   useDeltaTime: 0
-  welcomeMessageUI: {fileID: 0}
-  messageUI: {fileID: 0}
-  messageText: {fileID: 0}
+  welcomeMessageGUI: {fileID: 0}
+  ReplayerMessage: {fileID: 0}
+  ReplayerMessageText: {fileID: 0}
   openMapButton: {fileID: 0}
   closeMapButton: {fileID: 0}
