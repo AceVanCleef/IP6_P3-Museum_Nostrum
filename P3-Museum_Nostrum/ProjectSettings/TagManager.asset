@@ -18,6 +18,7 @@ TagManager:
   - PlayerPointer
   - Map
   - DoorHighlightningShaders
+  - Replayer
   layers:
   - Default
   - TransparentFX

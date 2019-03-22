@@ -122,9 +122,9 @@ public class WinConditionManager : MonoBehaviour {
 
         yield return new WaitForSeconds(seconds);
 
-        //load start scene.
-        if (!ReplayManager.Instance)
-            GetComponent<SceneLoader>().LoadScene();
+        //load start scene if no replayer is present.
+        if (!GameObject.FindGameObjectWithTag("Replayer"))
+             GetComponent<SceneLoader>().LoadScene();
     }
 
     /// <summary>
