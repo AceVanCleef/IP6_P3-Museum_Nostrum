@@ -67,10 +67,10 @@ public class JSONGenerator : MonoBehaviour
         string persistentDataPath = Application.persistentDataPath;
 
         //path for creation of JSON files in editor mode uf unity 
-        path = "Assets/PluginsWithDependencies/DataLogger/DataLoggerFiles/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
+        //path = "Assets/PluginsWithDependencies/DataLogger/DataLoggerFiles/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
 
         //path for creation of JSON files on android or iOS tablets
-        //path = persistentDataPath + "/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
+        path = persistentDataPath + "/DataLogger_" + System.DateTime.Now.ToString("dd-MM-yy_hh-mm-ss") + ".json";
 
         using (FileStream fs = new FileStream(path, FileMode.Create))
         {
