@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
 {
@@ -10,12 +11,16 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
 
     private RawImage rw;
 
+    private VideoPlayButton vpb;
+    private VideoPlayerManager vpm;
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("hitting rw");
         if (IsShowing())
         {
             Hide();
+            vpb.HideVideoPlayButton();
+            vpm.CloseVideoPlayer();
         }
     }
 
@@ -46,7 +51,6 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
         return rw.texture;
     }
 
-
     void Awake()
     {
         if (!instance)
@@ -59,11 +63,11 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Use this for initialization
     void Start()
     {
         rw = GetComponent<RawImage>();
+        vpb = UnityEngine.Object.FindObjectOfType<VideoPlayButton>();
+        vpm = UnityEngine.Object.FindObjectOfType<VideoPlayerManager>();
         Init();
-
     }
 }
