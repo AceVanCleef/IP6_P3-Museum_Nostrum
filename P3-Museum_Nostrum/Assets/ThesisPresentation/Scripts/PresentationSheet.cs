@@ -13,17 +13,27 @@ public class PresentationSheet : MonoBehaviour, IPointerClickHandler
     private VideoPlayButton vpb;
     public VideoClip videoclip;
 
+    private CameraZoomManager czm;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!fsps.IsShowing())
         {
-            fsps.Show(t);
-            if (videoclip)
-            {
-                vpb.ShowVideoPlayButton(videoclip);
-            }
+            StartCoroutine(AsyncShow());
         }
 
+    }
+
+    private IEnumerator AsyncShow()
+    {
+        yield return czm.MoveCameraTo(transform.position);
+        // How to Wait for the execution of a previous function:
+        // https://answers.unity.com/questions/1034021/start-method-after-coroutine-has-finished.html
+        fsps.Show(t);
+        if (videoclip)
+        {
+            vpb.ShowVideoPlayButton(videoclip);
+        }
     }
 
     // Use this for initialization
@@ -31,6 +41,7 @@ public class PresentationSheet : MonoBehaviour, IPointerClickHandler
         fsps = UnityEngine.Object.FindObjectOfType<FullScreenPresentationSurface>();
         t = GetComponent<Renderer>().material.mainTexture;
         vpb = UnityEngine.Object.FindObjectOfType<VideoPlayButton>();
+        czm = UnityEngine.Object.FindObjectOfType<CameraZoomManager>();
     }
 	
 	

@@ -14,6 +14,8 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
     private VideoPlayButton vpb;
     private VideoPlayerManager vpm;
 
+    private CameraZoomManager czm;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (IsShowing())
@@ -21,6 +23,7 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
             Hide();
             vpb.HideVideoPlayButton();
             vpm.CloseVideoPlayer();
+            czm.ResetCamera();
         }
     }
 
@@ -68,6 +71,7 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
         rw = GetComponent<RawImage>();
         vpb = UnityEngine.Object.FindObjectOfType<VideoPlayButton>();
         vpm = UnityEngine.Object.FindObjectOfType<VideoPlayerManager>();
+        czm = UnityEngine.Object.FindObjectOfType<CameraZoomManager>();
         Init();
     }
 }
