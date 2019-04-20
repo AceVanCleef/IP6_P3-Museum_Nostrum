@@ -37,14 +37,17 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
 
     public void Show(Texture t)
     {
-        rw.color = new Color(rw.color.r, rw.color.g, rw.color.b, 1f);
+        //rw.color = new Color(rw.color.r, rw.color.g, rw.color.b, 1f);
+        StartCoroutine(AsyncChangeOpacityTo(1f, 0.5f));
         rw.texture = t;
         rw.raycastTarget = true;
     }
 
     public void Hide()
     {
-        rw.color = new Color(rw.color.r, rw.color.g, rw.color.b, 0f);
+        //rw.color = new Color(rw.color.r, rw.color.g, rw.color.b, 0f);
+        StartCoroutine(AsyncChangeOpacityTo(0f, 0.5f));
+
         rw.texture = null;
         rw.raycastTarget = false;
     }
@@ -52,6 +55,30 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
     public bool IsShowing()
     {
         return rw.texture;
+    }
+
+    private IEnumerator AsyncChangeOpacityTo(float targetOpacity, float startOpacity = 0f)
+    {
+        float currentOpacity = startOpacity;
+
+        if (startOpacity < targetOpacity)
+        {
+            while (currentOpacity < targetOpacity)
+            {
+                currentOpacity += 0.3f;
+                rw.color = new Color(rw.color.r, rw.color.g, rw.color.b, currentOpacity);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        else
+        {
+            while (currentOpacity > targetOpacity)
+            {
+                currentOpacity -= 0.3f;
+                rw.color = new Color(rw.color.r, rw.color.g, rw.color.b, currentOpacity);
+                yield return new WaitForEndOfFrame();
+            }
+        }
     }
 
     void Awake()
