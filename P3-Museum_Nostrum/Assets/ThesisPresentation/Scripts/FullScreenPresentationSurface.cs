@@ -16,6 +16,8 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
 
     private CameraZoomManager czm;
 
+    private UIZoomImage zi;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (IsShowing())
@@ -50,6 +52,7 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
 
         rw.texture = null;
         rw.raycastTarget = false;
+        if(zi) zi.Reset();
     }
 
     public bool IsShowing()
@@ -99,6 +102,7 @@ public class FullScreenPresentationSurface : MonoBehaviour, IPointerClickHandler
         vpb = UnityEngine.Object.FindObjectOfType<VideoPlayButton>();
         vpm = UnityEngine.Object.FindObjectOfType<VideoPlayerManager>();
         czm = UnityEngine.Object.FindObjectOfType<CameraZoomManager>();
+        zi = UnityEngine.Object.FindObjectOfType<UIZoomImage>();
         Init();
     }
 }
