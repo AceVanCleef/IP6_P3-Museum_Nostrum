@@ -5,19 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/_preload.unity
     guid: af5caf9bd5a72744cb1457fe0a18c3cf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/StartMenu.unity
     guid: ac3c848cc590c3647b7b067edafabb92
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/Animation/EntranceAnimation.unity
     guid: b39a0d7787c6dbf4bbed22037ad561db
   - enabled: 0
     path: Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 01 V2.unity
     guid: 6dd8c77c6ab8c054aa14aa7d11692918
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scenes/_Game Levels/Museum Nostrum LVL 01.unity
     guid: 6952edd4aa28f9648bc0a6a52c5ceac9
+  - enabled: 1
+    path: Assets/ThesisPresentation/Launch_Presentation.unity
+    guid: fd2e4fbc1fee5d34abc8d2de6f5632c0
+  - enabled: 1
+    path: Assets/ThesisPresentation/Presentation_Backdrops.unity
+    guid: 6e89f44c40b00ab42adcc3e5851d96ef
   m_configObjects: {}
