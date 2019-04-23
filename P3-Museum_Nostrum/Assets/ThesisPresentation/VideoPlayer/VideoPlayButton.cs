@@ -38,7 +38,7 @@ public class VideoPlayButton : MonoBehaviour {
         button.onClick.AddListener(InformVideoPlayerManager);
         rt = GetComponent<RectTransform>();
         originalPos = rt.localPosition;
-
+        
         HideVideoPlayButton();
     }
 
@@ -54,6 +54,7 @@ public class VideoPlayButton : MonoBehaviour {
         Clip = vc;
         button.interactable = true;
         rt.localPosition = originalPos;
+        
     }
 
     public void HideVideoPlayButton()
@@ -61,7 +62,8 @@ public class VideoPlayButton : MonoBehaviour {
         img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
         img.raycastTarget = false;
         button.interactable = false;
-        rt.localPosition = new Vector3(200f, 0f);
+        rt.localPosition = new Vector3(500f + originalPos.x, originalPos.y);
+        
     }
 
     void Awake()
