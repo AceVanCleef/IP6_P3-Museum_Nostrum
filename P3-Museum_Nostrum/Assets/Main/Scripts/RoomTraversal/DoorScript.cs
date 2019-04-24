@@ -103,4 +103,9 @@ public class DoorScript : AbstractInteractiveGameObject
                 doorAnimationLength = clip.length;
         }
     }
+
+    protected float GetDoorAnimationLength()
+    {
+        return doorAnimationLength;
+    }
 }
