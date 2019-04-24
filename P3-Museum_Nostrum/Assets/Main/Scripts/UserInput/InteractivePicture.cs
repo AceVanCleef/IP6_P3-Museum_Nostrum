@@ -115,7 +115,7 @@ public class InteractivePicture : AbstractUIDetectingGameObject, ITagEnsurance
             transform.position = startPosition;
         }
 
-        DeactivateUISlotHighlightning();
+        Deselect();
 
         //Reenable swipes
         base.OnEndDrag(eventData);
