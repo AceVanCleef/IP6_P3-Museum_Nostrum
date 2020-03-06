@@ -34,15 +34,6 @@ Mit Klick auf das Bild öffnet sich ein Youtube - Video.
 " target="_blank"><img src="http://img.youtube.com/vi/1WC5Rr0EPj4/0.jpg" 
 alt="Orientierung betagter Menschen im virtuellen Raum eines Videospieles (Bachelor - Thesis)" width="240" height="180" border="10" /></a>
 
-### Gameplay - Video
-
-Mit Klick auf das Bild öffnet sich ein Youtube - Video.
-
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=LeJSRXaeYMU
-" target="_blank"><img src="http://img.youtube.com/vi/LeJSRXaeYMU/0.jpg" 
-alt="Spielkonzept" width="240" height="180" border="10" /></a>
-
 
 # Museum Nostrum ausprobieren
 
@@ -57,6 +48,16 @@ alt="Spielkonzept" width="240" height="180" border="10" /></a>
 1. [Apk - Datei herunterladen](https://drive.google.com/open?id=1XyGR4Aydw4jn-tS0sEjjEntEdJthG3lX).
 2. [Installationsanleitung folgen](https://www.heise.de/tipps-tricks/Externe-Apps-APK-Dateien-bei-Android-installieren-so-klappt-s-3714330.html).
 3. Museum Nostrum auf Android - Gerät öffnen.
+
+## Gameplay - Video
+
+Mit Klick auf das Bild öffnet sich ein Youtube - Video.
+
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=LeJSRXaeYMU
+" target="_blank"><img src="http://img.youtube.com/vi/LeJSRXaeYMU/0.jpg" 
+alt="Spielkonzept" width="240" height="180" border="10" /></a>
+
 
 
 # Entwicklung
