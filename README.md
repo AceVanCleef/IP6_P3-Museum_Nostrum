@@ -35,13 +35,15 @@ Mit Klick auf das Bild öffnet sich ein Youtube - Video (30 min).
 alt="Orientierung betagter Menschen im virtuellen Raum eines Videospieles (Bachelor - Thesis)" width="240" height="180" border="10" /></a>
 
 
-# Museum Nostrum ausprobieren
+# Museum Nostrum herunterladen & ausprobieren
 
-## Auf PC: Interaktive Verteidigungspräsentation herunterladen
+## Auf PC (Interaktive Verteidigungspräsentation)
 
 1. [Interaktive Präsentation herunterladen](https://drive.google.com/open?id=1eqiY11sj8cZx93RZ5-lv_NZ5862uAuDO).
 2. Zip - File entpacken.
 3. P3-Museum_Nostrum.exe ausführen.
+
+Hinweis: Die interaktive Präsentation wurde mit dem Sourcecode des Spiels entwickelt und demonstriert das Spielprinzip fast identisch.
 
 ## Auf Android
 
