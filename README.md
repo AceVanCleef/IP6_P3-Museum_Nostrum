@@ -28,14 +28,14 @@ Der vollständige Forschungsbericht kann [hier](https://drive.google.com/open?id
 
 ## Verteidigungspräsentation dieser Bachelorarbeit
 
-Mit Klick auf das Bild öffnet sich ein Youtube - Video:
+Mit Klick auf das Bild öffnet sich ein Youtube - Video:  
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=1WC5Rr0EPj4
 " target="_blank"><img src="http://img.youtube.com/vi/1WC5Rr0EPj4/0.jpg" 
 alt="Orientierung betagter Menschen im virtuellen Raum eines Videospieles (Bachelor - Thesis)" width="240" height="180" border="10" /></a>
 
 ### Gameplay - Video
 
-Mit Klick auf das Bild öffnet sich ein Youtube - Video:
+Mit Klick auf das Bild öffnet sich ein Youtube - Video:  
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=LeJSRXaeYMU
 " target="_blank"><img src="http://img.youtube.com/vi/LeJSRXaeYMU/0.jpg" 
 alt="Spielkonzept" width="240" height="180" border="10" /></a>
