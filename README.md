@@ -41,7 +41,7 @@ alt="Orientierung betagter Menschen im virtuellen Raum eines Videospieles (Bache
 
 Gilt für das Spiel als auch die interaktive Präsentation
 
-1. [Zip - file auf itch.io herunterladen ](https://stefan-wohlgensinger.itch.io/museum-nostrum).
+1. [Zip - File auf itch.io herunterladen ](https://stefan-wohlgensinger.itch.io/museum-nostrum).
 2. Zip - File entpacken.
 3. P3-Museum_Nostrum.exe ausführen.
 
