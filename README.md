@@ -37,9 +37,11 @@ alt="Orientierung betagter Menschen im virtuellen Raum eines Videospieles (Bache
 
 # Museum Nostrum herunterladen & ausprobieren
 
-## Auf PC (Interaktive Verteidigungspräsentation)
+## Auf PC
 
-1. [Interaktive Präsentation herunterladen](https://drive.google.com/open?id=1eqiY11sj8cZx93RZ5-lv_NZ5862uAuDO).
+Gilt für das Spiel als auch die interaktive Präsentation
+
+1. [Zip - file auf itch.io herunterladen ](https://stefan-wohlgensinger.itch.io/museum-nostrum).
 2. Zip - File entpacken.
 3. P3-Museum_Nostrum.exe ausführen.
 
@@ -60,6 +62,13 @@ Mit Klick auf das Bild öffnet sich ein Youtube - Video (1 min).
 " target="_blank"><img src="http://img.youtube.com/vi/LeJSRXaeYMU/0.jpg" 
 alt="Spielkonzept" width="240" height="180" border="10" /></a>
 
+# Analysetools in Aktion sehen
+
+Unsere Analysetools sind in der Lage, eine Spielsession nachzuspielen und mittels Visualisierungstools zur Analyse darzustellen. So können wir herausfinden, wo sich ein Spieler am häufigsten aufhielt, welchen Weg er am häufigsten ging und in welche Richtung er per Raum geschaut hat.
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=JB60usG0vkg
+" target="_blank"><img src="http://img.youtube.com/vi/JB60usG0vkg/0.jpg" 
+alt="Spielkonzept" width="240" height="180" border="10" /></a>
 
 
 # Entwicklung
